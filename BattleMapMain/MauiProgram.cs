@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BattleMapMain.ViewModels;
+using BattleMapMain.Views;
+using Microsoft.Extensions.Logging;
+using Microsoft.Win32;
 
 namespace BattleMapMain
 {
@@ -13,13 +16,33 @@ namespace BattleMapMain
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
-
+                })
+                .RegisterDataServices()
+                .RegisterPages()
+                .RegisterViewModels();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
+        }
+        public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
+        {
+            builder.Services.AddTransient<LoginView>();
+            builder.Services.AddTransient<AppShell>();
+
+            return builder;
+        }
+
+        public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
+        {
+            //builder.Services.AddSingleton<TasksManagementWebAPIProxy>();
+            return builder;
+        }
+        public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
+        {
+            builder.Services.AddTransient<LoginViewModel>();
+            return builder;
         }
     }
 }
