@@ -1,4 +1,5 @@
-﻿using BattleMapMain.ViewModels;
+﻿using BattleMapMain.Services;
+using BattleMapMain.ViewModels;
 using BattleMapMain.Views;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
@@ -36,7 +37,7 @@ namespace BattleMapMain
 
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
-            //builder.Services.AddSingleton<TasksManagementWebAPIProxy>();
+            builder.Services.AddSingleton<BattleMapWebAPIProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)

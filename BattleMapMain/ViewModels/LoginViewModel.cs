@@ -1,23 +1,25 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BattleMapMain.Models;
+using BattleMapMain.Services;
+using BattleMapMain.Views;
 
 namespace BattleMapMain.ViewModels
 {
 
         public class LoginViewModel : ViewModelBase
         {
-            private TasksManagementWebAPIProxy proxy;
+            private BattleMapWebAPIProxy proxy;
             private IServiceProvider serviceProvider;
-            public LoginViewModel(TasksManagementWebAPIProxy proxy, IServiceProvider serviceProvider)
+            public LoginViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
             {
                 this.serviceProvider = serviceProvider;
                 this.proxy = proxy;
-                LoginCommand = new Command(OnLogin);
+            LoginCommand = new Command(() => OnLogin());
                 RegisterCommand = new Command(OnRegister);
                 email = "";
                 password = "";
@@ -81,7 +83,7 @@ namespace BattleMapMain.ViewModels
                 ErrorMsg = "";
                 //Call the server to login
                 LoginInfo loginInfo = new LoginInfo { Email = Email, Password = Password };
-                AppUser? u = await this.proxy.LoginAsync(loginInfo);
+                User? u = await this.proxy.LoginAsync(loginInfo);
 
                 InServerCall = false;
 
@@ -95,12 +97,12 @@ namespace BattleMapMain.ViewModels
                 {
                     ErrorMsg = "";
                     //Navigate to the main page
-                    AppShell shell = serviceProvider.GetService<AppShell>();
-                    TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
-                    tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
-                    ((App)Application.Current).MainPage = shell;
-                    Shell.Current.FlyoutIsPresented = false; //close the flyout
-                    Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+                    //AppShell shell = serviceProvider.GetService<AppShell>();
+                    //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
+                    //tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                    //((App)Application.Current).MainPage = shell;
+                    //Shell.Current.FlyoutIsPresented = false; //close the flyout
+                    //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
                 }
             }
 
@@ -110,7 +112,7 @@ namespace BattleMapMain.ViewModels
                 Email = "";
                 Password = "";
                 // Navigate to the Register View page
-                ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
+                //((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
             }
 
 
