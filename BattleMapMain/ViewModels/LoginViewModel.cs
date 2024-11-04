@@ -112,7 +112,7 @@ namespace BattleMapMain.ViewModels
                 Email = "";
                 Password = "";
                 // Navigate to the Register View page
-                //((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
+                ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());
             }
 
 

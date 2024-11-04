@@ -30,6 +30,7 @@ namespace BattleMapMain
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LoginView>();
+            builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<AppShell>();
 
             return builder;
@@ -43,6 +44,8 @@ namespace BattleMapMain
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
         {
             builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<RegisterViewModel>();
+
             return builder;
         }
     }
