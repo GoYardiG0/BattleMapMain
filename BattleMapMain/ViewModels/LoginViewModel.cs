@@ -19,7 +19,7 @@ namespace BattleMapMain.ViewModels
             {
                 this.serviceProvider = serviceProvider;
                 this.proxy = proxy;
-            LoginCommand = new Command(() => OnLogin());
+                LoginCommand = new Command(() => OnLogin());
                 RegisterCommand = new Command(OnRegister);
                 email = "";
                 password = "";
@@ -95,7 +95,7 @@ namespace BattleMapMain.ViewModels
                 }
                 else
                 {
-                    ErrorMsg = "";
+                    ErrorMsg = "great succes";
                     //Navigate to the main page
                     //AppShell shell = serviceProvider.GetService<AppShell>();
                     //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
