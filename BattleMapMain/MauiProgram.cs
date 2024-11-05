@@ -32,6 +32,10 @@ namespace BattleMapMain
             builder.Services.AddTransient<LoginView>();
             builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<AppShell>();
+            builder.Services.AddTransient<GameStartView>();
+            builder.Services.AddTransient<ProfileView>();
+
+
 
             return builder;
         }
@@ -45,6 +49,11 @@ namespace BattleMapMain
         {
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<GameStartViewModel>();
+            builder.Services.AddTransient<AppShellViewModel>();
+            builder.Services.AddTransient<ProfileViewModel>();
+
+
 
             return builder;
         }

@@ -97,12 +97,12 @@ namespace BattleMapMain.ViewModels
                 {
                     ErrorMsg = "great succes";
                     //Navigate to the main page
-                    //AppShell shell = serviceProvider.GetService<AppShell>();
-                    //TasksViewModel tasksViewModel = serviceProvider.GetService<TasksViewModel>();
-                    //tasksViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
-                    //((App)Application.Current).MainPage = shell;
+                    AppShell shell = serviceProvider.GetService<AppShell>();
+                    GameStartViewModel gameStartViewModel = serviceProvider.GetService<GameStartViewModel>();
+                    //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                    ((App)Application.Current).MainPage = shell;
                     //Shell.Current.FlyoutIsPresented = false; //close the flyout
-                    //Shell.Current.GoToAsync("Tasks"); //Navigate to the Tasks tab page
+                    Shell.Current.GoToAsync("GameStart"); //Navigate to the Tasks tab page
                 }
             }
 

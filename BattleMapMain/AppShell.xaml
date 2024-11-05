@@ -4,12 +4,30 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BattleMapMain"
+    xmlns:views="clr-namespace:BattleMapMain.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="BattleMapMain">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar Route="tabs1" >
+        <Tab Title="GameStart"
+             Route="GameStart"
+            >
+            <ShellContent
+         ContentTemplate="{DataTemplate views:GameStartView}"  />
+        </Tab>
+        <Tab Title="Profile"
+                 Route="Profile"
+             >
+            <ShellContent
+                ContentTemplate="{DataTemplate views:ProfileView}"
+            />
+        </Tab>
+    </TabBar>
+    
 </Shell>
+
+   
+
+    
+    
+
