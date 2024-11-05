@@ -84,7 +84,7 @@
 	  <MauiXaml Update="Views\FriendListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\FriendProfile.xaml">
+	  <MauiXaml Update="Views\FriendProfileView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\GameStartView.xaml">
