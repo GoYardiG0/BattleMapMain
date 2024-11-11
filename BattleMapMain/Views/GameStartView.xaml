@@ -5,9 +5,8 @@
              x:Class="BattleMapMain.Views.GameStartView"
              Title="GameStartView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button 
+Text="in sessin"
+Command="{Binding SessionCommand}" />
     </VerticalStackLayout>
 </ContentPage>

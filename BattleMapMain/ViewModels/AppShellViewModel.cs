@@ -10,24 +10,38 @@ using BattleMapMain.Services;
 
 namespace BattleMapMain.ViewModels
 {
-    public class AppShellViewModel
+    public class AppShellViewModel : ViewModelBase
     {
         private User? currentUser;
         private IServiceProvider serviceProvider;
+        private bool notInSession;
+        public bool NotInSession
+        {
+            get => notInSession;
+            set
+            {
+                    notInSession = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged("InSession");
 
+            }
+        }
+        public bool InSession
+        {
+            get => !notInSession;
+
+        }
         public AppShellViewModel(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
             this.currentUser = ((App)Application.Current).LoggedInUser;
+            this.NotInSession = ((App)Application.Current).NotInSession;
         }
 
-        //public bool IsManager
-        //{
-        //    get
-        //    {
-        //        return this.currentUser.IsManager;
-        //    }
-        //}
+        public void Session()
+        {
+            NotInSession = false;
+        }
 
         //this command will be used for logout menu item
         public Command LogoutCommand

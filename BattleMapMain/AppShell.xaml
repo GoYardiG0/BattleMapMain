@@ -8,23 +8,23 @@
     Shell.FlyoutBehavior="Disabled"
     Title="BattleMapMain">
 
-    <TabBar Route="tabs1" IsEnabled="{Binding NotInSession}">
-      
-        <Tab Title="Profile"
+    <TabBar Route="tabs1" >
+
+        <Tab Title="Profile" IsVisible="{Binding NotInSession}"
                  Route="Profile"
              >
             <ShellContent
                 ContentTemplate="{DataTemplate views:ProfileView}"
             />
         </Tab>
-        <Tab x:Name="GameStart" 
+        <Tab x:Name="GameStart" IsVisible="{Binding NotInSession}"
             Title="Game Start"
        Route="Game Start"
       >
             <ShellContent
    ContentTemplate="{DataTemplate views:GameStartView}"  />
         </Tab>
-        <Tab Title="Friends Menu"
+        <Tab Title="Friends Menu" IsVisible="{Binding NotInSession}"
              
              >
             <ShellContent
@@ -39,7 +39,7 @@
                 
         </Tab>
 
-        <Tab Title="Statblocks">
+        <Tab Title="Statblocks" IsVisible="{Binding NotInSession}">
             <ShellContent   
              Title="Character Sheets"
              ContentTemplate="{DataTemplate views:CharacterSheetsView}"/>
@@ -50,22 +50,19 @@
                 Title="All Monsters"
                 ContentTemplate="{DataTemplate views:AllMonstersView}"/>
         </Tab>
-    </TabBar>
-    <TabBar x:Name="SessionTabs"
-        Route="SessionTabs"
-        >
-        <Tab Title="Battle Map"
+        
+        <Tab Title="Battle Map" IsVisible="{Binding InSession}"
         >
             <ShellContent
      ContentTemplate="{DataTemplate views:BattleMapView}"  />
         </Tab>
-        <Tab Title="calculator"
+        <Tab Title="calculator" IsVisible="{Binding InSession}"
          >
             <ShellContent
             ContentTemplate="{DataTemplate views:CalculatorView}"
         />
         </Tab>
-        <Tab Title="Dm Screen"
+        <Tab Title="Dm Screen" IsVisible="{Binding InSession}"
          
          >
             <ShellContent
@@ -78,16 +75,16 @@
 
         </Tab>
 
-        <Tab Title="Character Stats">
+        <Tab Title="Character Stats" IsVisible="{Binding InSession}">
             <ShellContent   
          Title="Character Stats"
          ContentTemplate="{DataTemplate views:StatBlockView}"/>
         </Tab>
-        <Tab Title="Die Roller">
+        <Tab Title="Die Roller" IsVisible="{Binding InSession}">
             <ShellContent   
                 ContentTemplate="{DataTemplate views:DieRollerView}"/>
         </Tab>
-        <Tab>
+        <Tab IsVisible="{Binding InSession}">
             <ShellContent
             Title="Session View"
             ContentTemplate="{DataTemplate views:SessionView}"/>
