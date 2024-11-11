@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using BattleMapMain.Services;
 using BattleMapMain.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BattleMapMain.ViewModels
 {
     public class RegisterViewModel : ViewModelBase
     {
         private BattleMapWebAPIProxy proxy;
-        public RegisterViewModel(BattleMapWebAPIProxy proxy)
+        private IServiceProvider serviceProvider;
+        public RegisterViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
+            this.serviceProvider =  serviceProvider;
             this.proxy = proxy;
             RegisterCommand = new Command(OnRegister);
             CancelCommand = new Command(OnCancel);
@@ -296,9 +299,15 @@ namespace BattleMapMain.ViewModels
                    
                     InServerCall = false;
 
-                    ((App)(Application.Current)).MainPage.Navigation.PopAsync();
 
                     await Application.Current.MainPage.DisplayAlert("register","register successful","ok");
+                    //Navigate to the main page
+                    AppShell shell = serviceProvider.GetService<AppShell>();
+                    GameStartViewModel gameStartViewModel = serviceProvider.GetService<GameStartViewModel>();
+                    //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                    ((App)Application.Current).MainPage = shell;
+                    //Shell.Current.FlyoutIsPresented = false; //close the flyout
+                    Shell.Current.GoToAsync("GameStart"); //Navigate to the Tasks tab page
                 }
                 else
                 {

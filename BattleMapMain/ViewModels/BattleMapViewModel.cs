@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BattleMapMain.ViewModels
 {
-    internal class BattleMapViewModel
+    public class BattleMapViewModel
     {
+
     }
 }

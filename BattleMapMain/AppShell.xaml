@@ -8,13 +8,8 @@
     Shell.FlyoutBehavior="Disabled"
     Title="BattleMapMain">
 
-    <TabBar Route="tabs1" >
-        <Tab Title="GameStart"
-             Route="GameStart"
-            >
-            <ShellContent
-         ContentTemplate="{DataTemplate views:GameStartView}"  />
-        </Tab>
+    <TabBar Route="tabs1" IsEnabled="{Binding NotInSession}">
+      
         <Tab Title="Profile"
                  Route="Profile"
              >
@@ -22,8 +17,83 @@
                 ContentTemplate="{DataTemplate views:ProfileView}"
             />
         </Tab>
+        <Tab x:Name="GameStart" 
+            Title="Game Start"
+       Route="Game Start"
+      >
+            <ShellContent
+   ContentTemplate="{DataTemplate views:GameStartView}"  />
+        </Tab>
+        <Tab Title="Friends Menu"
+             
+             >
+            <ShellContent
+                Grid.Column="0"
+                Title="Friends List"
+                ContentTemplate="{DataTemplate views:FriendListView}"/>
+            <ShellContent
+                Grid.Column="2"
+                Title="Add Friend"
+                ContentTemplate="{DataTemplate views:AddFriendView}"/>
+
+                
+        </Tab>
+
+        <Tab Title="Statblocks">
+            <ShellContent   
+             Title="Character Sheets"
+             ContentTemplate="{DataTemplate views:CharacterSheetsView}"/>
+            <ShellContent   
+             Title="My Monsters"
+             ContentTemplate="{DataTemplate views:UserMonstersView}"/>
+            <ShellContent
+                Title="All Monsters"
+                ContentTemplate="{DataTemplate views:AllMonstersView}"/>
+        </Tab>
     </TabBar>
-    
+    <TabBar x:Name="SessionTabs"
+        Route="SessionTabs"
+        >
+        <Tab Title="Battle Map"
+        >
+            <ShellContent
+     ContentTemplate="{DataTemplate views:BattleMapView}"  />
+        </Tab>
+        <Tab Title="calculator"
+         >
+            <ShellContent
+            ContentTemplate="{DataTemplate views:CalculatorView}"
+        />
+        </Tab>
+        <Tab Title="Dm Screen"
+         
+         >
+            <ShellContent
+            Title="Placed Monsters"
+            ContentTemplate="{DataTemplate views:PlacedMinisView}"/>
+            <ShellContent
+            Grid.Column="2"
+            Title="Saved Monsters"
+            ContentTemplate="{DataTemplate views:SavedMonstersView}"/>
+
+        </Tab>
+
+        <Tab Title="Character Stats">
+            <ShellContent   
+         Title="Character Stats"
+         ContentTemplate="{DataTemplate views:StatBlockView}"/>
+        </Tab>
+        <Tab Title="Die Roller">
+            <ShellContent   
+                ContentTemplate="{DataTemplate views:DieRollerView}"/>
+        </Tab>
+        <Tab>
+            <ShellContent
+            Title="Session View"
+            ContentTemplate="{DataTemplate views:SessionView}"/>
+        </Tab>
+    </TabBar>
+
 </Shell>
 
    

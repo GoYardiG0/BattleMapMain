@@ -14,8 +14,10 @@ namespace BattleMapMain
 
         private void RegisterRoutes()
         {
+            Routing.RegisterRoute("SessionTabs", typeof(TabBar));
             Routing.RegisterRoute("GameStart", typeof(GameStartView));
             Routing.RegisterRoute("Profile", typeof(ProfileView));
+            Routing.RegisterRoute("BattleMap", typeof(BattleMapView));
         }
     }
 }

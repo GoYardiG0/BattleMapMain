@@ -14,6 +14,7 @@ namespace BattleMapMain.ViewModels
     {
         private User? currentUser;
         private IServiceProvider serviceProvider;
+
         public AppShellViewModel(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;

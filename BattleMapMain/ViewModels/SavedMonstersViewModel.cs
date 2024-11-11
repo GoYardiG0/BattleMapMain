@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleMapMain.ViewModels
 {
-    internal class SavedMonstersViewModel
+    public class SavedMonstersViewModel
     {
     }
 }
