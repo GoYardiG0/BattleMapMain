@@ -16,7 +16,7 @@ namespace BattleMapMain.ViewModels
 
         private void Session()
         {
-            ((App)Application.Current).NotInSession = false;
+            ((AppShell)AppShell.Current).UpdateSessionStatus(false);
         }
     }
 }

@@ -10,19 +10,17 @@
 
     <TabBar Route="tabs1" >
 
-        <Tab Title="Profile" IsVisible="{Binding NotInSession}"
-                 Route="Profile"
-             >
+        <Tab IsVisible="{Binding NotInSession}"
+             Title="Profile"
+             Route="Profile">
             <ShellContent
-                ContentTemplate="{DataTemplate views:ProfileView}"
-            />
+                ContentTemplate="{DataTemplate views:ProfileView}"/>
         </Tab>
         <Tab x:Name="GameStart" IsVisible="{Binding NotInSession}"
-            Title="Game Start"
-       Route="Game Start"
-      >
+                Title="Game Start"
+                Route="Game Start" >
             <ShellContent
-   ContentTemplate="{DataTemplate views:GameStartView}"  />
+                ContentTemplate="{DataTemplate views:GameStartView}"  />
         </Tab>
         <Tab Title="Friends Menu" IsVisible="{Binding NotInSession}"
              
@@ -62,9 +60,8 @@
             ContentTemplate="{DataTemplate views:CalculatorView}"
         />
         </Tab>
-        <Tab Title="Dm Screen" IsVisible="{Binding InSession}"
-         
-         >
+        <Tab Title="Dm Screen" 
+             IsVisible="{Binding InSession}"     >
             <ShellContent
             Title="Placed Monsters"
             ContentTemplate="{DataTemplate views:PlacedMinisView}"/>
