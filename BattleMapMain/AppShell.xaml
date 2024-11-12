@@ -22,6 +22,7 @@
              Title="Game Start"
              Route="Game Start" >
             <ShellContent
+                
                 ContentTemplate="{DataTemplate views:GameStartView}"  />
         </Tab>
         <Tab Title="Friends Menu" 

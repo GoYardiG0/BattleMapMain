@@ -34,8 +34,7 @@ namespace BattleMapMain.ViewModels
         public AppShellViewModel(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
-            this.currentUser = ((App)Application.Current).LoggedInUser;
-            this.NotInSession = true;
+            this.currentUser = ((App)Application.Current).LoggedInUser;            
         }
 
         public void Session()
