@@ -6,7 +6,9 @@
     xmlns:local="clr-namespace:BattleMapMain"
     xmlns:views="clr-namespace:BattleMapMain.Views"
     Shell.FlyoutBehavior="Disabled"
-    Title="BattleMapMain">
+    Title="BattleMapMain"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    x:DataType="viewmodels:AppShellViewModel">
 
     <TabBar Route="tabs1" >
 
@@ -17,14 +19,13 @@
                 ContentTemplate="{DataTemplate views:ProfileView}"/>
         </Tab>
         <Tab x:Name="GameStart" IsVisible="{Binding NotInSession}"
-                Title="Game Start"
-                Route="Game Start" >
+             Title="Game Start"
+             Route="Game Start" >
             <ShellContent
                 ContentTemplate="{DataTemplate views:GameStartView}"  />
         </Tab>
-        <Tab Title="Friends Menu" IsVisible="{Binding NotInSession}"
-             
-             >
+        <Tab Title="Friends Menu" 
+             IsVisible="{Binding NotInSession}">
             <ShellContent
                 Grid.Column="0"
                 Title="Friends List"
@@ -33,8 +34,6 @@
                 Grid.Column="2"
                 Title="Add Friend"
                 ContentTemplate="{DataTemplate views:AddFriendView}"/>
-
-                
         </Tab>
 
         <Tab Title="Statblocks" IsVisible="{Binding NotInSession}">
