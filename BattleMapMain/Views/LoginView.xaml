@@ -8,9 +8,8 @@
     <VerticalStackLayout Padding="20" Spacing="15">
 
         <Entry 
-        Placeholder="Email"
-        Keyboard="Email"
-        Text="{Binding Email}" IsEnabled="{Binding NotInServerCall}"/>
+        Placeholder="UserName"
+        Text="{Binding Name}" IsEnabled="{Binding NotInServerCall}"/>
 
         <Entry 
         Placeholder="Password"

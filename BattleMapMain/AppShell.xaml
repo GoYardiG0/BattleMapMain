@@ -60,13 +60,13 @@
             ContentTemplate="{DataTemplate views:CalculatorView}"
         />
         </Tab>
-        <Tab Title="Dm Screen" 
+        <Tab Title="Dm Screen"  
              IsVisible="{Binding InSession}"     >
-            <ShellContent
+
+            <ShellContent 
             Title="Placed Monsters"
             ContentTemplate="{DataTemplate views:PlacedMinisView}"/>
             <ShellContent
-            Grid.Column="2"
             Title="Saved Monsters"
             ContentTemplate="{DataTemplate views:SavedMonstersView}"/>
 

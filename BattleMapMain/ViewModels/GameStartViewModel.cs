@@ -22,6 +22,7 @@ namespace BattleMapMain.ViewModels
 
         private void Session()
         {
+            ((App)Application.Current).notInSession = false;
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
         }
     }

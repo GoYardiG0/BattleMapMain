@@ -37,10 +37,6 @@ namespace BattleMapMain.ViewModels
             this.currentUser = ((App)Application.Current).LoggedInUser;            
         }
 
-        public void Session()
-        {
-            NotInSession = false;
-        }
 
         //this command will be used for logout menu item
         public Command LogoutCommand

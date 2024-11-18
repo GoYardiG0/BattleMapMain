@@ -9,8 +9,10 @@ namespace BattleMapMain
         //Application level variables
         public User? LoggedInUser { get; set; }
         private BattleMapWebAPIProxy proxy;
+        public bool notInSession;
         public App(IServiceProvider serviceProvider, BattleMapWebAPIProxy proxy)
         {
+            notInSession = true;
             this.proxy = proxy;
             InitializeComponent();
             LoggedInUser = null;

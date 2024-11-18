@@ -21,23 +21,23 @@ namespace BattleMapMain.ViewModels
                 this.proxy = proxy;
                 LoginCommand = new Command(() => OnLogin());
                 RegisterCommand = new Command(OnRegister);
-                email = "";
+                name = "";
                 password = "";
                 InServerCall = false;
                 errorMsg = "";
             }
 
-            private string email;
+            private string name;
             private string password;
 
-            public string Email
+            public string Name
             {
-                get => email;
+                get => name;
                 set
                 {
-                    if (email != value)
+                    if (name != value)
                     {
-                        email = value;
+                        name = value;
                         OnPropertyChanged(nameof(Email));
                     }
                 }
@@ -82,7 +82,7 @@ namespace BattleMapMain.ViewModels
                 InServerCall = true;
                 ErrorMsg = "";
                 //Call the server to login
-                LoginInfo loginInfo = new LoginInfo { Email = Email, Password = Password };
+                LoginInfo loginInfo = new LoginInfo { UserName = Name, Password = Password };
                 User? u = await this.proxy.LoginAsync(loginInfo);
 
                 InServerCall = false;
@@ -96,20 +96,19 @@ namespace BattleMapMain.ViewModels
                 else
                 {
                     ErrorMsg = "great succes";
-                    //Navigate to the main page
-                    AppShell shell = serviceProvider.GetService<AppShell>();
-                //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                //Navigate to the main page
 
-                ((App)Application.Current).MainPage = shell;
-                    //Shell.Current.FlyoutIsPresented = false; //close the flyout
-                    
-                }
+                //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+                ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
+                //Shell.Current.FlyoutIsPresented = false; //close the flyout
+
+            }
             }
 
             private void OnRegister()
             {
                 ErrorMsg = "";
-                Email = "";
+                Name = "";
                 Password = "";
                 // Navigate to the Register View page
                 ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<RegisterView>());

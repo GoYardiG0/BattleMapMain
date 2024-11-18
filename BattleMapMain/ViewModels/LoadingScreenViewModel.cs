@@ -19,7 +19,7 @@ namespace BattleMapMain.ViewModels
             
             AppShell shell = serviceProvider.GetService<AppShell>();
             ((App)Application.Current).MainPage = shell;
-            ((AppShell)AppShell.Current).UpdateSessionStatus(false);
+            ((AppShell)AppShell.Current).UpdateSessionStatus(((App)Application.Current).notInSession);
         }
     }
     
