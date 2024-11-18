@@ -6,6 +6,7 @@ using Microsoft.Win32;
 
 namespace BattleMapMain
 {
+
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
@@ -13,6 +14,13 @@ namespace BattleMapMain
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureMauiHandlers(handlers => {
+
+#if ANDROID
+                        handlers.AddHandler(typeof(Shell),typeof(BattleMapMain.Platforms.Android.CustomShellRenderer));
+				
+#endif
+                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -26,6 +34,7 @@ namespace BattleMapMain
 #endif
 
             return builder.Build();
+
         }
         public static MauiAppBuilder RegisterPages(this MauiAppBuilder builder)
         {
