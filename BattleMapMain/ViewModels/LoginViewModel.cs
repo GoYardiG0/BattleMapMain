@@ -38,7 +38,7 @@ namespace BattleMapMain.ViewModels
                     if (name != value)
                     {
                         name = value;
-                        OnPropertyChanged(nameof(Email));
+                        OnPropertyChanged();
                     }
                 }
             }
