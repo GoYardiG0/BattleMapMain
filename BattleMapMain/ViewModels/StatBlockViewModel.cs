@@ -51,7 +51,7 @@ namespace BattleMapMain.ViewModels
         }
 
         #endregion
-         //cooment for pushin
+         //cooment for pushin //again
         #region ac
 
         private int ac;
