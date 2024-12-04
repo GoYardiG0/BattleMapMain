@@ -8,7 +8,10 @@ namespace BattleMapMain.ViewModels
 {
     public class StatBlockViewModel : ViewModelBase
     {
-        StatBlockViewModel() { }
+        StatBlockViewModel()
+        {
+            
+        }
 
         #region name
         private string name;
@@ -51,7 +54,7 @@ namespace BattleMapMain.ViewModels
         }
 
         #endregion
-         //cooment for pushin //again
+        
         #region ac
 
         private int ac;
@@ -396,7 +399,7 @@ namespace BattleMapMain.ViewModels
 
         #endregion
 
-       0 #region level
+        #region level
 
         private int level;
         public int Level
