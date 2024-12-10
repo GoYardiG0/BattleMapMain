@@ -22,6 +22,7 @@ namespace BattleMapMain
             Routing.RegisterRoute("GameStart", typeof(GameStartView));
             Routing.RegisterRoute("Profile", typeof(ProfileView));
             Routing.RegisterRoute("BattleMap", typeof(BattleMapView));
+            Routing.RegisterRoute("Statblock", typeof(StatBlockView));
         }
         
         public void UpdateSessionStatus(bool b)

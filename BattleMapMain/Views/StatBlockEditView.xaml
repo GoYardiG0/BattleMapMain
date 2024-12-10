@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BattleMapMain.Views.StatBlockEditView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="StatBlockEditView"
+    BackgroundImageSource="statblockbackground.png">
+    <Border
+        Margin="20,30,20,50"
+        Padding="10"
+        Background="Transparent"
+        BackgroundColor="Transparent"
+        Shadow="shadow"
+        Stroke="Maroon"
+        StrokeThickness="3"
+        WidthRequest="600">
+        <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+            <Entry
+                Margin="10"
+                FontSize="20"
+                HorizontalOptions="Center"
+                Placeholder="Monster Name"
+                PlaceholderColor="Black" />
+            <Border
+                Margin="10"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Entry
+                    Margin="10,10,50,10"
+                    FontSize="30"
+                    HeightRequest="50"
+                    Placeholder="HP"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="50,10,50,10"
+                    FontSize="30"
+                    HeightRequest="50"
+                    Placeholder="AC"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="50,10,50,10"
+                    FontSize="30"
+                    HeightRequest="50"
+                    Placeholder="CR"
+                    PlaceholderColor="Black" />
+            </HorizontalStackLayout>
+            <Border
+                Margin="10"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <HorizontalStackLayout>
+                <Entry
+                    Margin="5"
+                    Placeholder="Strength"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="5"
+                    Placeholder="Dexterity"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="5"
+                    Placeholder="Constitution"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="5"
+                    Placeholder="Intelligence"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="5"
+                    Placeholder="Wisdom"
+                    PlaceholderColor="Black" />
+                <Entry
+                    Margin="5"
+                    Placeholder="Charisma"
+                    PlaceholderColor="Black" />
+            </HorizontalStackLayout>
+            <Border
+                Margin="10"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <Editor
+                HeightRequest="70"
+                Placeholder="Monster Passives"
+                PlaceholderColor="Black" />
+            <Border
+                Margin="10"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <Editor
+                HeightRequest="70"
+                Placeholder="Monster Actions"
+                PlaceholderColor="Black" />
+            <Border
+                Margin="20"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <Editor
+                HeightRequest="70"
+                Placeholder="Additional Actions/Abilities"
+                PlaceholderColor="Black" />
+        </VerticalStackLayout>
+    </Border>
+
+</ContentPage>
