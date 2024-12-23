@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -107,6 +108,72 @@ namespace BattleMapMain.Services
                         PropertyNameCaseInsensitive = true
                     };
                     User? result = JsonSerializer.Deserialize<User>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<ObservableCollection<Monster>?> GetMonsters(int userID)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}getMonsters";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(userID);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Extract the content as string
+                string resContent = await response.Content.ReadAsStringAsync();
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    ObservableCollection<Monster>? result = JsonSerializer.Deserialize<ObservableCollection<Monster>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<ObservableCollection<Character>?> GetCharacters(int userID)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}getCharacters";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(userID);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Extract the content as string
+                string resContent = await response.Content.ReadAsStringAsync();
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    ObservableCollection<Character>? result = JsonSerializer.Deserialize<ObservableCollection<Character>>(resContent, options);
                     return result;
                 }
                 else

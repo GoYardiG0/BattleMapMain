@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BattleMapMain.Services;
 
 namespace BattleMapMain.ViewModels
 {
     public class StatBlockEditViewModel : ViewModelBase
     {
+        private BattleMapWebAPIProxy proxy;
+
+        public StatBlockEditViewModel(BattleMapWebAPIProxy proxy)
+        {
+            this.proxy = proxy;
+            
+        }
 
         #region name
         private string name;

@@ -3,14 +3,15 @@
     x:Class="BattleMapMain.Views.StatBlockEditView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     Title="StatBlockEditView"
+    x:DataType="viewmodels:StatBlockEditViewModel"
     BackgroundImageSource="statblockbackground.png">
     <Border
         Margin="20,30,20,50"
-        Padding="10"
+        Padding="0"
         Background="Transparent"
         BackgroundColor="Transparent"
-        Shadow="shadow"
         Stroke="Maroon"
         StrokeThickness="3"
         WidthRequest="600">
@@ -20,7 +21,8 @@
                 FontSize="20"
                 HorizontalOptions="Center"
                 Placeholder="Monster Name"
-                PlaceholderColor="Black" />
+                PlaceholderColor="Black"
+                Text="{Binding Name}"/>
             <Border
                 Margin="10"
                 BackgroundColor="Maroon"
@@ -31,19 +33,22 @@
                     FontSize="30"
                     HeightRequest="50"
                     Placeholder="HP"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black"
+                    Text="{Binding Hp}"/>
                 <Entry
                     Margin="50,10,50,10"
                     FontSize="30"
                     HeightRequest="50"
                     Placeholder="AC"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black"
+                    Text="{Binding Ac}"/>
                 <Entry
                     Margin="50,10,50,10"
                     FontSize="30"
                     HeightRequest="50"
                     Placeholder="CR"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black"
+                    Text="{Binding Level}"/>
             </HorizontalStackLayout>
             <Border
                 Margin="10"
@@ -53,27 +58,33 @@
                 <Entry
                     Margin="5"
                     Placeholder="Strength"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black"
+                    Text="{Binding Str}"/>
                 <Entry
                     Margin="5"
                     Placeholder="Dexterity"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black"
+                    Text="{Binding Dex}"/>
                 <Entry
                     Margin="5"
                     Placeholder="Constitution"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black" 
+                    Text="{Binding Con}"/>
                 <Entry
                     Margin="5"
                     Placeholder="Intelligence"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black" 
+                    Text="{Binding Inte}"/>
                 <Entry
                     Margin="5"
                     Placeholder="Wisdom"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black" 
+                    Text="{Binding Wis}"/>
                 <Entry
                     Margin="5"
                     Placeholder="Charisma"
-                    PlaceholderColor="Black" />
+                    PlaceholderColor="Black" 
+                    Text="{Binding Cha}"/>
             </HorizontalStackLayout>
             <Border
                 Margin="10"
@@ -82,7 +93,8 @@
             <Editor
                 HeightRequest="70"
                 Placeholder="Monster Passives"
-                PlaceholderColor="Black" />
+                PlaceholderColor="Black" 
+                Text="{Binding PassiveDesc}"/>
             <Border
                 Margin="10"
                 BackgroundColor="Maroon"
@@ -90,7 +102,8 @@
             <Editor
                 HeightRequest="70"
                 Placeholder="Monster Actions"
-                PlaceholderColor="Black" />
+                PlaceholderColor="Black" 
+                Text="{Binding ActionDesc}"/>
             <Border
                 Margin="20"
                 BackgroundColor="Maroon"
@@ -98,7 +111,8 @@
             <Editor
                 HeightRequest="70"
                 Placeholder="Additional Actions/Abilities"
-                PlaceholderColor="Black" />
+                PlaceholderColor="Black" 
+                Text="{Binding SpecialActionDesc}"/>
         </VerticalStackLayout>
     </Border>
 
