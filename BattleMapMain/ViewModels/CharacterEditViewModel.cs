@@ -72,7 +72,7 @@ namespace BattleMapMain.ViewModels
                     InServerCall = false;
 
 
-                    await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
+                    await Application.Current.MainPage.DisplayAlert("", "Character Added", "ok");
 
 
                     //add the the transtion into the wahterver

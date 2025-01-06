@@ -19,7 +19,7 @@ WidthRequest="600">
         Margin="10"
         FontSize="20"
         HorizontalOptions="Center"
-        Placeholder="Monster Name"
+        Placeholder="Character Name"
         PlaceholderColor="Black"
         Text="{Binding Name}"/>
             <Border
@@ -91,7 +91,7 @@ WidthRequest="600">
         HeightRequest="5" />
             <Editor
         HeightRequest="70"
-        Placeholder="Monster Passives"
+        Placeholder="Character Passives"
         PlaceholderColor="Black" 
         Text="{Binding PassiveDesc}"/>
             <Border
@@ -100,7 +100,7 @@ WidthRequest="600">
         HeightRequest="5" />
             <Editor
         HeightRequest="70"
-        Placeholder="Monster Actions"
+        Placeholder="Character Actions"
         PlaceholderColor="Black" 
         Text="{Binding ActionDesc}"/>
             <Border
@@ -112,7 +112,7 @@ WidthRequest="600">
         Placeholder="Additional Actions/Abilities"
         PlaceholderColor="Black" 
         Text="{Binding SpecialActionDesc}"/>
-            <Button Text="Add Monster" Command="{Binding AddMonsterCommand}" IsEnabled="{Binding NotInServerCall}"   />
+            <Button Text="Add Character" Command="{Binding AddCharacterCommand}" IsEnabled="{Binding NotInServerCall}"   />
         </VerticalStackLayout>
     </Border>
 </ContentPage>
