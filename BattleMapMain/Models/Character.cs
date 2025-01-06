@@ -14,6 +14,8 @@ namespace BattleMapMain.Models
 
         public string CharacterName { get; set; } = null!;
 
+        public string? CharacterPic { get; set; }
+
         public int Ac { get; set; }
 
         public int Hp { get; set; }
@@ -37,8 +39,6 @@ namespace BattleMapMain.Models
         public string? ActionDesc { get; set; }
 
         public string? SpecialActionDesc { get; set; }
-
-        public virtual User? User { get; set; }
 
         public Character() { }
     }

@@ -4,12 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BattleMapMain.Services;
+using BattleMapMain.Models;
 
 namespace BattleMapMain.ViewModels
 {
-    internal class CharacterViewModel : ViewModelBase
+    public class CharacterEditViewModel : ViewModelBase
     {
-        public CharacterViewModel(BattleMapWebAPIProxy proxy)
+
+        private BattleMapWebAPIProxy proxy;
+        public CharacterEditViewModel(BattleMapWebAPIProxy proxy)
         {
             this.proxy = proxy;
 
@@ -37,11 +40,11 @@ namespace BattleMapMain.ViewModels
                 !showHpError && !showInteError && !showLevelError && !showNameError && !showPassiveDescError && !showStrError && !showWisError)
             {
                 //Create a new AppUser object with the data from the registration form
-                var newMonster = new Monster
+                var newCharacter = new Character
                 {
-                    MonsterName = Name,
+                    CharacterName = Name,
                     UserId = 1/*((App)Application.Current).LoggedInUser.UserId*/,
-                    MonsterPic = "" /*MonsterPic*/,
+                    CharacterPic = "" /*MonsterPic*/,
                     Ac = this.Ac,
                     Hp = this.Hp,
                     Str = this.Str,
@@ -50,7 +53,7 @@ namespace BattleMapMain.ViewModels
                     Int = this.Inte,
                     Wis = this.Wis,
                     Cha = this.Cha,
-                    Cr = level,
+                    Level = level,
                     PassiveDesc = this.PassiveDesc,
                     ActionDesc = this.ActionDesc,
                     SpecialActionDesc = this.SpecialActionDesc
@@ -59,11 +62,11 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                newMonster = await proxy.AddMonster(newMonster);
+                newCharacter = await proxy.AddCharacter(newCharacter);
                 InServerCall = false;
 
                 //If the registration was successful, navigate to the login page
-                if (newMonster != null)
+                if (newCharacter != null)
                 {
 
                     InServerCall = false;
@@ -471,26 +474,26 @@ namespace BattleMapMain.ViewModels
 
         #endregion
 
-        #region Cr
+        #region level
 
-        private int cr;
-        public int Cr
+        private int level;
+        public int Level
         {
-            get => cr;
+            get => level;
             set
             {
-                cr = value;
+                level = value;
                 OnPropertyChanged();
             }
         }
-        private bool showCrError;
+        private bool showLevelError;
 
-        public bool ShowCrError
+        public bool ShowLevelError
         {
-            get => showCrError;
+            get => showLevelError;
             set
             {
-                showCrError = value;
+                showLevelError = value;
                 OnPropertyChanged();
             }
         }
@@ -507,9 +510,9 @@ namespace BattleMapMain.ViewModels
             }
         }
 
-        private void ValidateCr()
+        private void ValidateLevel()
         {
-            if (cr < 0) showCrError = true; else showCrError = false;
+            if (level < 0) showLevelError = true; else showLevelError = false;
         }
 
         #endregion

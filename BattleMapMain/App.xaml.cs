@@ -3,6 +3,7 @@ using BattleMapMain.Services;
 using BattleMapMain.Views;
 using System.Collections.ObjectModel;
 
+
 namespace BattleMapMain
 {
     public partial class App : Application
@@ -20,7 +21,7 @@ namespace BattleMapMain
             InitializeComponent();
             LoggedInUser = null;
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<StatBlockEditView>());
+            MainPage = new NavigationPage(serviceProvider.GetService<CharacterEditView>());
         }
         public async void SetMonsters(ObservableCollection<Monster>? monsters)
         {            

@@ -1,9 +1,9 @@
 namespace BattleMapMain.Views;
 using BattleMapMain.ViewModels;
 
-public partial class StatBlockEditView : ContentPage
+public partial class CharacterEditView : ContentPage
 {
-	public StatBlockEditView(MonsterEditViewModel vm)
+	public CharacterEditView(CharacterEditViewModel vm)
 	{
 		this.BindingContext = vm;
 		InitializeComponent();
