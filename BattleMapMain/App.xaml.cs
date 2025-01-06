@@ -16,15 +16,14 @@ namespace BattleMapMain
         {
             notInSession = true;
             this.proxy = proxy;
-            LoadBasicDataFromServer();
+            //LoadBasicDataFromServer();
             InitializeComponent();
             LoggedInUser = null;
             //Start with the Login View
             MainPage = new NavigationPage(serviceProvider.GetService<StatBlockEditView>());
         }
-        private async void LoadBasicDataFromServer()
-        {
-            ObservableCollection<Monster>? monsters = await this.proxy.GetMonsters();
+        public async void SetMonsters(ObservableCollection<Monster>? monsters)
+        {            
             if (monsters != null)
             {
                 this.monsters.Clear();

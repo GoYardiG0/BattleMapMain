@@ -28,11 +28,11 @@ namespace BattleMapMain.Services
 
         #region with tunnel
         //Define the serevr IP address! (should be realIP address if you are using a device that is not running on the same machine as the server)
-        private static string serverIP = "xkpn4fnc-5219.euw.devtunnels.ms";
+        private static string serverIP = "nln3m383-5219.uks1.devtunnels.ms";
         private HttpClient client;
         private string baseUrl;
-        public static string BaseAddress = "https://xkpn4fnc-5219.euw.devtunnels.ms/api/";
-        private static string ImageBaseAddress = "https://xkpn4fnc-5219.euw.devtunnels.ms/";
+        public static string BaseAddress = "https://nln3m383-5219.uks1.devtunnels.ms/api/";
+        private static string ImageBaseAddress = "https://nln3m383-5219.uks1.devtunnels.ms/";
         #endregion
 
         public BattleMapWebAPIProxy()
@@ -174,6 +174,39 @@ namespace BattleMapMain.Services
                         PropertyNameCaseInsensitive = true
                     };
                     ObservableCollection<Character>? result = JsonSerializer.Deserialize<ObservableCollection<Character>>(resContent, options);
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<Monster?> AddMonster(Monster monster)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}AddMonster";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(monster);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Monster? result = JsonSerializer.Deserialize<Monster>(resContent, options);
                     return result;
                 }
                 else

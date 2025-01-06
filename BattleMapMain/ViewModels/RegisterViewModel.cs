@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using BattleMapMain.Services;
 using BattleMapMain.Models;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.ObjectModel;
+using BattleMapMain.Views;
 
 namespace BattleMapMain.ViewModels
 {
@@ -241,13 +243,12 @@ namespace BattleMapMain.ViewModels
 
 
                     await Application.Current.MainPage.DisplayAlert("register","register successful","ok");
-                    //Navigate to the main page
-                    AppShell shell = serviceProvider.GetService<AppShell>();
-                    GameStartViewModel gameStartViewModel = serviceProvider.GetService<GameStartViewModel>();
-                    //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
-                    ((App)Application.Current).MainPage = shell;
-                    //Shell.Current.FlyoutIsPresented = false; //close the flyout
-                    Shell.Current.GoToAsync("GameStart"); //Navigate to the Tasks tab page
+                    ((App)Application.Current).LoggedInUser = newUser;
+
+                    ObservableCollection<Monster>? monsters = await this.proxy.GetMonsters(newUser.UserId);
+                    ((App)Application.Current).SetMonsters(monsters);
+
+                    ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
                 }
                 else
                 {

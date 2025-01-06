@@ -16,6 +16,8 @@ namespace BattleMapMain.Models
 
         public string MonsterName { get; set; } = null!;
 
+        public string? MonsterPic { get; set; }
+
         public int Ac { get; set; }
 
         public int Hp { get; set; }
@@ -40,7 +42,6 @@ namespace BattleMapMain.Models
 
         public string? SpecialActionDesc { get; set; }
 
-        public virtual User? User { get; set; }
 
         public Monster() { }
     }

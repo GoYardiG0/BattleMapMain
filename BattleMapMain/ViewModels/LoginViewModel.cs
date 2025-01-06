@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,6 +100,10 @@ namespace BattleMapMain.ViewModels
                 //Navigate to the main page
 
                 //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
+
+                ObservableCollection<Monster>? monsters = await this.proxy.GetMonsters(u.UserId);
+                ((App)Application.Current).SetMonsters(monsters);
+
                 ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
                 //Shell.Current.FlyoutIsPresented = false; //close the flyout
 

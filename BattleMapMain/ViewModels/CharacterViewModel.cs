@@ -7,14 +7,82 @@ using BattleMapMain.Services;
 
 namespace BattleMapMain.ViewModels
 {
-    public class StatBlockEditViewModel : ViewModelBase
+    internal class CharacterViewModel : ViewModelBase
     {
-        private BattleMapWebAPIProxy proxy;
-
-        public StatBlockEditViewModel(BattleMapWebAPIProxy proxy)
+        public CharacterViewModel(BattleMapWebAPIProxy proxy)
         {
             this.proxy = proxy;
-            
+
+            AddMonsterCommand = new Command(OnAddMonster);
+        }
+
+        public Command AddMonsterCommand { get; }
+
+        public async void OnAddMonster()
+        {
+            ValidateAc();
+            ValidateActionDesc();
+            ValidateCha();
+            ValidateCon();
+            ValidateDex();
+            ValidateHp();
+            ValidateInte();
+            ValidateLevel();
+            ValidateName();
+            ValidatePassiveDesc();
+            ValidateStr();
+            ValidateWis();
+
+            if (!ShowNameError && !showAcError && !showActionDescError && !showChaError && !showConError && !showDexError &&
+                !showHpError && !showInteError && !showLevelError && !showNameError && !showPassiveDescError && !showStrError && !showWisError)
+            {
+                //Create a new AppUser object with the data from the registration form
+                var newMonster = new Monster
+                {
+                    MonsterName = Name,
+                    UserId = 1/*((App)Application.Current).LoggedInUser.UserId*/,
+                    MonsterPic = "" /*MonsterPic*/,
+                    Ac = this.Ac,
+                    Hp = this.Hp,
+                    Str = this.Str,
+                    Dex = this.Dex,
+                    Con = this.Con,
+                    Int = this.Inte,
+                    Wis = this.Wis,
+                    Cha = this.Cha,
+                    Cr = level,
+                    PassiveDesc = this.PassiveDesc,
+                    ActionDesc = this.ActionDesc,
+                    SpecialActionDesc = this.SpecialActionDesc
+
+                };
+
+                //Call the Register method on the proxy to register the new user
+                InServerCall = true;
+                newMonster = await proxy.AddMonster(newMonster);
+                InServerCall = false;
+
+                //If the registration was successful, navigate to the login page
+                if (newMonster != null)
+                {
+
+                    InServerCall = false;
+
+
+                    await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
+
+
+                    //add the the transtion into the wahterver
+
+                }
+                else
+                {
+
+                    //If the registration failed, display an error message
+                    string errorMsg = "Registration failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                }
+            }
         }
 
         #region name
@@ -54,7 +122,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateName()
         {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
+            ShowNameError = string.IsNullOrEmpty(Name);
         }
 
         #endregion
@@ -97,7 +165,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateAc()
         {
-            if (ac == null) showAcError = true; else showAcError = false;
+            if (ac <= 0) showAcError = true; else showAcError = false;
         }
 
         #endregion
@@ -140,7 +208,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateHp()
         {
-            if (hp == null) showHpError = true; else showHpError = false;
+            if (hp <= 0) showHpError = true; else showHpError = false;
         }
 
         #endregion
@@ -183,7 +251,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateStr()
         {
-            if (str == null) showStrError = true; else showStrError = false;
+            if (str <= 0) showStrError = true; else showStrError = false;
         }
 
         #endregion
@@ -226,7 +294,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateDex()
         {
-            if (dex == null) showDexError = true; else showDexError = false;
+            if (dex <= 0) showDexError = true; else showDexError = false;
         }
 
         #endregion
@@ -269,7 +337,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateCon()
         {
-            if (con == null) showConError = true; else showConError = false;
+            if (con <= 0) showConError = true; else showConError = false;
         }
 
         #endregion
@@ -312,7 +380,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateInte()
         {
-            if (inte == null) showInteError = true; else showInteError = false;
+            if (inte <= 0) showInteError = true; else showInteError = false;
         }
 
         #endregion
@@ -355,7 +423,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateWis()
         {
-            if (wis == null) showWisError = true; else showWisError = false;
+            if (wis <= 0) showWisError = true; else showWisError = false;
         }
 
         #endregion
@@ -398,31 +466,31 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateCha()
         {
-            if (cha == null) showChaError = true; else showChaError = false;
+            if (cha <= 0) showChaError = true; else showChaError = false;
         }
 
         #endregion
 
-        #region level
+        #region Cr
 
-        private int level;
-        public int Level
+        private int cr;
+        public int Cr
         {
-            get => level;
+            get => cr;
             set
             {
-                level = value;
+                cr = value;
                 OnPropertyChanged();
             }
         }
-        private bool showLevelError;
+        private bool showCrError;
 
-        public bool ShowLevelError
+        public bool ShowCrError
         {
-            get => showLevelError;
+            get => showCrError;
             set
             {
-                showLevelError = value;
+                showCrError = value;
                 OnPropertyChanged();
             }
         }
@@ -439,9 +507,9 @@ namespace BattleMapMain.ViewModels
             }
         }
 
-        private void ValidateLevel()
+        private void ValidateCr()
         {
-            if (level == null) showLevelError = true; else showLevelError = false;
+            if (cr < 0) showCrError = true; else showCrError = false;
         }
 
         #endregion

@@ -90,7 +90,7 @@ namespace BattleMapMain
             builder.Services.AddTransient<StatBlockViewModel>();
             builder.Services.AddTransient<UserMonstersViewModel>();
             builder.Services.AddTransient<LoadingScreenViewModel>();
-            builder.Services.AddTransient<StatBlockEditViewModel>();
+            builder.Services.AddTransient<MonsterEditViewModel>();
 
 
             return builder;
