@@ -16,12 +16,12 @@ namespace BattleMapMain.ViewModels
         {
             this.proxy = proxy;
 
-            AddMonsterCommand = new Command(OnAddMonster);
+            AddCharacterCommand = new Command(OnAddCharacter);
         }
 
-        public Command AddMonsterCommand { get; }
+        public Command AddCharacterCommand { get; }
 
-        public async void OnAddMonster()
+        public async void OnAddCharacter()
         {
             ValidateAc();
             ValidateActionDesc();

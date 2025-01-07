@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 using BattleMapMain.Services;
 using Microsoft.Extensions.DependencyInjection;
 using BattleMapMain.Models;
+using BattleMapMain.Views;
 
 namespace BattleMapMain.ViewModels
 {
     public class MonsterEditViewModel : ViewModelBase
     {
         private BattleMapWebAPIProxy proxy;
-        
-        public MonsterEditViewModel(BattleMapWebAPIProxy proxy)
+        private IServiceProvider serviceProvider;
+
+        public MonsterEditViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
-            
+            this.serviceProvider = serviceProvider;
             AddMonsterCommand = new Command(OnAddMonster);
         }
 
@@ -76,9 +78,11 @@ namespace BattleMapMain.ViewModels
 
                     await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
 
-
                     //add the the transtion into the wahterver
-
+                    
+                    ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<AllMonstersView>());
+                    AppShell shell = serviceProvider.GetService<AppShell>();
+                    ((App)Application.Current).MainPage = shell;
                 }
                 else
                 {

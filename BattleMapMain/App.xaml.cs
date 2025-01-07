@@ -21,7 +21,7 @@ namespace BattleMapMain
             InitializeComponent();
             LoggedInUser = null;
             //Start with the Login View
-            MainPage = new NavigationPage(serviceProvider.GetService<CharacterEditView>());
+            MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
         }
         public async void SetMonsters(ObservableCollection<Monster>? monsters)
         {            

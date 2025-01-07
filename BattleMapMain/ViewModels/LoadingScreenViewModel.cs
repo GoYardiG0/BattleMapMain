@@ -15,8 +15,7 @@ namespace BattleMapMain.ViewModels
             ShellSwitch();
         }
         private void ShellSwitch()
-        {
-            
+        {            
             AppShell shell = serviceProvider.GetService<AppShell>();
             ((App)Application.Current).MainPage = shell;
             ((AppShell)AppShell.Current).UpdateSessionStatus(((App)Application.Current).notInSession);

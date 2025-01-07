@@ -92,7 +92,7 @@ namespace BattleMapMain.ViewModels
                 ((App)Application.Current).LoggedInUser = u;
                 if (u == null)
                 {
-                    ErrorMsg = "Invalid email or password";
+                    ErrorMsg = "Invalid Username or password";
                 }
                 else
                 {
