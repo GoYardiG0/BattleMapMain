@@ -1,118 +1,184 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.MonsterEditView"
-             Title="MonsterEditView"
-             x:DataType="viewmodels:MonsterEditViewModel"
-             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             BackgroundImageSource="statblockbackground.png">
+<ContentPage
+    x:Class="BattleMapMain.Views.MonsterEditView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    Title="MonsterEditView"
+    x:DataType="viewmodels:MonsterEditViewModel"
+    BackgroundImageSource="statblockbackground.png"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
     <Border
-    Margin="20,30,20,50"
-    Padding="0"
-    Background="Transparent"
-    BackgroundColor="Transparent"
-    Stroke="Maroon"
-    StrokeThickness="3"
-    WidthRequest="600">
+        Margin="20,30,20,50"
+        Padding="0"
+        Background="Transparent"
+        BackgroundColor="Transparent"
+        HeightRequest="740"
+        Stroke="Maroon"
+        StrokeThickness="3"
+        WidthRequest="380">
         <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-            <Entry
-            Margin="10"
-            FontSize="20"
-            HorizontalOptions="Center"
-            Placeholder="Monster Name"
-            PlaceholderColor="Black"
-            Text="{Binding Name}"/>
+            <Grid ColumnDefinitions="*,*">
+                <Image
+                    Grid.Column="0"
+                    Margin="2"
+                    Source="dragonpfp.png" />
+                <ImageButton
+                    Margin="0,0,10,15"
+                    BackgroundColor="#FFE9DFBF"
+                    CornerRadius="3"
+                    HeightRequest="25"
+                    HorizontalOptions="EndAndExpand"
+                    Source="edit.png"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="25" />
+                <VerticalStackLayout Grid.Column="1" Margin="10">
+                    <Label
+                        Margin="5"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Monster Name"
+                        TextColor="Black" />
+                    <Entry
+                        Margin="10"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding Name}"
+                        VerticalOptions="StartAndExpand"
+                        WidthRequest="170" />
+                </VerticalStackLayout>
+            </Grid>
             <Border
-            Margin="10"
-            BackgroundColor="Maroon"
-            HeightRequest="5" />
-            <HorizontalStackLayout HorizontalOptions="Center">
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <Grid ColumnDefinitions="*,*,*,*,*,*">
+                <Label
+                    Grid.Column="0"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="EndAndExpand"
+                    Text="HP"
+                    TextColor="Black" />
                 <Entry
-                Margin="10,10,50,10"
-                FontSize="30"
-                HeightRequest="50"
-                Placeholder="HP"
-                PlaceholderColor="Black"
-                Text="{Binding Hp}"/>
+                    Grid.Column="1"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Hp}" />
+                <Label
+                    Grid.Column="2"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="EndAndExpand"
+                    Text="AC"
+                    TextColor="Black" />
                 <Entry
-                Margin="50,10,50,10"
-                FontSize="30"
-                HeightRequest="50"
-                Placeholder="AC"
-                PlaceholderColor="Black"
-                Text="{Binding Ac}"/>
+                    Grid.Column="3"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Ac}" />
+                <Label
+                    Grid.Column="4"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="EndAndExpand"
+                    Text="CR"
+                    TextColor="Black" />
                 <Entry
-                Margin="50,10,50,10"
-                FontSize="30"
-                HeightRequest="50"
-                Placeholder="CR"
-                PlaceholderColor="Black"
-                Text="{Binding Cr}"/>
-            </HorizontalStackLayout>
+                    Grid.Column="5"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Cr}" />
+            </Grid>
             <Border
-            Margin="10"
-            BackgroundColor="Maroon"
-            HeightRequest="5" />
-            <HorizontalStackLayout>
-                <Entry
                 Margin="5"
-                Placeholder="Strength"
-                PlaceholderColor="Black"
-                Text="{Binding Str}"/>
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
+            <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*,*">
                 <Entry
-                Margin="5"
-                Placeholder="Dexterity"
-                PlaceholderColor="Black"
-                Text="{Binding Dex}"/>
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5"
+                    Placeholder="Strength"
+                    PlaceholderColor="Black"
+                    Text="{Binding Str}" />
                 <Entry
-                Margin="5"
-                Placeholder="Constitution"
-                PlaceholderColor="Black" 
-                Text="{Binding Con}"/>
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    Margin="5"
+                    Placeholder="Dexterity"
+                    PlaceholderColor="Black"
+                    Text="{Binding Dex}" />
                 <Entry
-                Margin="5"
-                Placeholder="Intelligence"
-                PlaceholderColor="Black" 
-                Text="{Binding Inte}"/>
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    Margin="5"
+                    Placeholder="Constitution"
+                    PlaceholderColor="Black"
+                    Text="{Binding Con}" />
                 <Entry
-                Margin="5"
-                Placeholder="Wisdom"
-                PlaceholderColor="Black" 
-                Text="{Binding Wis}"/>
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="5"
+                    Placeholder="Intelligence"
+                    PlaceholderColor="Black"
+                    Text="{Binding Inte}" />
                 <Entry
-                Margin="5"
-                Placeholder="Charisma"
-                PlaceholderColor="Black" 
-                Text="{Binding Cha}"/>
-            </HorizontalStackLayout>
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Margin="5"
+                    Placeholder="Wisdom"
+                    PlaceholderColor="Black"
+                    Text="{Binding Wis}" />
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    Margin="5"
+                    Placeholder="Charisma"
+                    PlaceholderColor="Black"
+                    Text="{Binding Cha}" />
+            </Grid>
             <Border
-            Margin="10"
-            BackgroundColor="Maroon"
-            HeightRequest="5" />
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
             <Editor
-            HeightRequest="70"
-            Placeholder="Monster Passives"
-            PlaceholderColor="Black" 
-            Text="{Binding PassiveDesc}"/>
+                HeightRequest="70"
+                Placeholder="Monster Passives"
+                PlaceholderColor="Black"
+                Text="{Binding PassiveDesc}" />
             <Border
-            Margin="10"
-            BackgroundColor="Maroon"
-            HeightRequest="5" />
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
             <Editor
-            HeightRequest="70"
-            Placeholder="Monster Actions"
-            PlaceholderColor="Black" 
-            Text="{Binding ActionDesc}"/>
+                HeightRequest="70"
+                Placeholder="Monster Actions"
+                PlaceholderColor="Black"
+                Text="{Binding ActionDesc}" />
             <Border
-            Margin="20"
-            BackgroundColor="Maroon"
-            HeightRequest="5" />
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="5" />
             <Editor
-            HeightRequest="70"
-            Placeholder="Additional Actions/Abilities"
-            PlaceholderColor="Black" 
-            Text="{Binding SpecialActionDesc}"/>
-            <Button Text="Add Monster" Command="{Binding AddMonsterCommand}" IsEnabled="{Binding NotInServerCall}"   />
+                HeightRequest="70"
+                Placeholder="Additional Actions/Abilities"
+                PlaceholderColor="Black"
+                Text="{Binding SpecialActionDesc}" />
+            <Button
+                Command="{Binding AddMonsterCommand}"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Add Monster" />
         </VerticalStackLayout>
     </Border>
 </ContentPage>
