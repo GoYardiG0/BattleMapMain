@@ -27,16 +27,7 @@ namespace BattleMapMain.ViewModels
                 OnPropertyChanged(); 
             } 
         }
-        private Monster selectedMonster;
-        public Monster SelectedMonster 
-        { 
-            get => selectedMonster;
-            set 
-            { 
-                selectedMonster = value; 
-                OnPropertyChanged(); 
-            } 
-        }
+       
         //private bool isRefreshing;
         //public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }      
 
@@ -44,33 +35,126 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
+            GoToEditCommand = new Command(GoToEdit);
+            monsters = new ObservableCollection<Monster>();
+            SetMonsters();
             //pendingConfectioneriesKeeper = new();
             //PendingConfectioneries = new();
             //GetBakers();
-            GoToEditCommand = new Command(GoToEdit);
 
         }
 
         public ICommand GoToEditCommand { get; }
 
+        private void GoToEdit()
+        {
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterEditView>());
+        }
         public void SetMonsters()
         {
             ObservableCollection<Monster>? monsters = ((App)Application.Current).monsters;
             if (monsters != null)
             {
-                this.monsters.Clear();
                 foreach (Monster monster in monsters)
                 {
-                    if (monster.UserId == 0)
+                    if (monster.UserId == 1)
                     this.monsters.Add(monster);
                 }
             }
         }
+        
 
-        private void GoToEdit()
+            
+            //public String SearchedName
+            //{
+            //    get
+            //    {
+            //        return this.searchedName;
+            //    }
+            //    set
+            //    {
+            //        this.searchedName = value;
+            //        OnPropertyChanged();
+            //    }
+            //}
+            //public bool InSearch
+            //{
+            //    get
+            //    {
+            //        return this.inSearch;
+            //    }
+            //    set
+            //    {
+            //        this.inSearch = value;
+            //        OnPropertyChanged();
+            //    }
+            //}
+           
+            //private void Search(List<string> s)
+            //{
+            //    SearchedBarList.Clear();
+            //    foreach (Recipe r in Recipes)
+            //    {
+            //        for (int i = 0; i < r.RecipesName.Length; i++)
+            //        {
+            //            foreach (string sub in s)
+            //            {
+            //                if (sub[i] != null)
+            //                {
+            //                    if (r.RecipesName[i] != sub[i])
+            //                        return;
+            //                }
+            //            }
+            //        }
+            //        searchedBarList.Add(r);
+            //    }
+            //}
+            
+            public void Refresh2()
+            {
+                OnPropertyChanged("IsLogged");
+            }
+
+        //on SortCommand change the list and leave only the users that contain the given string
+        //public void Sort()
+        //{
+        //    List<Recipe> temp = Recipes.Where(r => r.RecipesName.Contains(SearchedName)).ToList();
+        //    this.SearchedBarList.Clear();
+        //    SearchedBarList = new ObservableCollection<Recipe>(temp);
+        //}
+        //public void ClearSort()
+        //{
+        //    this.SearchedBarList.Clear();
+        //    SearchedBarList = recipes;
+        //}
+        #region Single Selection
+        private Monster selectedMonster;
+        public Monster SelectedMonster
         {
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterEditView>());
+            get => selectedMonster;
+            set
+            {
+                selectedMonster = value;
+                OnPropertyChanged();
+                if (selectedMonster != null)
+                    OnSingleSelectRecipe();
+            }
         }
+       
+
+            async void OnSingleSelectRecipe()
+            {
+                var navParam = new Dictionary<string, object>()
+                {
+                    { "Monster",SelectedMonster }
+                };
+                await Shell.Current.GoToAsync("MonsterDetails", navParam);
+            SelectedMonster = null;
+            }
+
+
+            #endregion
+        
     }
 }
 

@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.AllMonstersView"
-             Title="AllMonstersView"
-             xmlns:Models="clr-namespace:BattleMapMain.Models"
-             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             x:DataType="viewmodels:AllMonstersViewModel">
+<ContentPage
+    x:Class="BattleMapMain.Views.AllMonstersView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:BattleMapMain.Models"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    Title="AllMonstersView"
+    x:DataType="viewmodels:AllMonstersViewModel">
     <ScrollView x:Name="scrlview" Margin="10">
 
-        <Grid ColumnDefinitions="3*,2*,*" RowDefinitions="1*,10*">
+        <CollectionView
+            x:Name="collection"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="3"
+            ItemsSource="{Binding Monsters}"
+            SelectedItem="{Binding SelectedMonster}"
+            SelectionMode="Single">
 
-            <CollectionView
-                x:Name="collection"
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="3"
-                ItemsSource="{Binding Monsters}"
-                SelectedItem="{Binding SelectedMonster}"
-                SelectionMode="Single">
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Monster">
-                        <SwipeView>
-                            <!--<SwipeView.RightItems>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Monster">
+                    <SwipeView>
+                        <!--<SwipeView.RightItems>
                                 <SwipeItem
                                     Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
                                     CommandParameter="{Binding .}"
@@ -33,35 +32,40 @@
                                     CommandParameter="{Binding .}"
                                     IconImageSource="approve.png" />
                             </SwipeView.RightItems>-->
-                            <Border
-                                Margin="4,5"
-                                Padding="4"
-                                HeightRequest="200">
-                                <Grid RowDefinitions="*,*,*,*">
-                                    <Label Grid.Row="0" Margin="3">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
-                                                <!--<Span Text="{Binding ProfileName}" />-->
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Grid.Row="3" Margin="3">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding Hp}"/>
-                                                <Span Text="0-"/>
+                        <Border
+                            Margin="4,5"
+                            Padding="4"
+                            HeightRequest="80">
+                            <Grid ColumnDefinitions="*,*,*,*">
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="3"
+                                    VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
+                                            <!--<Span Text="{Binding ProfileName}" />-->
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label
+                                    Grid.Column="3"
+                                    Margin="3"
+                                    VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span FontAttributes="Bold" Text="{Binding Hp}" />
 
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
 
-                                </Grid>
-                            </Border>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <!--<CollectionView.EmptyView>
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <!--<CollectionView.EmptyView>
                     <StackLayout>
                         <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
                         <Image
@@ -72,12 +76,10 @@
                             WidthRequest="80" />
                     </StackLayout>
                 </CollectionView.EmptyView>-->
-            </CollectionView>
+        </CollectionView>
 
-
-        </Grid>
-        <Button 
-          Command="{Binding GoToEditCommand}"/>
+        <!--<Button
+          Command="{Binding GoToEditCommand}"/>-->
     </ScrollView>
 
 </ContentPage>

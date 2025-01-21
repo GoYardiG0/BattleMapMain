@@ -55,11 +55,12 @@ namespace BattleMapMain
             builder.Services.AddTransient<PlacedMinisView>();
             builder.Services.AddTransient<SavedMonstersView>();
             builder.Services.AddTransient<SessionView>();
-            builder.Services.AddTransient<StatBlockView>();
             builder.Services.AddTransient<UserMonstersView>();
             builder.Services.AddTransient<LoadingScreenView>();
             builder.Services.AddTransient<MonsterEditView>();
             builder.Services.AddTransient<CharacterEditView>();
+            builder.Services.AddTransient<CharacterStatsView>();
+            builder.Services.AddTransient<MonsterStatsView>();
 
             return builder;
         }
@@ -88,11 +89,12 @@ namespace BattleMapMain
             builder.Services.AddTransient<PlacedMinisViewModel>();
             builder.Services.AddTransient<SavedMonstersViewModel>();
             builder.Services.AddTransient<SessionViewModel>();
-            builder.Services.AddTransient<StatBlockViewModel>();
+            builder.Services.AddTransient<MonsterStatsViewModel>();
             builder.Services.AddTransient<UserMonstersViewModel>();
             builder.Services.AddTransient<LoadingScreenViewModel>();
             builder.Services.AddTransient<MonsterEditViewModel>();
             builder.Services.AddTransient<CharacterEditViewModel>();
+            builder.Services.AddTransient<CharacterStatsViewModel>();
 
 
             return builder;

@@ -75,7 +75,7 @@
         <Tab Title="Character Stats" IsVisible="{Binding InSession}">
             <ShellContent   
          Title="Character Stats"
-         ContentTemplate="{DataTemplate views:StatBlockView}"/>
+         ContentTemplate="{DataTemplate views:CharacterStatsView}"/>
         </Tab>
         <Tab Title="Die Roller" IsVisible="{Binding InSession}">
             <ShellContent   

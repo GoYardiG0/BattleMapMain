@@ -104,7 +104,7 @@ namespace BattleMapMain.ViewModels
                 ObservableCollection<Monster>? monsters = await this.proxy.GetMonsters(u.UserId);
                 ((App)Application.Current).SetMonsters(monsters);
 
-                ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
+                await ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
                 //Shell.Current.FlyoutIsPresented = false; //close the flyout
 
             }

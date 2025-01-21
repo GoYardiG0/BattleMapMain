@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleMapMain.ViewModels
 {
-    public class StatBlockViewModel : ViewModelBase
+    public class MonsterStatsViewModel : ViewModelBase
     {
-        StatBlockViewModel()
+        MonsterStatsViewModel()
         {
             
         }

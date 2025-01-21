@@ -20,14 +20,16 @@ namespace BattleMapMain
             //LoadBasicDataFromServer();
             InitializeComponent();
             LoggedInUser = null;
+            monsters = new ObservableCollection<Monster>();
             //Start with the Login View
             MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
+
         }
         public async void SetMonsters(ObservableCollection<Monster>? monsters)
         {            
             if (monsters != null)
             {
-                this.monsters.Clear();
+
                 foreach (Monster monster in monsters)
                 {
                     this.monsters.Add(monster);
