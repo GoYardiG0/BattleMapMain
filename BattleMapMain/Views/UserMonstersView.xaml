@@ -2,11 +2,85 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BattleMapMain.Views.UserMonstersView"
+             xmlns:Models="clr-namespace:BattleMapMain.Models"
+             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+             x:DataType="viewmodels:UserMonstersViewModel"
              Title="UserMonstersView">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Entry Placeholder="Search by monster name" Text="{Binding SearchBar}" HeightRequest="55"/>
+        <ScrollView x:Name="scrlview" Margin="10">
+
+            <CollectionView
+            x:Name="collection"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="3"
+            ItemsSource="{Binding SearchedMonsters}"
+            SelectedItem="{Binding SelectedMonster}"
+            SelectionMode="Single">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Monster">
+                        <SwipeView>
+                            <!--<SwipeView.RightItems>
+                            <SwipeItem
+                                Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
+                                CommandParameter="{Binding .}"
+                                IconImageSource="decline.png" />
+                            <SwipeItem
+                                Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveConfectioneryCommand}"
+                                CommandParameter="{Binding .}"
+                                IconImageSource="approve.png" />
+                        </SwipeView.RightItems>-->
+                            <Border
+                            Margin="4,5"
+                            Padding="4"
+                            HeightRequest="80">
+                                <Grid ColumnDefinitions="*,*,*,*">
+                                    <Label
+                                    Grid.Column="0"
+                                    Margin="3"
+                                    VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
+                                                <!--<Span Text="{Binding ProfileName}" />-->
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label
+                                    Grid.Column="3"
+                                    Margin="3"
+                                    VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding Hp}" />
+
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--<CollectionView.EmptyView>
+                <StackLayout>
+                    <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
+                    <Image
+                        Aspect="AspectFit"
+                        HeightRequest="80"
+                        HorizontalOptions="CenterAndExpand"
+                        Source="sad.png"
+                        WidthRequest="80" />
+                </StackLayout>
+            </CollectionView.EmptyView>-->
+            </CollectionView>
+
+
+        </ScrollView>
+        <Button Command="{Binding GoToEditCommand}" />
     </VerticalStackLayout>
 </ContentPage>

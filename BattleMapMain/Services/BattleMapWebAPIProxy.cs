@@ -120,16 +120,15 @@ namespace BattleMapMain.Services
                 return null;
             }
         }
-        public async Task<ObservableCollection<Monster>?> GetMonsters(int userID)
+        public async Task<ObservableCollection<Monster>?> GetMonsters()
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}getMonsters";
             try
             {
                 //Call the server API
-                string json = JsonSerializer.Serialize(userID);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync(url, content);
+
+                HttpResponseMessage response = await client.GetAsync(url);
                 //Extract the content as string
                 string resContent = await response.Content.ReadAsStringAsync();
                 //Check status

@@ -21,12 +21,14 @@ namespace BattleMapMain
             InitializeComponent();
             LoggedInUser = null;
             monsters = new ObservableCollection<Monster>();
+            SetMonsters();
             //Start with the Login View
             MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
 
         }
-        public async void SetMonsters(ObservableCollection<Monster>? monsters)
-        {            
+        public async void SetMonsters()
+        {
+            ObservableCollection<Monster>? monsters = await this.proxy.GetMonsters();
             if (monsters != null)
             {
 

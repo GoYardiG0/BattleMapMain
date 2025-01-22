@@ -245,9 +245,6 @@ namespace BattleMapMain.ViewModels
                     await Application.Current.MainPage.DisplayAlert("register","register successful","ok");
                     ((App)Application.Current).LoggedInUser = newUser;
 
-                    ObservableCollection<Monster>? monsters = await this.proxy.GetMonsters(newUser.UserId);
-                    ((App)Application.Current).SetMonsters(monsters);
-
                     ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
                 }
                 else

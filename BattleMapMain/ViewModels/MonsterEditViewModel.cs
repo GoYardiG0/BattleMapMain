@@ -47,7 +47,7 @@ namespace BattleMapMain.ViewModels
                 var newMonster = new Monster
                 {
                     MonsterName = Name,
-                    UserId = 1/*((App)Application.Current).LoggedInUser.UserId*/,
+                    UserId = ((App)Application.Current).LoggedInUser.UserId,
                     MonsterPic = "" /*MonsterPic*/,
                     Ac = this.Ac,
                     Hp = this.Hp,
@@ -79,10 +79,8 @@ namespace BattleMapMain.ViewModels
                     await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
 
                     //add the the transtion into the wahterver
-                    
-                    ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<AllMonstersView>());
-                    AppShell shell = serviceProvider.GetService<AppShell>();
-                    ((App)Application.Current).MainPage = shell;
+                    ((App)Application.Current).monsters.Add(newMonster);
+                    await ((App)Application.Current).MainPage.Navigation.PopAsync();
                 }
                 else
                 {

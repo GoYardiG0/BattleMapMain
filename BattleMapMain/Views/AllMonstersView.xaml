@@ -7,22 +7,24 @@
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     Title="AllMonstersView"
     x:DataType="viewmodels:AllMonstersViewModel">
-    <ScrollView x:Name="scrlview" Margin="10">
+    <VerticalStackLayout>
+        <Entry Placeholder="Search by monster name" Text="{Binding SearchBar}" HeightRequest="55"/>
+        <ScrollView x:Name="scrlview" Margin="10">
 
-        <CollectionView
-            x:Name="collection"
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            Margin="3"
-            ItemsSource="{Binding Monsters}"
-            SelectedItem="{Binding SelectedMonster}"
-            SelectionMode="Single">
+            <CollectionView
+                x:Name="collection"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="3"
+                ItemsSource="{Binding SearchedMonsters}"
+                SelectedItem="{Binding SelectedMonster}"
+                SelectionMode="Single">
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Models:Monster">
-                    <SwipeView>
-                        <!--<SwipeView.RightItems>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Monster">
+                        <SwipeView>
+                            <!--<SwipeView.RightItems>
                                 <SwipeItem
                                     Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
                                     CommandParameter="{Binding .}"
@@ -32,40 +34,40 @@
                                     CommandParameter="{Binding .}"
                                     IconImageSource="approve.png" />
                             </SwipeView.RightItems>-->
-                        <Border
-                            Margin="4,5"
-                            Padding="4"
-                            HeightRequest="80">
-                            <Grid ColumnDefinitions="*,*,*,*">
-                                <Label
-                                    Grid.Column="0"
-                                    Margin="3"
-                                    VerticalTextAlignment="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
-                                            <!--<Span Text="{Binding ProfileName}" />-->
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label
-                                    Grid.Column="3"
-                                    Margin="3"
-                                    VerticalTextAlignment="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span FontAttributes="Bold" Text="{Binding Hp}" />
+                            <Border
+                                Margin="4,5"
+                                Padding="4"
+                                HeightRequest="80">
+                                <Grid ColumnDefinitions="*,*,*,*">
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="3"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
+                                                <!--<Span Text="{Binding ProfileName}" />-->
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label
+                                        Grid.Column="3"
+                                        Margin="3"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding Hp}" />
 
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
 
-                            </Grid>
-                        </Border>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            <!--<CollectionView.EmptyView>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <!--<CollectionView.EmptyView>
                     <StackLayout>
                         <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
                         <Image
@@ -76,10 +78,10 @@
                             WidthRequest="80" />
                     </StackLayout>
                 </CollectionView.EmptyView>-->
-        </CollectionView>
+            </CollectionView>
 
-        <!--<Button
-          Command="{Binding GoToEditCommand}"/>-->
-    </ScrollView>
 
+        </ScrollView>
+        <Button Command="{Binding GoToEditCommand}" />
+    </VerticalStackLayout>
 </ContentPage>
