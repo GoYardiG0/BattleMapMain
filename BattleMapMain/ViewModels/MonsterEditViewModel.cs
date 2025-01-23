@@ -559,7 +559,12 @@ namespace BattleMapMain.ViewModels
 
         private void ValidatePassiveDesc()
         {
-            if (passiveDesc == null) showPassiveDescError = true; else showPassiveDescError = false;
+            if (passiveDesc == null)
+            {
+
+                showPassiveDescError = true;
+            }
+            else showPassiveDescError = false;
         }
 
         #endregion
@@ -602,7 +607,12 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateActionDesc()
         {
-            if (actionDesc == null) showActionDescError = true; else showActionDescError = false;
+            if (actionDesc == null)
+            {
+                ActionDescError = "A monster must have actions";
+                showActionDescError = true;
+            }
+            else showActionDescError = false;
         }
 
         #endregion
@@ -621,6 +631,78 @@ namespace BattleMapMain.ViewModels
         }
         #endregion
 
+        #region firstStats
 
+        private bool showFirstStatsError;
+
+        public bool ShowFirstStatsError
+        {
+            get => showFirstStatsError;
+            set
+            {
+                showFirstStatsError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string firstStatsError;
+
+        public string FirstStatsError
+        {
+            get => firstStatsError;
+            set
+            {
+                firstStatsError = value;
+                OnPropertyChanged();
+            }
+        }
+        private void ValidateFirstStats()
+        {
+            if (Ac == null || Hp == null || Cr == null)
+            {
+                showFirstStatsError = true;
+                firstStatsError = "All stats must be above 0";
+            }
+            else showFirstStatsError = false;
+        }
+
+        #endregion
+
+        #region secondStats
+
+        private bool showSecondStatsError;
+
+        public bool ShowSecondStatsError
+        {
+            get => showSecondStatsError;
+            set
+            {
+                showSecondStatsError = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string secondStatsError;
+
+        public string SecondStatsError
+        {
+            get => secondStatsError;
+            set
+            {
+                secondStatsError = value;
+                OnPropertyChanged();
+            }
+        }
+        private void ValidateSecondStats()
+        {
+            if (Ac == null || Hp == null || Cr == null)
+            {
+                showSecondStatsError = true;
+                secondStatsError = "All stats must be above 0";
+            }
+            else showSecondStatsError = false;
+        }
+
+        #endregion
     }
 }
