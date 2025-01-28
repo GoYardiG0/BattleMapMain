@@ -61,6 +61,7 @@ namespace BattleMapMain
             builder.Services.AddTransient<CharacterEditView>();
             builder.Services.AddTransient<CharacterStatsView>();
             builder.Services.AddTransient<MonsterStatsView>();
+            builder.Services.AddTransient<MonsterAddView>();
 
             return builder;
         }
@@ -95,7 +96,7 @@ namespace BattleMapMain
             builder.Services.AddTransient<MonsterEditViewModel>();
             builder.Services.AddTransient<CharacterEditViewModel>();
             builder.Services.AddTransient<CharacterStatsViewModel>();
-
+            builder.Services.AddTransient<MonsterAddViewModel>();
 
             return builder;
         }

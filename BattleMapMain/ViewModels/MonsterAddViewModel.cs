@@ -1,83 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BattleMapMain.Services;
-using Microsoft.Extensions.DependencyInjection;
 using BattleMapMain.Models;
 using BattleMapMain.Views;
 
 namespace BattleMapMain.ViewModels
 {
-    [QueryProperty(nameof(Monster), "Monster")]
-    public class MonsterEditViewModel : ViewModelBase
+    public class MonsterAddViewModel: ViewModelBase
     {
         private BattleMapWebAPIProxy proxy;
         private IServiceProvider serviceProvider;
-        private Monster monster;
-        public Monster Monster
-        {
-            get { return monster; }
-            set
-            {
-                this.monster = value;
-                OnPropertyChanged();
-                GetDetailsFromMonster();
-            }
-        }
-        public async void GetDetailsFromMonster()
-        {
-            this.name = this.monster.MonsterName;
-            this.hp = this.monster.Hp;
-            this.ac = this.monster.Ac;
-            this.str = this.monster.Str;
-            this.dex = this.monster.Dex;
-            this.con = this.monster.Con;
-            this.inte = this.monster.Int;
-            this.wis = this.monster.Wis;
-            this.cha = this.monster.Cha;
-            this.cr = this.monster.Cr;
-            this.passiveDesc = this.monster.PassiveDesc;
-            this.actionDesc = this.monster.PassiveDesc;
-            this.specialActionDesc = this.monster.SpecialActionDesc;
-            this.photoURL = this.monster.MonsterPic;
-            this.localPhotoPath = this.monster.MonsterPic;
-            Refresh();
-        }
 
-        public void Refresh()
-        {
-            OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(Hp));
-            OnPropertyChanged(nameof(Ac));
-            OnPropertyChanged(nameof(Str));
-            OnPropertyChanged(nameof(Dex));
-            OnPropertyChanged(nameof(Con));
-            OnPropertyChanged(nameof(Inte));
-            OnPropertyChanged(nameof(Wis));
-            OnPropertyChanged(nameof(Cha));
-            OnPropertyChanged(nameof(Cr));
-            OnPropertyChanged(nameof(PassiveDesc));
-            OnPropertyChanged(nameof(ActionDesc));
-            OnPropertyChanged(nameof(SpecialActionDesc));
-            OnPropertyChanged(nameof(PhotoURL));
-        }
-        public MonsterEditViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
+        public MonsterAddViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.proxy = proxy;
             this.serviceProvider = serviceProvider;
-            EditMonsterCommand = new Command(OnEditMonster);
+            AddMonsterCommand = new Command(OnAddMonster);
             UploadPhotoCommand = new Command(OnUploadPhoto);
-            
+            PhotoURL = "dragonpfp.png";
+            localPhotoPath = "dragonpfp.png";
         }
 
-        public Command EditMonsterCommand { get; }
+        public Command AddMonsterCommand { get; }
         public Command UploadPhotoCommand { get; }
         //This method open the file picker to select a photo
-        
-        public async void OnEditMonster()
+        private async void OnUploadPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+        public async void OnAddMonster()
         {
             ValidateAc();
             ValidateActionDesc();
@@ -92,13 +63,12 @@ namespace BattleMapMain.ViewModels
             ValidateStr();
             ValidateWis();
 
-            if (!ShowNameError && !showAcError && !showActionDescError && !showChaError && !showConError && !showDexError && 
+            if (!ShowNameError && !showAcError && !showActionDescError && !showChaError && !showConError && !showDexError &&
                 !showHpError && !showInteError && !showCrError && !showNameError && !showPassiveDescError && !showStrError && !showWisError)
             {
                 //Create a new AppUser object with the data from the registration form
                 var newMonster = new Monster
                 {
-                    MonsterId = monster.MonsterId,
                     MonsterName = Name,
                     UserId = ((App)Application.Current).LoggedInUser.UserId,
                     MonsterPic = localPhotoPath,
@@ -119,32 +89,35 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                //newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
-                //if (newMonster.MonsterPic == null)
-                //{
-                //    string errorMsg = "Upload image failed. Please try again.";
-                //    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
-                //    InServerCall = false;
-                //}
-                newMonster = await proxy.UpdateMonster(newMonster);
-                InServerCall = false;
-
-                //If the registration was successful, navigate to the login page
-                if (newMonster != null)
+                newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
+                if (newMonster.MonsterPic == null)
                 {
-
-                    await Application.Current.MainPage.DisplayAlert("", "Edit successful", "ok");
-
-                    //add the the transtion into the wahterver
-                    ((App)Application.Current).monsters.Add(newMonster);
-                    await ((App)Application.Current).MainPage.Navigation.PopAsync();
+                    string errorMsg = "Upload image failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                    InServerCall = false;
                 }
                 else
                 {
+                    newMonster = await proxy.AddMonster(newMonster);
+                    InServerCall = false;
 
-                    //If the registration failed, display an error message
-                    string errorMsg = "Edit failed. Please try again.";
-                    await Application.Current.MainPage.DisplayAlert("", errorMsg, "ok");
+                    //If the registration was successful, navigate to the login page
+                    if (newMonster != null)
+                    {
+
+                        await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
+
+                        //add the the transtion into the wahterver
+                        ((App)Application.Current).monsters.Add(newMonster);
+                        await ((App)Application.Current).MainPage.Navigation.PopAsync();
+                    }
+                    else
+                    {
+
+                        //If the registration failed, display an error message
+                        string errorMsg = "Edit failed. Please try again.";
+                        await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                    }
                 }
 
             }
@@ -174,27 +147,7 @@ namespace BattleMapMain.ViewModels
                 OnPropertyChanged("LocalPhotoPath");
             }
         }
-        private async void OnUploadPhoto()
-        {
-            try
-            {
-                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
-                {
-                    Title = "Please select a photo",
-                });
 
-                if (result != null)
-                {
-                    // The user picked a file
-                    this.LocalPhotoPath = result.FullPath;
-                    this.PhotoURL = result.FullPath;
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-
-        }
         #endregion
 
         #region name
@@ -621,7 +574,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateCr()
         {
-            if (cr <0 ) showCrError = true; else showCrError = false;
+            if (cr < 0) showCrError = true; else showCrError = false;
         }
 
         #endregion
@@ -811,3 +764,4 @@ namespace BattleMapMain.ViewModels
         #endregion
     }
 }
+

@@ -28,7 +28,7 @@
                 <Image
                     Grid.Column="0"
                     Margin="2"
-                    Source="dragonpfp.png" />
+                    Source="{Binding PhotoURL}" />
                 <ImageButton
                     Margin="0,0,10,15"
                     BackgroundColor="#FFE9DFBF"
@@ -37,7 +37,8 @@
                     HorizontalOptions="EndAndExpand"
                     Source="edit.png"
                     VerticalOptions="EndAndExpand"
-                    WidthRequest="25" />
+                    WidthRequest="25"
+                    Command="{Binding UploadPhotoCommand}"/>
                 <VerticalStackLayout Grid.Column="1" Margin="10">
                     <Label
                         Margin="5"
@@ -294,7 +295,7 @@
                 BackgroundColor="Maroon"
                 BorderColor="#511100"
                 BorderWidth="3"
-                Command="{Binding AddMonsterCommand}"
+                Command="{Binding EditMonsterCommand}"
                 CornerRadius="10"
                 IsEnabled="{Binding NotInServerCall}"
                 Text="Add Monster" />

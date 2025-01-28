@@ -108,6 +108,9 @@
 	  <MauiXaml Update="Views\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MonsterAddView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MonsterEditView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

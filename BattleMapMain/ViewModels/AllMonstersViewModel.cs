@@ -133,7 +133,7 @@ namespace BattleMapMain.ViewModels
                 {
                     { "Monster",SelectedMonster }
                 };
-            await Shell.Current.GoToAsync("MonsterDetails", navParam);
+            await Shell.Current.GoToAsync("MonsterEdit", navParam);
             SelectedMonster = null;
         }
 

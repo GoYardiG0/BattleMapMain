@@ -187,7 +187,6 @@ namespace BattleMapMain.Services
         }
         public async Task<Monster?> AddMonster(Monster monster)
         {
-            await UploadMonsterImage(monster.MonsterPic);
             //Set URI to the specific function API
             string url = $"{this.baseUrl}AddMonster";
             try
@@ -222,12 +221,13 @@ namespace BattleMapMain.Services
         //This method call the UploadProfileImage web API on the server and return the AppUser object with the given URL
         //of the profile image or null if the call fails
         //when registering a user it is better first to call the register command and right after that call this function
-        public async Task<Monster?> UploadMonsterImage(string imagePath)
+        public async Task<string?> UploadMonsterImage(Monster monster)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}uploadprofileimage";
+            string url = $"{this.baseUrl}uploadMonsterImage?monsterName={monster.MonsterName}&userId={monster.UserId}";
             try
             {
+                string imagePath = monster.MonsterPic;
                 //Create the form data
                 MultipartFormDataContent form = new MultipartFormDataContent();
                 var fileContent = new ByteArrayContent(File.ReadAllBytes(imagePath));
@@ -244,7 +244,40 @@ namespace BattleMapMain.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    AppUser? result = JsonSerializer.Deserialize<AppUser>(resContent, options);
+                    string? result = resContent;
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public async Task<Monster?> UpdateMonster(Monster monster)
+        {
+            //Set URI to the specific function API
+            string url = $"{this.baseUrl}updateMonster";
+            try
+            {
+                //Call the server API
+                string json = JsonSerializer.Serialize(monster);
+                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                //Check status
+                if (response.IsSuccessStatusCode)
+                {
+                    //Extract the content as string
+                    string resContent = await response.Content.ReadAsStringAsync();
+                    //Desrialize result
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    Monster? result = JsonSerializer.Deserialize<Monster>(resContent, options);
                     return result;
                 }
                 else

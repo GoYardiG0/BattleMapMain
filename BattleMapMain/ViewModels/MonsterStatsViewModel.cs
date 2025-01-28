@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleMapMain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace BattleMapMain.ViewModels
 {
+    [QueryProperty(nameof(Monster), "Monster")]
     public class MonsterStatsViewModel : ViewModelBase
     {
+        
         MonsterStatsViewModel()
         {
             

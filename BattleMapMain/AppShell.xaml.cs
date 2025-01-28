@@ -23,6 +23,7 @@ namespace BattleMapMain
             Routing.RegisterRoute("Profile", typeof(ProfileView));
             Routing.RegisterRoute("BattleMap", typeof(BattleMapView));
             Routing.RegisterRoute("MonsterDetails", typeof(MonsterStatsView));
+            Routing.RegisterRoute("MonsterEdit", typeof(MonsterEditView));
             Routing.RegisterRoute("CharacterDetails", typeof(CharacterStatsView)); 
         }
         
