@@ -59,7 +59,7 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            GoToEditCommand = new Command(GoToEdit);
+            GoToAddCommand = new Command(GoToAdd);
             monsters = new ObservableCollection<Monster>();
             SetMonsters();
             FilterMonsters();
@@ -69,11 +69,11 @@ namespace BattleMapMain.ViewModels
 
         }
 
-        public ICommand GoToEditCommand { get; }
+        public ICommand GoToAddCommand { get; }
 
-        private void GoToEdit()
+        private void GoToAdd()
         {
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterEditView>());
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterAddView>());
         }
         public void SetMonsters()
         {

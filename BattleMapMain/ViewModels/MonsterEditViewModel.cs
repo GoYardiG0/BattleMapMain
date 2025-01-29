@@ -42,7 +42,7 @@ namespace BattleMapMain.ViewModels
             this.passiveDesc = this.monster.PassiveDesc;
             this.actionDesc = this.monster.PassiveDesc;
             this.specialActionDesc = this.monster.SpecialActionDesc;
-            this.photoURL = this.monster.MonsterPic;
+            this.photoURL = this.monster.MonsterPicURL;
             this.localPhotoPath = this.monster.MonsterPic;
             Refresh();
         }
@@ -134,9 +134,8 @@ namespace BattleMapMain.ViewModels
                 {
 
                     await Application.Current.MainPage.DisplayAlert("", "Edit successful", "ok");
-
+                    ((App)Application.Current).monsters.Where(m => m.MonsterId == newMonster.MonsterId).FirstOrDefault().ReSetMonster(newMonster);
                     //add the the transtion into the wahterver
-                    ((App)Application.Current).monsters.Add(newMonster);
                     await ((App)Application.Current).MainPage.Navigation.PopAsync();
                 }
                 else

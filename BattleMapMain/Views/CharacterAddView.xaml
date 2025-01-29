@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="BattleMapMain.Views.MonsterEditView"
+    x:Class="BattleMapMain.Views.CharacterAddView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    Title="MonsterEditView"
-    x:DataType="viewmodels:MonsterEditViewModel"
+    Title="CharacterAddView"
+    x:DataType="viewmodels:CharacterAddViewModel"
     BackgroundImageSource="statblockbackground.png"
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
@@ -32,19 +32,19 @@
                 <ImageButton
                     Margin="0,0,10,15"
                     BackgroundColor="#FFE9DFBF"
+                    Command="{Binding UploadPhotoCommand}"
                     CornerRadius="3"
                     HeightRequest="25"
                     HorizontalOptions="EndAndExpand"
                     Source="edit.png"
                     VerticalOptions="EndAndExpand"
-                    WidthRequest="25"
-                    Command="{Binding UploadPhotoCommand}"/>
+                    WidthRequest="25" />
                 <VerticalStackLayout Grid.Column="1" Margin="10">
                     <Label
                         Margin="5"
                         FontAttributes="Bold"
                         FontSize="22"
-                        Text="Monster Name"
+                        Text="Character Name"
                         TextColor="Black" />
                     <Entry
                         Margin="10"
@@ -78,8 +78,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding Hp}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Hp}" />
                 <Label
                     Grid.Column="2"
                     Margin="10"
@@ -94,8 +93,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding Ac}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Ac}" />
                 <Label
                     Grid.Column="4"
                     Margin="10"
@@ -110,8 +108,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding Cr}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Level}" />
             </Grid>
             <Border
                 Margin="5"
@@ -140,8 +137,7 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     PlaceholderColor="Black"
-                    Text="{Binding Str}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Str}" />
                 <Label
                     Grid.Row="0"
                     Grid.Column="2"
@@ -160,8 +156,7 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     PlaceholderColor="Black"
-                    Text="{Binding Dex}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Dex}" />
                 <Label
                     Grid.Row="0"
                     Grid.Column="4"
@@ -180,8 +175,7 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     PlaceholderColor="Black"
-                    Text="{Binding Con}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Con}" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
@@ -200,8 +194,7 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     PlaceholderColor="Black"
-                    Text="{Binding Inte}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Inte}" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="2"
@@ -220,8 +213,7 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     PlaceholderColor="Black"
-                    Text="{Binding Wis}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Wis}" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="4"
@@ -240,8 +232,7 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     PlaceholderColor="Black"
-                    Text="{Binding Cha}"
-                    Keyboard="Numeric"/>
+                    Text="{Binding Cha}" />
             </Grid>
             <Border
                 Margin="5"
@@ -256,7 +247,7 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HeightRequest="25"
-                Text="Monster Passives"
+                Text="Character Passives"
                 VerticalOptions="StartAndExpand" />
             <Editor
                 Margin="10,0,10,0"
@@ -276,7 +267,7 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HeightRequest="25"
-                Text="Monster Actions"
+                Text="Character Actions"
                 VerticalOptions="StartAndExpand" />
             <Editor
                 Margin="10,0,10,0"
@@ -292,7 +283,7 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HeightRequest="25"
-                Text="Special Monster Actions"
+                Text="Special Character Actions"
                 VerticalOptions="StartAndExpand" />
             <Editor
                 Margin="10,0,10,0"
@@ -304,10 +295,10 @@
                 BackgroundColor="Maroon"
                 BorderColor="#511100"
                 BorderWidth="3"
-                Command="{Binding EditMonsterCommand}"
+                Command="{Binding AddCharacterCommand}"
                 CornerRadius="10"
                 IsEnabled="{Binding NotInServerCall}"
-                Text="Add Monster" />
+                Text="Add Character" />
         </VerticalStackLayout>
     </Border>
 </ContentPage>

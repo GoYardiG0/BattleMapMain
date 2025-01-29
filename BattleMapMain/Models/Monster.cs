@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BattleMapMain.Services;
 
 namespace BattleMapMain.Models
 {
@@ -17,6 +18,13 @@ namespace BattleMapMain.Models
         public string MonsterName { get; set; } = null!;
 
         public string? MonsterPic { get; set; }
+        public string MonsterPicURL 
+        { 
+            get
+            {
+                return BattleMapWebAPIProxy.ImageBaseAddress + MonsterPic;
+            }
+        }
 
         public int Ac { get; set; }
 
@@ -44,5 +52,26 @@ namespace BattleMapMain.Models
 
 
         public Monster() { }
+
+        public void ReSetMonster(Monster Monster)
+        {
+            this.MonsterId = Monster.MonsterId;
+            this.UserId = Monster.UserId;
+            this.MonsterName = Monster.MonsterName;
+            this.MonsterPic = Monster.MonsterPic;
+            this.Ac = Monster.Ac;
+            this.Hp = Monster.Hp;
+            this.Str = Monster.Str;
+            this.Dex = Monster.Dex;
+            this.Con = Monster.Con;
+            this.Int = Monster.Int;
+            this.Wis = Monster.Wis;
+            this.Cha = Monster.Cha;
+            this.Cr = Monster.Cr;
+            this.PassiveDesc = Monster.PassiveDesc;
+            this.ActionDesc = Monster.ActionDesc;
+            this.SpecialActionDesc = Monster.SpecialActionDesc;
+
+        }
     }
 }

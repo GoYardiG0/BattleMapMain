@@ -89,7 +89,10 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
+                if (newMonster.MonsterPic != "dragonpfp.png")
+                {
+                    newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
+                }                
                 if (newMonster.MonsterPic == null)
                 {
                     string errorMsg = "Upload image failed. Please try again.";

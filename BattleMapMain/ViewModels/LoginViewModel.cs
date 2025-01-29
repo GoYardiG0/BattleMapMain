@@ -104,7 +104,7 @@ namespace BattleMapMain.ViewModels
                 await ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
                 //Shell.Current.FlyoutIsPresented = false; //close the flyout
 
-            }
+                }
             }
 
             private void OnRegister()

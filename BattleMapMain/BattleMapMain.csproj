@@ -81,6 +81,9 @@
 	  <MauiXaml Update="Views\CalculatorView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\CharacterAddView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CharacterEditView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

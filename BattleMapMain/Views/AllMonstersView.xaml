@@ -82,6 +82,6 @@
 
 
         </ScrollView>
-        <Button Command="{Binding GoToEditCommand}" />
+        <Button Command="{Binding GoToAddCommand}" Text="add monster" />
     </VerticalStackLayout>
 </ContentPage>
