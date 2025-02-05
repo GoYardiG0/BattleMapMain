@@ -82,7 +82,7 @@ namespace BattleMapMain.ViewModels
             {
                 foreach (Character character in characters)
                 {
-                    if (character.UserId == 1 || character.UserId == ((App)Application.Current).LoggedInUser.UserId)
+                    if (character.UserId == ((App)Application.Current).LoggedInUser.UserId)
                         this.characters.Add(character);
                 }
             }

@@ -100,7 +100,7 @@ namespace BattleMapMain.ViewModels
                 //Navigate to the main page
 
                 //gameStartViewModel.Refresh(); //Refresh data and user in the tasksview model as it is a singleton
-
+                ((App)Application.Current).SetCharacters();
                 await ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
                 //Shell.Current.FlyoutIsPresented = false; //close the flyout
 

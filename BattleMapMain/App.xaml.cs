@@ -23,7 +23,9 @@ namespace BattleMapMain
             InitializeComponent();
             LoggedInUser = null;
             monsters = new ObservableCollection<Monster>();
+            characters = new ObservableCollection<Character>();
             SetMonsters();
+            SetCharacters();
             //Start with the Login View
             MainPage = new NavigationPage(serviceProvider.GetService<LoginView>());
 
@@ -39,9 +41,9 @@ namespace BattleMapMain
                     this.monsters.Add(monster);
                 }
             }
-        } public async void SetCharacter()
+        } public async void SetCharacters()
         {
-            ObservableCollection<Character>? characters = await this.proxy.GetCharacters(LoggedInUser.UserId);
+            ObservableCollection<Character>? characters = await this.proxy.GetCharacters();
             if (characters != null)
             {
 

@@ -4,7 +4,7 @@ namespace BattleMapMain.Views;
 
 public partial class CharacterAddView : ContentPage
 {
-	public CharacterAddView(CharacterSheetsViewModel vm)
+	public CharacterAddView(CharacterAddViewModel vm)
     {
         this.BindingContext = vm;
         InitializeComponent();

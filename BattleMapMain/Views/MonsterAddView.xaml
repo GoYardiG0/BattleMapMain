@@ -77,7 +77,8 @@
                  HeightRequest="50"
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
-                 Text="{Binding Hp}" />
+                 Text="{Binding Hp}"
+                 Keyboard="Numeric"/>
                 <Label
                  Grid.Column="2"
                  Margin="10"
@@ -92,7 +93,8 @@
                  HeightRequest="50"
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
-                 Text="{Binding Ac}" />
+                 Text="{Binding Ac}" 
+                 Keyboard="Numeric"/>
                 <Label
                  Grid.Column="4"
                  Margin="10"
@@ -100,14 +102,15 @@
                  FontSize="25"
                  HorizontalOptions="EndAndExpand"
                  Text="CR"
-                 TextColor="Black" />
+                 TextColor="Black"/>
                 <Entry
                  Grid.Column="5"
                  FontSize="25"
                  HeightRequest="50"
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
-                 Text="{Binding Cr}" />
+                 Text="{Binding Cr}" 
+                    Keyboard="Numeric"/>
             </Grid>
             <Border
              Margin="5"
@@ -136,7 +139,8 @@
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
                  PlaceholderColor="Black"
-                 Text="{Binding Str}" />
+                 Text="{Binding Str}"
+                    Keyboard="Numeric"/>
                 <Label
                  Grid.Row="0"
                  Grid.Column="2"
@@ -155,7 +159,8 @@
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
                  PlaceholderColor="Black"
-                 Text="{Binding Dex}" />
+                 Text="{Binding Dex}"
+                    Keyboard="Numeric"/>
                 <Label
                  Grid.Row="0"
                  Grid.Column="4"
@@ -174,7 +179,8 @@
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
                  PlaceholderColor="Black"
-                 Text="{Binding Con}" />
+                 Text="{Binding Con}"
+                    Keyboard="Numeric"/>
                 <Label
                  Grid.Row="1"
                  Grid.Column="0"
@@ -193,7 +199,8 @@
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
                  PlaceholderColor="Black"
-                 Text="{Binding Inte}" />
+                 Text="{Binding Inte}"
+                    Keyboard="Numeric"/>
                 <Label
                  Grid.Row="1"
                  Grid.Column="2"
@@ -212,7 +219,8 @@
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
                  PlaceholderColor="Black"
-                 Text="{Binding Wis}" />
+                 Text="{Binding Wis}"
+                    Keyboard="Numeric"/>
                 <Label
                  Grid.Row="1"
                  Grid.Column="4"
@@ -231,7 +239,8 @@
                  HorizontalOptions="StartAndExpand"
                  HorizontalTextAlignment="Center"
                  PlaceholderColor="Black"
-                 Text="{Binding Cha}" />
+                 Text="{Binding Cha}"
+                    Keyboard="Numeric"/>
             </Grid>
             <Border
              Margin="5"
