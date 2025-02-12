@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.BattleMapView"
-             xmlns:drawable="clr-namespace:BattleMapMain.ViewModels"
-             Title="BattleMapView">
+<ContentPage
+    x:Class="BattleMapMain.Views.BattleMapView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:drawable="clr-namespace:BattleMapMain.ViewModels"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    Title="BattleMapView"
+    x:DataType="viewmodels:BattleMapViewModel">
     <ContentPage.Resources>
         <drawable:GraphicsDrawable x:Key="drawable" />
     </ContentPage.Resources>
     <VerticalStackLayout>
         <Border>
-            <GraphicsView 
-                Drawable="{StaticResource drawable}"
-                HeightRequest="300"
-                WidthRequest="400"      
+            <GraphicsView
                 x:Name="MapGraphicsView"
-                EndInteraction="GraphicsView_EndInteraction"
+                Drawable="{StaticResource drawable}"
+                EndInteraction="MapGraphicsView_EndInteraction"
+                HeightRequest="300"
                 StartInteraction="GraphicsView_StartInteraction"
-                />
+                WidthRequest="400" />
+
         </Border>
+        <Button Clicked="Clear_Button" Text="clear" />
+        <Button Clicked="Undo_Button" Text="undo" />
+        <Button Clicked="Line_Button" Text="draw lines" />
+        <Grid ColumnDefinitions="*,*">
+            <ImageButton
+                Grid.Column="0"
+                Clicked="ImageButton_Clicked"
+                Source="edit.png" />
+            <ImageButton
+                Grid.Column="1"
+                Clicked="ImageButton_Clicked_1"
+                Source="statblockbackground.png" />
+
+        </Grid>
+
     </VerticalStackLayout>
 </ContentPage>

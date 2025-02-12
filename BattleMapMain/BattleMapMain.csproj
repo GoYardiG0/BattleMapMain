@@ -47,7 +47,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -57,9 +56,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\dotnet_bot.png" />
+	  <MauiImage Remove="Resources\Images\dragonpfp.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\dragonpfp.png" />
 	  <None Remove="Resources\Images\edit.png" />
 	  <None Remove="Resources\Images\statblockbackground.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+	  <EmbeddedResource Include="Resources\Images\dragonpfp.png" />
 	</ItemGroup>
 
 	<ItemGroup>
