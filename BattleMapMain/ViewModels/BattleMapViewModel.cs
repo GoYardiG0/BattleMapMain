@@ -66,8 +66,8 @@ namespace BattleMapMain.ViewModels
             {
                 float height = (float)(Math.Max(p1.Y, p2.Y) - Math.Min(p1.Y, p2.Y));
                 float width = (float)(Math.Max(p1.X, p2.X) - Math.Min(p1.X, p2.X));
-                float x = (float)((p1.X + p2.X) / 2);
-                float y = (float)((p1.Y + p2.Y) / 2);
+                float x = (float)(Math.Min(p1.X, p2.X));
+                float y = (float)(Math.Min(p1.Y, p2.Y));
                 canvas.DrawImage(image, x, y, width, height);
             }
         }
