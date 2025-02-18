@@ -21,9 +21,13 @@ namespace BattleMapMain.ViewModels
         public List<Line> lines = new List<Line>();
         public string currentImage = "dotnet_bot.png";
         public int mode = 0;
+        public Cords currentGridSquare;
+        public Mini[,] AllMinis;
+        public bool createdAllMinis = false;
         
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+            DrawGrid(canvas, dirtyRect);
             canvas.StrokeColor = Colors.Red;
             canvas.StrokeSize = 6;
             if (lines.Count != 0 )
@@ -64,6 +68,7 @@ namespace BattleMapMain.ViewModels
 
             if (image != null)
             {
+                
                 float height = (float)(Math.Max(p1.Y, p2.Y) - Math.Min(p1.Y, p2.Y));
                 float width = (float)(Math.Max(p1.X, p2.X) - Math.Min(p1.X, p2.X));
                 float x = (float)(Math.Min(p1.X, p2.X));
@@ -71,7 +76,54 @@ namespace BattleMapMain.ViewModels
                 canvas.DrawImage(image, x, y, width, height);
             }
         }
+
+        public Square GetGridSquareFromPoint(Point point)
+        {
+
+        }
+        
+        public void DrawGrid(ICanvas canvas, RectF dirtyRect)
+        {
+            
+            canvas.StrokeColor = Colors.Black;
+            canvas.StrokeSize = 3;
+            float boxWidth = 50;
+            float boxHeight = 50;
+            float rows = dirtyRect.Height / boxHeight;
+            float Columns = dirtyRect.Width / boxWidth;
+            for (int i = 0; i < rows; i++)
+            {
+                canvas.DrawLine(dirtyRect.Left, i*boxHeight, dirtyRect.Right, i*boxWidth);
+            }
+            for (int i = 0; i < Columns+1; i++)
+            {
+                canvas.DrawLine(i*boxWidth, dirtyRect.Top, i*boxWidth,dirtyRect.Bottom);
+            }
+            if (!createdAllMinis)
+            {
+                createdAllMinis = true;
+                AllMinis = new Mini[(int)rows, (int)Columns];
+            }
+        }
     }
+    //public void DrawImage(ICanvas canvas, RectF dirtyRect)
+    //{
+    //    IImage image;
+    //    Assembly assembly = GetType().GetTypeInfo().Assembly;
+    //    using (Stream stream = assembly.GetManifestResourceStream($"BattleMapMain.Resources.Images.{currentImage}"))
+    //    {
+    //        image = PlatformImage.FromStream(stream);
+    //    }
+
+    //    if (image != null)
+    //    {
+    //        float height = (float)(Math.Max(p1.Y, p2.Y) - Math.Min(p1.Y, p2.Y));
+    //        float width = (float)(Math.Max(p1.X, p2.X) - Math.Min(p1.X, p2.X));
+    //        float x = (float)(Math.Min(p1.X, p2.X));
+    //        float y = (float)(Math.Min(p1.Y, p2.Y));
+    //        canvas.DrawImage(image, x, y, width, height);
+    //    }
+    //}
     public class BattleMapViewModel : ViewModelBase
     {
         private IServiceProvider serviceProvider;

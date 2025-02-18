@@ -16,7 +16,7 @@
                 x:Name="MapGraphicsView"
                 Drawable="{StaticResource drawable}"
                 EndInteraction="MapGraphicsView_EndInteraction"
-                HeightRequest="300"
+                HeightRequest="500"
                 StartInteraction="GraphicsView_StartInteraction"
                 WidthRequest="400" />
 
@@ -25,14 +25,14 @@
         <Button Clicked="Undo_Button" Text="undo" />
         <Button Clicked="Line_Button" Text="draw lines" />
         <Grid ColumnDefinitions="*,*">
-            <ImageButton
+            <Button
                 Grid.Column="0"
                 Clicked="ImageButton_Clicked"
-                Source="edit.png" />
-            <ImageButton
+                Text="dragon pic" />
+            <Button
                 Grid.Column="1"
                 Clicked="ImageButton_Clicked_1"
-                Source="statblockbackground.png" />
+                Text="dotnet pic" />
 
         </Grid>
 

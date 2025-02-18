@@ -33,12 +33,17 @@ public partial class BattleMapView : ContentPage
                 graphics.p1 = e.Touches.FirstOrDefault();
                 break;
 
-            case 2: // image mode
+            //case 2: // image mode
+            //    graphics.mode = 2;
+            //    graphics.p1 = e.Touches.FirstOrDefault();
+            //    break;
+            case 2:
                 graphics.mode = 2;
                 graphics.p1 = e.Touches.FirstOrDefault();
+                graphicsView.Invalidate();
                 break;
         }
-        
+
 
     }
     private void MapGraphicsView_EndInteraction(object sender, TouchEventArgs e)
@@ -57,12 +62,12 @@ public partial class BattleMapView : ContentPage
                 graphicsView.Invalidate();
                 break;
 
-            case 2: // image mode
-                graphics.mode = 2;
-                graphics.p2 = e.Touches.FirstOrDefault();
-                graphics.currentImage = currentImage;
-                graphicsView.Invalidate();
-                break;
+            //case 2: // image mode
+            //    graphics.mode = 2;
+            //    graphics.p2 = e.Touches.FirstOrDefault();
+            //    graphics.currentImage = currentImage;
+            //    graphicsView.Invalidate();
+            //    break;
         }
 
     }
