@@ -1,5 +1,7 @@
 namespace BattleMapMain.Views;
 
+using BattleMapMain.Classes_and_Objects;
+using BattleMapMain.Models;
 using BattleMapMain.ViewModels;
 
 
@@ -9,6 +11,7 @@ public partial class BattleMapView : ContentPage
     GraphicsDrawable graphics;
     int mode;
     string currentImage;
+    Mini currentMini;
 	public BattleMapView(BattleMapViewModel vm)
 	{
         mode = 0;
@@ -25,21 +28,36 @@ public partial class BattleMapView : ContentPage
         switch (mode)
         {
             case 0:
-                graphics.mode = 0;
+                
                 break;
                 
-            case 1: // deafult line
-                graphics.mode = 1;
-                graphics.p1 = e.Touches.FirstOrDefault();
+            case 1: // deafult line                
+                graphics.startOrBase = e.Touches.FirstOrDefault();
                 break;
 
             //case 2: // image mode
             //    graphics.mode = 2;
-            //    graphics.p1 = e.Touches.FirstOrDefault();
-            //    break;
-            case 2:
-                graphics.mode = 2;
-                graphics.p1 = e.Touches.FirstOrDefault();
+            //    graphics.startOrBase = e.Touches.FirstOrDefault();
+            //    break
+
+            case 2: // add mini mode
+                graphics.startOrBase = e.Touches.FirstOrDefault();
+                currentMini = new Mini(currentImage);
+                graphics.AddMini(currentMini);
+                graphicsView.Invalidate();
+                break;
+            case 3: // select mini mode
+                graphics.startOrBase = e.Touches.FirstOrDefault();
+                currentMini = graphics.GetSelectedMini();
+                break;
+            case 4: // move mini mode
+                graphics.startOrBase = e.Touches.FirstOrDefault();
+                graphics.MoveMini(currentMini);
+                graphicsView.Invalidate();
+                break;
+            case 5: // delete mini mode
+                graphics.startOrBase = e.Touches.FirstOrDefault();
+                graphics.DeleteMini(currentMini);
                 graphicsView.Invalidate();
                 break;
         }
@@ -53,21 +71,26 @@ public partial class BattleMapView : ContentPage
         switch (mode)
         {
             default:
-                graphics.mode = 0;
+                
                 break;
 
-            case 1: // deafult line
-                graphics.mode = 1;                
-                graphics.p2 = e.Touches.FirstOrDefault();
+            case 1: // deafult line                              
+                graphics.end = e.Touches.FirstOrDefault();
+                graphics.AddLine();
                 graphicsView.Invalidate();
                 break;
 
-            //case 2: // image mode
-            //    graphics.mode = 2;
-            //    graphics.p2 = e.Touches.FirstOrDefault();
-            //    graphics.currentImage = currentImage;
-            //    graphicsView.Invalidate();
-            //    break;
+            case 2: // add mini mode                
+                graphics.end = e.Touches.FirstOrDefault();
+                graphics.currentImage = currentImage;
+                graphicsView.Invalidate();
+                break;
+            case 3: // delete mini mode
+
+                break;
+            case 4: // move mini mode
+
+                break;
         }
 
     }
@@ -115,7 +138,7 @@ public partial class BattleMapView : ContentPage
     //{
     //    var graphicsView = this.MapGraphicsView;
     //    this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
-    //    graphics.p2 = e.Touches.FirstOrDefault();
+    //    graphics.end = e.Touches.FirstOrDefault();
     //    graphics.b = true;
     //    ((GraphicsView)sender).Invalidate();
     //}

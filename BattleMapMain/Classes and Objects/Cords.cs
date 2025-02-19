@@ -15,5 +15,6 @@ namespace BattleMapMain.Classes_and_Objects
             this.row = row;
             this.col = col;
         }
+
     }
 }

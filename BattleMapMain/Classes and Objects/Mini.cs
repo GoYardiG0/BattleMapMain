@@ -9,11 +9,16 @@ namespace BattleMapMain.Classes_and_Objects
 {
     public class Mini
     {
-        Monster monster;
-        Character character;
-        int currentHP;
-        string img;
+        public Monster monster;
+        public Character character;
+        public int currentHP;
+        public string img;
+        public Cords location;
         public Mini() { }
+        public Mini(string img)
+        {
+            this.img = img;
+        }
         public Mini(Monster monster)
         {
             this.monster = monster;
