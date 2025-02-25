@@ -124,7 +124,7 @@ namespace BattleMapMain.ViewModels
             if (!createdAllMinis)
             {
                 createdAllMinis = true;
-                AllMinis = new Mini[(int)rows - 1, (int)Columns - 1];
+                AllMinis = new Mini[(int)rows + 1, (int)Columns + 1];
             }
         }
 

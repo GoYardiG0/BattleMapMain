@@ -11,16 +11,78 @@
         <drawable:GraphicsDrawable x:Key="drawable" />
     </ContentPage.Resources>
     <VerticalStackLayout>
-        <Border>
-            <GraphicsView
-                x:Name="MapGraphicsView"
-                Drawable="{StaticResource drawable}"
-                EndInteraction="MapGraphicsView_EndInteraction"
-                HeightRequest="500"
-                StartInteraction="GraphicsView_StartInteraction"
-                WidthRequest="400" />
+        <Grid
+            Padding="-1"
+            HeightRequest="500"
+            WidthRequest="400">
+            <Border>
+                <GraphicsView
+                    x:Name="MapGraphicsView"
+                    Drawable="{StaticResource drawable}"
+                    EndInteraction="MapGraphicsView_EndInteraction"
+                    HeightRequest="500"
+                    StartInteraction="GraphicsView_StartInteraction"
+                    WidthRequest="400" />
 
-        </Border>
+            </Border>
+            <Border
+                BackgroundColor="Purple"
+                HeightRequest="250"
+                HorizontalOptions="Start"
+                StrokeShape="RoundRectangle 0,15,0,15"
+                VerticalOptions="Center"
+                WidthRequest="70">
+                <VerticalStackLayout>
+                    <Border
+                        Margin="14,10,10,5"
+                        HeightRequest="50"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 5,5,5,5"
+                        WidthRequest="50">
+                        <ImageButton
+                            Clicked="Line_Button"
+                            HeightRequest="40"
+                            Source="diagonal.png"
+                            WidthRequest="40" />
+                    </Border>
+                    <Border
+                        Margin="14,5,10,5"
+                        HeightRequest="50"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 5,5,5,5"
+                        WidthRequest="50">
+                        <ImageButton
+                            Clicked="Undo_Button"
+                            HeightRequest="40"
+                            Source="backarrow.png"
+                            WidthRequest="40" />
+                    </Border>
+                    <Border
+                        Margin="14,5,10,5"
+                        HeightRequest="50"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 5,5,5,5"
+                        WidthRequest="50">
+                        <ImageButton
+                            Clicked="Clear_Button"
+                            HeightRequest="40"
+                            Source="clear.png"
+                            WidthRequest="40" />
+                    </Border>
+                    <Border
+                        Margin="14,5,10,10"
+                        HeightRequest="50"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 5,5,5,5"
+                        WidthRequest="50">
+                        <ImageButton
+                            HeightRequest="40"
+                            Source="plus.png"
+                            WidthRequest="40" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
         <Button Clicked="Clear_Button" Text="clear" />
         <Button Clicked="Undo_Button" Text="undo" />
         <Button Clicked="Line_Button" Text="draw lines" />

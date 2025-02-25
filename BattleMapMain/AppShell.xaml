@@ -4,94 +4,72 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BattleMapMain"
-    xmlns:views="clr-namespace:BattleMapMain.Views"
-    Shell.FlyoutBehavior="Disabled"
-    Title="BattleMapMain"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    x:DataType="viewmodels:AppShellViewModel">
+    xmlns:views="clr-namespace:BattleMapMain.Views"
+    Title="BattleMapMain"
+    x:DataType="viewmodels:AppShellViewModel"
+    Shell.FlyoutBehavior="Disabled">
 
-    <TabBar Route="tabs1" >
+    <TabBar Route="tabs1">
 
-        <Tab IsVisible="{Binding NotInSession}"
-             Title="Profile"
-             Route="Profile">
-            <ShellContent
-                ContentTemplate="{DataTemplate views:ProfileView}"/>
+        <Tab
+            Title="Profile"
+            IsVisible="{Binding NotInSession}"
+            Route="Profile">
+            <ShellContent ContentTemplate="{DataTemplate views:ProfileView}" />
         </Tab>
-        <Tab x:Name="GameStart" IsVisible="{Binding NotInSession}"
-             Title="Game Start"
-             Route="Game Start" >
-            <ShellContent
-                
-                ContentTemplate="{DataTemplate views:GameStartView}"  />
+        <Tab
+            x:Name="GameStart"
+            Title="Game Start"
+            IsVisible="{Binding NotInSession}"
+            Route="Game Start">
+            <ShellContent ContentTemplate="{DataTemplate views:GameStartView}" />
         </Tab>
-        <Tab Title="Friends Menu" 
-             IsVisible="{Binding NotInSession}">
+        <Tab Title="Friends Menu" IsVisible="{Binding NotInSession}">
             <ShellContent
-                Grid.Column="0"
                 Title="Friends List"
-                ContentTemplate="{DataTemplate views:FriendListView}"/>
+                Grid.Column="0"
+                ContentTemplate="{DataTemplate views:FriendListView}" />
             <ShellContent
-                Grid.Column="2"
                 Title="Add Friend"
-                ContentTemplate="{DataTemplate views:AddFriendView}"/>
+                Grid.Column="2"
+                ContentTemplate="{DataTemplate views:AddFriendView}" />
         </Tab>
 
         <Tab Title="Statblocks" IsVisible="{Binding NotInSession}">
-            <ShellContent   
-             Title="Character Sheets"
-             ContentTemplate="{DataTemplate views:CharacterSheetsView}"/>
-            <ShellContent   
-             Title="My Monsters"
-             ContentTemplate="{DataTemplate views:UserMonstersView}"/>
-            <ShellContent
-                Title="All Monsters"
-                ContentTemplate="{DataTemplate views:AllMonstersView}"/>
+            <ShellContent Title="Character Sheets" ContentTemplate="{DataTemplate views:CharacterSheetsView}" />
+            <ShellContent Title="My Monsters" ContentTemplate="{DataTemplate views:UserMonstersView}" />
+            <ShellContent Title="All Monsters" ContentTemplate="{DataTemplate views:AllMonstersView}" />
         </Tab>
-        
-        <Tab Title="Battle Map" IsVisible="{Binding InSession}"
-        >
-            <ShellContent
-     ContentTemplate="{DataTemplate views:BattleMapView}"  />
-        </Tab>
-        <Tab Title="calculator" IsVisible="{Binding InSession}"
-         >
-            <ShellContent
-            ContentTemplate="{DataTemplate views:CalculatorView}"
-        />
-        </Tab>
-        <Tab Title="Dm Screen"  
-             IsVisible="{Binding InSession}"     >
 
-            <ShellContent 
-            Title="Placed Monsters"
-            ContentTemplate="{DataTemplate views:PlacedMinisView}"/>
-            <ShellContent
-            Title="Saved Monsters"
-            ContentTemplate="{DataTemplate views:SavedMonstersView}"/>
+        <Tab Title="Battle Map" IsVisible="{Binding InSession}">
+            <ShellContent ContentTemplate="{DataTemplate views:BattleMapView}" />
+        </Tab>
+        <Tab Title="calculator" IsVisible="{Binding InSession}">
+            <ShellContent ContentTemplate="{DataTemplate views:CalculatorView}" />
+        </Tab>
+        <Tab Title="Dm Screen" IsVisible="{Binding InSession}">
+
+            <ShellContent Title="Placed Monsters" ContentTemplate="{DataTemplate views:PlacedMinisView}" />
+            <ShellContent Title="Saved Monsters" ContentTemplate="{DataTemplate views:SavedMonstersView}" />
 
         </Tab>
 
         <Tab Title="Character Stats" IsVisible="{Binding InSession}">
-            <ShellContent   
-         Title="Character Stats"
-         ContentTemplate="{DataTemplate views:CharacterStatsView}"/>
+            <ShellContent Title="Character Stats" ContentTemplate="{DataTemplate views:CharacterStatsView}" />
         </Tab>
         <Tab Title="Die Roller" IsVisible="{Binding InSession}">
-            <ShellContent   
-                ContentTemplate="{DataTemplate views:DieRollerView}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:DieRollerView}" />
         </Tab>
-        <Tab IsVisible="{Binding InSession}">
-            <ShellContent
-            Title="Session View"
-            ContentTemplate="{DataTemplate views:SessionView}"/>
+        <Tab Title="Session View" IsVisible="{Binding InSession}">
+            <ShellContent Title="Session View" ContentTemplate="{DataTemplate views:SessionView}" />
         </Tab>
     </TabBar>
 
 </Shell>
 
-   
 
-    
-    
+
+
+
 

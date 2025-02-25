@@ -61,8 +61,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\backarrow.png" />
+	  <None Remove="Resources\Images\clear.png" />
+	  <None Remove="Resources\Images\diagonal.png" />
 	  <None Remove="Resources\Images\dragonpfp.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\plus.png" />
 	  <None Remove="Resources\Images\statblockbackground.png" />
 	</ItemGroup>
 
