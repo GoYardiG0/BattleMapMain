@@ -48,19 +48,30 @@ namespace BattleMapMain.ViewModels
         public void DeleteMini(Mini mini)
         {
             AllMinis[mini.location.row, mini.location.col] = null;
+            currentMini = null;
         }
 
         public void MoveMini(Mini mini)
         {
-            SetGridSquareFromPoint();
-            AllMinis[mini.location.row, mini.location.col].location = new Cords(currentGridSquare.row, currentGridSquare.col);
+            GetSelectedMini();
+            if (currentMini == null)
+            {
+                AllMinis[mini.location.row, mini.location.col] = null;
+                mini.location = new Cords(currentGridSquare.row, currentGridSquare.col);
+                AllMinis[currentGridSquare.row, currentGridSquare.col] = mini;
+            }
+            
+
         }
         public void AddMini(Mini mini)
         {
-            SetGridSquareFromPoint();
-            mini.location = new Cords(currentGridSquare.row, currentGridSquare.col);
-            AllMinis[currentGridSquare.row, currentGridSquare.col] = mini;
-            currentMini = mini;
+            GetSelectedMini();
+            if (currentMini == null)
+            {
+                mini.location = new Cords(currentGridSquare.row, currentGridSquare.col);
+                AllMinis[currentGridSquare.row, currentGridSquare.col] = mini;
+            }            
+            
         }
 
         #endregion
@@ -176,6 +187,27 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             //ChangeImageCommand = new Command(ChangeCurrentImage);
+        }
+
+        private Mini selectedMini;
+        public Mini SelectedMini
+        {
+            get => selectedMini;
+            set
+            {
+                selectedMini = value;
+                OnPropertyChanged();
+                OnPropertyChanged("IsSelectedMini");
+            }
+        }
+        public bool IsSelectedMini
+        {
+            get
+            {
+                if (selectedMini == null)
+                    return false;
+                return true;
+            }            
         }
 
         //public ICommand ChangeImageCommand { get; }

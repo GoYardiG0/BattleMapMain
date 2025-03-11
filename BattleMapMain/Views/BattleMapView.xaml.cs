@@ -3,6 +3,7 @@ namespace BattleMapMain.Views;
 using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Models;
 using BattleMapMain.ViewModels;
+using Microsoft.Maui.Controls;
 
 
 public partial class BattleMapView : ContentPage
@@ -44,21 +45,24 @@ public partial class BattleMapView : ContentPage
                 graphics.startOrBase = e.Touches.FirstOrDefault();
                 currentMini = new Mini(currentImage);
                 graphics.AddMini(currentMini);
+                vm.SelectedMini = currentMini;
                 graphicsView.Invalidate();
                 break;
             case 3: // select mini mode
                 graphics.startOrBase = e.Touches.FirstOrDefault();
                 currentMini = graphics.GetSelectedMini();
+                vm.SelectedMini = currentMini;
                 break;
             case 4: // move mini mode
                 graphics.startOrBase = e.Touches.FirstOrDefault();
                 graphics.MoveMini(currentMini);
+                currentMini = graphics.GetSelectedMini();
+                vm.SelectedMini = currentMini;
                 graphicsView.Invalidate();
+                mode = 3;
                 break;
-            case 5: // delete mini mode
-                graphics.startOrBase = e.Touches.FirstOrDefault();
-                graphics.DeleteMini(currentMini);
-                graphicsView.Invalidate();
+            case 5: 
+                
                 break;
         }
 
@@ -81,14 +85,15 @@ public partial class BattleMapView : ContentPage
                 break;
 
             case 2: // add mini mode                
-                graphics.end = e.Touches.FirstOrDefault();
-                graphics.currentImage = currentImage;
-                graphicsView.Invalidate();
+                
                 break;
-            case 3: // delete mini mode
+            case 3: // select mini mode
 
                 break;
-            case 4: // move mini mode
+            case 4: // delete mini mode
+
+                break;
+            case 5: // move mini mode
 
                 break;
         }
@@ -129,6 +134,26 @@ public partial class BattleMapView : ContentPage
     {
         mode = 2;
         currentImage = "dotnet_bot.png";
+    }
+
+    private void MoveMini_Button(object sender, EventArgs e)
+    {
+        mode = 4;
+    }
+
+    private void MiniSelect_button(object sender, EventArgs e)
+    {
+        mode = 3;
+    }
+
+    private void DeleteMini_button(object sender, EventArgs e)
+    {
+        var graphicsView = this.MapGraphicsView;
+        this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
+        graphics.DeleteMini(currentMini);
+        currentMini = null;
+        vm.SelectedMini = currentMini;
+        graphicsView.Invalidate();
     }
 
 
