@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BattleMapMain.Services;
 
 namespace BattleMapMain.Models
 {
@@ -15,6 +16,13 @@ namespace BattleMapMain.Models
         public string CharacterName { get; set; } = null!;
 
         public string? CharacterPic { get; set; }
+        public string CharacterPicURL
+        {
+            get
+            {
+                return BattleMapWebAPIProxy.ImageBaseAddress + CharacterPic;
+            }
+        }
 
         public int Ac { get; set; }
 

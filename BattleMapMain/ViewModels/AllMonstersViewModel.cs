@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -59,7 +59,6 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            GoToAddCommand = new Command(GoToAdd);
             monsters = new ObservableCollection<Monster>();
             SetMonsters();
             FilterMonsters();
@@ -69,12 +68,6 @@ namespace BattleMapMain.ViewModels
 
         }
 
-        public ICommand GoToAddCommand { get; }
-
-        private void GoToAdd()
-        {
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterAddView>());
-        }
         public void SetMonsters()
         {
             ObservableCollection<Monster>? monsters = ((App)Application.Current).monsters;

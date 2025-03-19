@@ -59,7 +59,7 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            GoToEditCommand = new Command(GoToEdit);
+            GoToAddCommand = new Command(GoToAdd);
             monsters = new ObservableCollection<Monster>();
             SetMonsters();
             FilterMonsters();
@@ -69,11 +69,11 @@ namespace BattleMapMain.ViewModels
 
         }
 
-        public ICommand GoToEditCommand { get; }
+        public ICommand GoToAddCommand { get; }
 
-        private void GoToEdit()
+        private void GoToAdd()
         {
-            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterEditView>());
+            ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<MonsterAddView>());
         }
         public void SetMonsters()
         {
@@ -86,6 +86,7 @@ namespace BattleMapMain.ViewModels
                         this.monsters.Add(monster);
                 }
             }
+            OnPropertyChanged("monsters");
         }
 
         public void FilterMonsters()
@@ -112,7 +113,6 @@ namespace BattleMapMain.ViewModels
             OnPropertyChanged("SearchedMonsters");
         }
 
-
         #region Single Selection
         private Monster selectedMonster;
         public Monster SelectedMonster
@@ -123,18 +123,18 @@ namespace BattleMapMain.ViewModels
                 selectedMonster = value;
                 OnPropertyChanged();
                 if (selectedMonster != null)
-                    OnSingleSelectRecipe();
+                    OnSingleSelectMonster();
             }
         }
 
 
-        async void OnSingleSelectRecipe()
+        async void OnSingleSelectMonster()
         {
             var navParam = new Dictionary<string, object>()
                 {
                     { "Monster",SelectedMonster }
                 };
-            await Shell.Current.GoToAsync("MonsterDetails", navParam);
+            await Shell.Current.GoToAsync("MonsterEdit", navParam);
             SelectedMonster = null;
         }
 

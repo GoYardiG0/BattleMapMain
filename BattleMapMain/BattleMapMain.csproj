@@ -57,7 +57,7 @@
 
 	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\dotnet_bot.png" />
-	  <MauiImage Remove="Resources\Images\dragonpfp.png" />
+	  <MauiImage Remove="Resources\Images\dragonpfp - Copy.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,6 +66,7 @@
 	  <None Remove="Resources\Images\clear.png" />
 	  <None Remove="Resources\Images\cricon.png" />
 	  <None Remove="Resources\Images\diagonal.png" />
+	  <None Remove="Resources\Images\dragonpfp - Copy.png" />
 	  <None Remove="Resources\Images\dragonpfp.png" />
 	  <None Remove="Resources\Images\edit.png" />
 	  <None Remove="Resources\Images\hpicon.png" />
@@ -77,7 +78,7 @@
 
 	<ItemGroup>
 	  <EmbeddedResource Include="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-	  <EmbeddedResource Include="Resources\Images\dragonpfp.png" />
+	  <EmbeddedResource Include="Resources\Images\dragonpfp - Copy.png" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -123,7 +123,7 @@
                                 FontAttributes="Bold"
                                 FontSize="20"
                                 HorizontalOptions="Center"
-                                Text="200"
+                                Text="{Binding SelectedMini.Hp}"
                                 VerticalOptions="Center" />
                         </Grid>
                         <Grid
@@ -136,7 +136,7 @@
                                 FontAttributes="Bold"
                                 FontSize="20"
                                 HorizontalOptions="Center"
-                                Text="18"
+                                Text="{Binding SelectedMini.Ac}"
                                 VerticalOptions="Center" />
                         </Grid>
                         <Grid Grid.Row="0" Grid.Column="2">
@@ -146,7 +146,7 @@
                                 FontAttributes="Bold"
                                 FontSize="15"
                                 HorizontalOptions="Center"
-                                Text="13"
+                                Text="{Binding SelectedMini.Level}"
                                 VerticalOptions="Center" />
                         </Grid>
                         <ImageButton
@@ -171,7 +171,8 @@
                             Margin="0,0,5,5"
                             HeightRequest="45"
                             Source="infoicon.png"
-                            WidthRequest="45" />
+                            WidthRequest="45"
+                            Command="{Binding MiniDetailsCommand}"/>
                     </Grid>
                 </Grid>
             </Border>

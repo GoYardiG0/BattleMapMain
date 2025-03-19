@@ -8,7 +8,10 @@
     Title="AllMonstersView"
     x:DataType="viewmodels:AllMonstersViewModel">
     <VerticalStackLayout>
-        <Entry Placeholder="Search by monster name" Text="{Binding SearchBar}" HeightRequest="55"/>
+        <Entry
+            HeightRequest="55"
+            Placeholder="Search by monster name"
+            Text="{Binding SearchBar}" />
         <ScrollView x:Name="scrlview" Margin="10">
 
             <CollectionView
@@ -82,6 +85,5 @@
 
 
         </ScrollView>
-        <Button Command="{Binding GoToAddCommand}" Text="add monster" />
     </VerticalStackLayout>
 </ContentPage>

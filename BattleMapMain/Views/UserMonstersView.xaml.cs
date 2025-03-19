@@ -9,4 +9,5 @@ public partial class UserMonstersView : ContentPage
 		this.BindingContext = viewModel;
 		InitializeComponent();
 	}
+	
 }

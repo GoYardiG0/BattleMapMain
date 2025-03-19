@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BattleMapMain.Classes_and_Objects;
+using BattleMapMain.Services;
 using BattleMapMain.Views;
 using Microsoft.Maui.Graphics.Platform;
 using IImage = Microsoft.Maui.Graphics.IImage;
@@ -32,10 +33,9 @@ namespace BattleMapMain.ViewModels
         {
             DrawGrid(canvas, dirtyRect);
             canvas.StrokeColor = Colors.Red;
-            canvas.StrokeSize = 6;
-            DrawAllLines(canvas, dirtyRect);
+            canvas.StrokeSize = 6;            
             DrawAllMinis(canvas, dirtyRect);
-                
+            DrawAllLines(canvas, dirtyRect);
         }
 
         #region mini
@@ -97,18 +97,13 @@ namespace BattleMapMain.ViewModels
 
                     if (mini != null)
                     {
-                        IImage image;
-                        Assembly assembly = GetType().GetTypeInfo().Assembly;
-                        using (Stream stream = assembly.GetManifestResourceStream($"BattleMapMain.Resources.Images.{mini.img}"))
-                        {
-                            image = PlatformImage.FromStream(stream);
-                        }
 
-                        if (image != null)
+
+                        if (mini.img != null)
                         {
                             float x = (float)(mini.location.col * boxWidth /*+ boxWidth / 2*/);
                             float y = (float)(mini.location.row * boxHeight /*+ boxHeight / 2*/);
-                            canvas.DrawImage(image, x, y, boxWidth, boxHeight);
+                            canvas.DrawImage(mini.img, x, y, boxWidth, boxHeight);
                         }
 
                     }
@@ -148,17 +143,12 @@ namespace BattleMapMain.ViewModels
         }
         #endregion
 
-
-
-
-
         public void SetGridSquareFromPoint()
         {
             int row = (int)(startOrBase.Y/boxHeight);
             int col = (int)(startOrBase.X/boxWidth);
             currentGridSquare = new Cords(row, col);
-        }        
-        
+        }                
         
     }
     //public void DrawImage(ICanvas canvas, RectF dirtyRect)
@@ -182,10 +172,13 @@ namespace BattleMapMain.ViewModels
     public class BattleMapViewModel : ViewModelBase
     {
         private IServiceProvider serviceProvider;
+        public BattleMapWebAPIProxy proxy;
         public GraphicsDrawable graphics;
-        public BattleMapViewModel(IServiceProvider serviceProvider)
+        public BattleMapViewModel(IServiceProvider serviceProvider, BattleMapWebAPIProxy proxy)
         {
             this.serviceProvider = serviceProvider;
+            this.proxy = proxy;
+            MiniDetailsCommand = new Command(MiniDetails);
             //ChangeImageCommand = new Command(ChangeCurrentImage);
         }
 
@@ -210,6 +203,27 @@ namespace BattleMapMain.ViewModels
             }            
         }
 
+        public ICommand MiniDetailsCommand { get; }
+
+        async void MiniDetails()
+        {
+            if (selectedMini.monster != null)
+            {
+                var navParam = new Dictionary<string, object>()
+                {
+                    { "Monster",selectedMini }
+                };
+                await Shell.Current.GoToAsync("MonsterDetails", navParam);
+            }
+            else if (selectedMini.character != null)
+            {
+                var navParam = new Dictionary<string, object>()
+                {
+                    { "Character",selectedMini }
+                };
+                await Shell.Current.GoToAsync("CharacterDetails", navParam);
+            }
+        }
         //public ICommand ChangeImageCommand { get; }
 
         //private string currentImage;

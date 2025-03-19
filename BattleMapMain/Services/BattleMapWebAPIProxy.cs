@@ -8,6 +8,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BattleMapMain.Models;
+using Microsoft.Maui.Graphics.Platform;
+using Microsoft.Maui.Storage;
 
 namespace BattleMapMain.Services
 {
@@ -83,6 +85,21 @@ namespace BattleMapMain.Services
                 }
             }
             catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public async Task<Stream> GetImage(string url)
+        {
+            HttpResponseMessage response = await client.GetAsync(url);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                Stream stream = await response.Content.ReadAsStreamAsync();
+                return stream;
+            }
+            else
             {
                 return null;
             }

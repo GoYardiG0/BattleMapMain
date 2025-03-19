@@ -1,5 +1,6 @@
 namespace BattleMapMain.Views;
 
+using BattleMapMain.Services;
 using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Models;
 using BattleMapMain.ViewModels;
@@ -21,7 +22,7 @@ public partial class BattleMapView : ContentPage
 		InitializeComponent();
 	}
 
-
+    
     public void GraphicsView_StartInteraction(object sender, TouchEventArgs e)
     {
         var graphicsView = this.MapGraphicsView;
@@ -42,11 +43,11 @@ public partial class BattleMapView : ContentPage
             //    break
 
             case 2: // add mini mode
-                graphics.startOrBase = e.Touches.FirstOrDefault();
-                currentMini = new Mini(currentImage);
+                graphics.startOrBase = e.Touches.FirstOrDefault();                
                 graphics.AddMini(currentMini);
                 vm.SelectedMini = currentMini;
                 graphicsView.Invalidate();
+                mode = 3;
                 break;
             case 3: // select mini mode
                 graphics.startOrBase = e.Touches.FirstOrDefault();
@@ -127,13 +128,15 @@ public partial class BattleMapView : ContentPage
     private void ImageButton_Clicked(object sender, EventArgs e)
     {
         mode = 2;
-        currentImage = "dragonpfp.png";
+        currentMini = new Mini(((App)Application.Current).monsters[2]);
+        currentMini.SetImage(vm.proxy);
     }
 
     private void ImageButton_Clicked_1(object sender, EventArgs e)
     {
         mode = 2;
-        currentImage = "dotnet_bot.png";
+        currentMini = new Mini(((App)Application.Current).monsters[3]);
+        currentMini.SetImage(vm.proxy);
     }
 
     private void MoveMini_Button(object sender, EventArgs e)

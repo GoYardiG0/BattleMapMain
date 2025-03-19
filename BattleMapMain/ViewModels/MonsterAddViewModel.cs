@@ -92,7 +92,11 @@ namespace BattleMapMain.ViewModels
                 if (newMonster.MonsterPic != "dragonpfp.png")
                 {
                     newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
-                }                
+                }
+                else
+                {
+                    newMonster.MonsterPic = "/monsterImages/dragonpfp.png";
+                }
                 if (newMonster.MonsterPic == null)
                 {
                     string errorMsg = "Upload image failed. Please try again.";

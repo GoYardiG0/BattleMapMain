@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.UserMonstersView"
-             xmlns:Models="clr-namespace:BattleMapMain.Models"
-             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             x:DataType="viewmodels:UserMonstersViewModel"
-             Title="UserMonstersView">
+<ContentPage
+    x:Class="BattleMapMain.Views.UserMonstersView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:BattleMapMain.Models"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    Title="UserMonstersView"
+    x:DataType="viewmodels:UserMonstersViewModel">
     <VerticalStackLayout>
-        <Entry Placeholder="Search by monster name" Text="{Binding SearchBar}" HeightRequest="55"/>
+        <Entry
+            HeightRequest="55"
+            Placeholder="Search by monster name"
+            Text="{Binding SearchBar}" />
         <ScrollView x:Name="scrlview" Margin="10">
 
             <CollectionView
-            x:Name="collection"
-            Grid.Row="1"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            Margin="3"
-            ItemsSource="{Binding SearchedMonsters}"
-            SelectedItem="{Binding SelectedMonster}"
-            SelectionMode="Single">
+                x:Name="collection"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Margin="3"
+                ItemsSource="{Binding SearchedMonsters}"
+                SelectedItem="{Binding SelectedMonster}"
+                SelectionMode="Single">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Monster">
@@ -34,14 +38,14 @@
                                 IconImageSource="approve.png" />
                         </SwipeView.RightItems>-->
                             <Border
-                            Margin="4,5"
-                            Padding="4"
-                            HeightRequest="80">
+                                Margin="4,5"
+                                Padding="4"
+                                HeightRequest="80">
                                 <Grid ColumnDefinitions="*,*,*,*">
                                     <Label
-                                    Grid.Column="0"
-                                    Margin="3"
-                                    VerticalTextAlignment="Center">
+                                        Grid.Column="0"
+                                        Margin="3"
+                                        VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
@@ -50,9 +54,9 @@
                                         </Label.FormattedText>
                                     </Label>
                                     <Label
-                                    Grid.Column="3"
-                                    Margin="3"
-                                    VerticalTextAlignment="Center">
+                                        Grid.Column="3"
+                                        Margin="3"
+                                        VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span FontAttributes="Bold" Text="{Binding Hp}" />
@@ -81,6 +85,7 @@
 
 
         </ScrollView>
-        <Button Command="{Binding GoToEditCommand}" />
+        <Button Command="{Binding GoToAddCommand}" Text="Add Monster" />
+        
     </VerticalStackLayout>
 </ContentPage>
