@@ -307,7 +307,7 @@
                 Command="{Binding EditMonsterCommand}"
                 CornerRadius="10"
                 IsEnabled="{Binding NotInServerCall}"
-                Text="Add Monster" />
+                Text="Edit Monster" />
         </VerticalStackLayout>
     </Border>
 </ContentPage>

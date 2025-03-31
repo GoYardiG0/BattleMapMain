@@ -1,6 +1,7 @@
 ﻿using BattleMapMain.Services;
 using BattleMapMain.ViewModels;
 using BattleMapMain.Views;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
 
@@ -14,6 +15,7 @@ namespace BattleMapMain
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureMauiHandlers(handlers => {
 
 #if ANDROID

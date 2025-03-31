@@ -128,14 +128,14 @@ public partial class BattleMapView : ContentPage
     private void ImageButton_Clicked(object sender, EventArgs e)
     {
         mode = 2;
-        currentMini = new Mini(((App)Application.Current).monsters[2]);
+        currentMini = new Mini(((App)Application.Current).monsters[0]);
         currentMini.SetImage(vm.proxy);
     }
 
     private void ImageButton_Clicked_1(object sender, EventArgs e)
     {
         mode = 2;
-        currentMini = new Mini(((App)Application.Current).monsters[3]);
+        currentMini = new Mini(((App)Application.Current).monsters[4]);
         currentMini.SetImage(vm.proxy);
     }
 
