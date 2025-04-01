@@ -20,12 +20,10 @@ namespace BattleMapMain.ViewModels
         public Point startOrBase;
         public Point end;
         public List<Line> lines = new List<Line>();
-        public string currentImage = "dotnet_bot.png";
         //public int mode = 0;
         public Cords currentGridSquare = new Cords(0, 0);
         public Mini[,] AllMinis;
         public Mini currentMini;
-        public bool createdAllMinis = false;
         private float boxWidth = 50;
         private float boxHeight = 50;
 
@@ -103,6 +101,9 @@ namespace BattleMapMain.ViewModels
                         {
                             float x = (float)(mini.location.col * boxWidth /*+ boxWidth / 2*/);
                             float y = (float)(mini.location.row * boxHeight /*+ boxHeight / 2*/);
+                            PathF path = new PathF();
+                            //path.AppendCircle(x+ boxWidth / 2, y+ boxWidth / 2, boxWidth/2-2);
+                            //canvas.ClipPath(path);
                             canvas.DrawImage(mini.img, x, y, boxWidth, boxHeight);
                         }
 
@@ -127,9 +128,8 @@ namespace BattleMapMain.ViewModels
             {
                 canvas.DrawLine(i * boxWidth, dirtyRect.Top, i * boxWidth, dirtyRect.Bottom);
             }
-            if (!createdAllMinis)
+            if (AllMinis == null)
             {
-                createdAllMinis = true;
                 AllMinis = new Mini[(int)rows + 1, (int)Columns + 1];
             }
         }
@@ -169,8 +169,9 @@ namespace BattleMapMain.ViewModels
     //        canvas.DrawImage(image, x, y, width, height);
     //    }
     //}
-    public class BattleMapViewModel : ViewModelBase
+    public partial class BattleMapViewModel : ViewModelBase
     {
+        public event Action<List<string>> OpenPopup;
         private IServiceProvider serviceProvider;
         public BattleMapWebAPIProxy proxy;
         public GraphicsDrawable graphics;
@@ -178,7 +179,8 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            MiniDetailsCommand = new Command(MiniDetails);
+            MiniDetailsCommand = new Command(GoToMiniDetails);
+            GoToMiniPickerCommand = new Command(GoToMiniPicker);
             //ChangeImageCommand = new Command(ChangeCurrentImage);
         }
 
@@ -202,10 +204,21 @@ namespace BattleMapMain.ViewModels
                 return true;
             }            
         }
+        public ICommand GoToMiniPickerCommand { get; }
 
+        async void GoToMiniPicker()
+        {
+            if (OpenPopup != null)
+            {
+                List<string> l = new List<string>();
+                InitData();
+                OpenPopup(l);
+            }
+        }
         public ICommand MiniDetailsCommand { get; }
 
-        async void MiniDetails()
+
+        async void GoToMiniDetails()
         {
             if (selectedMini.monster != null)
             {

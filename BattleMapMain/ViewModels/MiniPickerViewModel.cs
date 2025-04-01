@@ -1,31 +1,31 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using BattleMapMain.Models;
 using BattleMapMain.Services;
 using BattleMapMain.Views;
+using BattleMapMain.Models;
+using BattleMapMain.Classes_and_Objects;
 
 namespace BattleMapMain.ViewModels
 {
-    public class AllMonstersViewModel : ViewModelBase
+    public partial class BattleMapViewModel : ViewModelBase
     {
-        private BattleMapWebAPIProxy proxy;
-        private readonly IServiceProvider serviceProvider;
+
+        public event Action<List<string>> ClosePopup;
 
         //private List<Baker> pendingConfectioneriesKeeper;
         private ObservableCollection<Monster> monsters;
-        public ObservableCollection<Monster> Monsters 
-        { 
-            get => monsters; 
-            set 
+        public ObservableCollection<Monster> Monsters
+        {
+            get => monsters;
+            set
             {
                 monsters = value;
-                OnPropertyChanged(); 
-            } 
+                OnPropertyChanged();
+            }
         }
 
         private ObservableCollection<Monster> searchedMonsters;
@@ -50,22 +50,16 @@ namespace BattleMapMain.ViewModels
                 FilterMonsters();
             }
         }
-        
+
 
         //private bool isRefreshing;
         //public bool IsRefreshing { get => isRefreshing; set { isRefreshing = value; OnPropertyChanged(); } }      
 
-        public AllMonstersViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
+        public async void InitData()
         {
-            this.serviceProvider = serviceProvider;
-            this.proxy = proxy;
             monsters = new ObservableCollection<Monster>();
             SetMonsters();
             FilterMonsters();
-            //pendingConfectioneriesKeeper = new();
-            //PendingConfectioneries = new();
-            //GetBakers();
-
         }
 
         public void SetMonsters()
@@ -76,7 +70,7 @@ namespace BattleMapMain.ViewModels
                 foreach (Monster monster in monsters)
                 {
                     if (monster.UserId == 1 || monster.UserId == ((App)Application.Current).LoggedInUser.UserId)
-                    this.monsters.Add(monster);
+                        this.monsters.Add(monster);
                 }
             }
         }
@@ -122,18 +116,18 @@ namespace BattleMapMain.ViewModels
 
         async void OnSingleSelectMonster()
         {
-            var navParam = new Dictionary<string, object>()
-                {
-                    { "Monster",SelectedMonster }
-                };
-            await Shell.Current.GoToAsync("MonsterEdit", navParam);
-            SelectedMonster = null;
+            selectedMini = new Mini(selectedMonster);
+            selectedMini.SetImage();
+            OnPropertyChanged("SelectedMini");
+            selectedMonster = null;
+            if (ClosePopup != null)
+            {
+                List<string> l = new List<string>();
+                ClosePopup(l);
+            }
         }
 
 
         #endregion
-        
-        
     }
 }
-

@@ -26,7 +26,7 @@
 
             </Border>
             <Border
-                HeightRequest="250"
+                HeightRequest="320"
                 HorizontalOptions="Start"
                 Stroke="Black"
                 StrokeShape="RoundRectangle 0,15,0,15"
@@ -94,6 +94,8 @@
                             StrokeShape="RoundRectangle 5,5,5,5"
                             WidthRequest="50">
                             <ImageButton
+                                Command="{Binding GoToMiniPickerCommand}"
+                                Clicked="MiniPickerButton_Clicked"
                                 HeightRequest="40"
                                 Source="plus.png"
                                 WidthRequest="40" />
@@ -169,24 +171,13 @@
                             Grid.Row="1"
                             Grid.Column="2"
                             Margin="0,0,5,5"
+                            Command="{Binding MiniDetailsCommand}"
                             HeightRequest="45"
                             Source="infoicon.png"
-                            WidthRequest="45"
-                            Command="{Binding MiniDetailsCommand}"/>
+                            WidthRequest="45" />
                     </Grid>
                 </Grid>
             </Border>
-        </Grid>
-        <Grid ColumnDefinitions="*,*">
-            <Button
-                Grid.Column="0"
-                Clicked="ImageButton_Clicked"
-                Text="dragon pic" />
-            <Button
-                Grid.Column="1"
-                Clicked="ImageButton_Clicked_1"
-                Text="dotnet pic" />
-
         </Grid>
 
     </VerticalStackLayout>

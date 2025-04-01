@@ -5,6 +5,7 @@ using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Models;
 using BattleMapMain.ViewModels;
 using Microsoft.Maui.Controls;
+using CommunityToolkit.Maui.Views;
 
 
 public partial class BattleMapView : ContentPage
@@ -19,10 +20,16 @@ public partial class BattleMapView : ContentPage
         mode = 0;
 		this.BindingContext = vm;
         this.vm = vm;
-		InitializeComponent();
+        vm.OpenPopup += DisplayPopup;
+        Mini.proxy = vm.proxy;
+        InitializeComponent();
 	}
+    public void DisplayPopup(List<string> l)
+    {
+        var popup = new MiniPickerView((BattleMapViewModel)this.BindingContext);
+        this.ShowPopup(popup);
+    }
 
-    
     public void GraphicsView_StartInteraction(object sender, TouchEventArgs e)
     {
         var graphicsView = this.MapGraphicsView;
@@ -43,11 +50,11 @@ public partial class BattleMapView : ContentPage
             //    break
 
             case 2: // add mini mode
-                graphics.startOrBase = e.Touches.FirstOrDefault();                
+                graphics.startOrBase = e.Touches.FirstOrDefault();
+                vm.SelectedMini = new Mini(vm.SelectedMini);
+                currentMini = vm.SelectedMini;
                 graphics.AddMini(currentMini);
-                vm.SelectedMini = currentMini;
-                graphicsView.Invalidate();
-                mode = 3;
+                graphicsView.Invalidate();                
                 break;
             case 3: // select mini mode
                 graphics.startOrBase = e.Touches.FirstOrDefault();
@@ -125,19 +132,11 @@ public partial class BattleMapView : ContentPage
         mode = 1;
     }
 
-    private void ImageButton_Clicked(object sender, EventArgs e)
+    private void MiniPickerButton_Clicked(object sender, EventArgs e)
     {
-        mode = 2;
-        currentMini = new Mini(((App)Application.Current).monsters[0]);
-        currentMini.SetImage(vm.proxy);
+        mode = 2;        
     }
 
-    private void ImageButton_Clicked_1(object sender, EventArgs e)
-    {
-        mode = 2;
-        currentMini = new Mini(((App)Application.Current).monsters[4]);
-        currentMini.SetImage(vm.proxy);
-    }
 
     private void MoveMini_Button(object sender, EventArgs e)
     {
@@ -158,6 +157,7 @@ public partial class BattleMapView : ContentPage
         vm.SelectedMini = currentMini;
         graphicsView.Invalidate();
     }
+
 
 
 
