@@ -25,8 +25,8 @@ namespace BattleMapMain.ViewModels
             this.serviceProvider = serviceProvider;
             AddCharacterCommand = new Command(OnAddCharacter);
             UploadPhotoCommand = new Command(OnUploadPhoto);
-            PhotoURL = "dragonpfp.png";
-            localPhotoPath = "dragonpfp.png";
+            PhotoURL = "deafult_character.png";
+            localPhotoPath = "deafult_character.png";
         }
 
         public Command AddCharacterCommand { get; }
@@ -36,7 +36,7 @@ namespace BattleMapMain.ViewModels
         {
             try
             {
-                var result = await MediaPicker.Default.CapturePhotoAsync(new MediaPickerOptions
+                var result = await MediaPicker.Default.PickPhotoAsync(new MediaPickerOptions
                 {
                     Title = "Please select a photo",
                 });

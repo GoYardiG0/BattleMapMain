@@ -97,7 +97,7 @@ namespace BattleMapMain.ViewModels
                 {
                     foreach (Monster monster in monsters)
                     {
-                        if (monster.MonsterName.Contains(searchBar))
+                        if (monster.MonsterName.ToLower().Contains(searchBar.ToLower()))
                             this.searchedMonsters.Add(monster);
                     }
                 }

@@ -7,27 +7,28 @@
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     Title="CharacterSheetsView"
     x:DataType="viewmodels:CharacterSheetsViewModel">
-    <VerticalStackLayout>
-        <Entry
-            HeightRequest="55"
-            Placeholder="Search by character name"
-            Text="{Binding SearchBar}" />
-        <ScrollView x:Name="scrlview" Margin="10">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Entry
+                HeightRequest="55"
+                Placeholder="Search by character name"
+                Text="{Binding SearchBar}" />
+            <ScrollView x:Name="scrlview" Margin="10">
 
-            <CollectionView
-                x:Name="collection"
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="3"
-                ItemsSource="{Binding SearchedCharacters}"
-                SelectedItem="{Binding SelectedCharacter}"
-                SelectionMode="Single">
+                <CollectionView
+                    x:Name="collection"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="3"
+                    ItemsSource="{Binding SearchedCharacters}"
+                    SelectedItem="{Binding SelectedCharacter}"
+                    SelectionMode="Single">
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Character">
-                        <SwipeView>
-                            <!--<SwipeView.RightItems>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Character">
+                            <SwipeView>
+                                <!--<SwipeView.RightItems>
                              <SwipeItem
                                  Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
                                  CommandParameter="{Binding .}"
@@ -37,40 +38,40 @@
                                  CommandParameter="{Binding .}"
                                  IconImageSource="approve.png" />
                          </SwipeView.RightItems>-->
-                            <Border
-                                Margin="4,5"
-                                Padding="4"
-                                HeightRequest="80">
-                                <Grid ColumnDefinitions="*,*,*,*">
-                                    <Label
-                                        Grid.Column="0"
-                                        Margin="3"
-                                        VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding CharacterName}" />
-                                                <!--<Span Text="{Binding ProfileName}" />-->
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label
-                                        Grid.Column="3"
-                                        Margin="3"
-                                        VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding Hp}" />
+                                <Border
+                                    Margin="4,5"
+                                    Padding="4"
+                                    HeightRequest="80">
+                                    <Grid ColumnDefinitions="*,*,*,*">
+                                        <Label
+                                            Grid.Column="0"
+                                            Margin="3"
+                                            VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="{Binding CharacterName}" />
+                                                    <!--<Span Text="{Binding ProfileName}" />-->
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label
+                                            Grid.Column="3"
+                                            Margin="3"
+                                            VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontAttributes="Bold" Text="{Binding Hp}" />
 
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
 
-                                </Grid>
-                            </Border>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <!--<CollectionView.EmptyView>
+                                    </Grid>
+                                </Border>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <!--<CollectionView.EmptyView>
                  <StackLayout>
                      <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
                      <Image
@@ -81,10 +82,11 @@
                          WidthRequest="80" />
                  </StackLayout>
              </CollectionView.EmptyView>-->
-            </CollectionView>
+                </CollectionView>
 
 
-        </ScrollView>
-        <Button Command="{Binding GoToAddCommand}" Text="add character" />
-    </VerticalStackLayout>
+            </ScrollView>
+            <Button Command="{Binding GoToAddCommand}" Text="add character" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

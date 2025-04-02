@@ -91,7 +91,7 @@ namespace BattleMapMain.ViewModels
                 {
                     foreach (Monster monster in monsters)
                     {
-                        if (monster.MonsterName.Contains(searchBar))
+                        if (monster.MonsterName.ToLower().Contains(searchBar.ToLower()))
                             this.searchedMonsters.Add(monster);
                     }
                 }
@@ -119,12 +119,12 @@ namespace BattleMapMain.ViewModels
             selectedMini = new Mini(selectedMonster);
             selectedMini.SetImage();
             OnPropertyChanged("SelectedMini");
-            selectedMonster = null;
-            if (ClosePopup != null)
-            {
-                List<string> l = new List<string>();
-                ClosePopup(l);
-            }
+            //selectedMonster = null;
+            //if (ClosePopup != null)
+            //{
+            //    List<string> l = new List<string>();
+            //    ClosePopup(l);
+            //}
         }
 
 

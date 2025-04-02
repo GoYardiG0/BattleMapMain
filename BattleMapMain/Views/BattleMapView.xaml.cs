@@ -137,16 +137,17 @@ public partial class BattleMapView : ContentPage
         mode = 2;        
     }
 
+    private void MiniSelect_button(object sender, EventArgs e)
+    {
+        mode = 3;
+    }
 
     private void MoveMini_Button(object sender, EventArgs e)
     {
         mode = 4;
     }
 
-    private void MiniSelect_button(object sender, EventArgs e)
-    {
-        mode = 3;
-    }
+    
 
     private void DeleteMini_button(object sender, EventArgs e)
     {
@@ -156,6 +157,7 @@ public partial class BattleMapView : ContentPage
         currentMini = null;
         vm.SelectedMini = currentMini;
         graphicsView.Invalidate();
+        mode = 3;
     }
 
 

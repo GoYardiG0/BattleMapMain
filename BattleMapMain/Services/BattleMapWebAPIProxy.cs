@@ -310,7 +310,7 @@ namespace BattleMapMain.Services
         public async Task<string?> UploadCharacterImage(Character character)
         {
             //Set URI to the specific function API
-            string url = $"{this.baseUrl}uploadMonsterImage?monsterName={character.CharacterName}&userId={character.UserId}";
+            string url = $"{this.baseUrl}uploadCharacterImage?characterName={character.CharacterName}&userId={character.UserId}";
             try
             {
                 string imagePath = character.CharacterPic;
