@@ -8,17 +8,28 @@ using System.Windows.Input;
 
 using BattleMapMain.Views;
 using Microsoft.Maui.Controls;
+using BattleMapMain.Services;
 
 namespace BattleMapMain.ViewModels
 {
-    public class GameStartViewModel
+    public class GameStartViewModel : ViewModelBase
     {
         private IServiceProvider serviceProvider;
-        public GameStartViewModel(IServiceProvider serviceProvider) {
+        private BattleMapProxy mapProxy;
+        private BattleMapWebAPIProxy Proxy;
+        public GameStartViewModel(IServiceProvider serviceProvider, BattleMapProxy proxy, BattleMapWebAPIProxy proxy1) 
+        {
             SessionCommand = new Command(Session);
             this.serviceProvider = serviceProvider;
+            this.mapProxy = proxy;
+            this.Proxy = proxy1;
         }
         public ICommand SessionCommand { get; }
+
+        public async void JoinSession()
+        {
+
+        }
 
         private void Session()
         {
