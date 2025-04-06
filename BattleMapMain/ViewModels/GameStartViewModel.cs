@@ -19,7 +19,7 @@ namespace BattleMapMain.ViewModels
         private BattleMapWebAPIProxy proxy;
         public GameStartViewModel(IServiceProvider serviceProvider, BattleMapProxy hubProxy, BattleMapWebAPIProxy proxy) 
         {
-            SessionCommand = new Command(Session);
+            SessionCommand = new Command(JoinSession);
             this.serviceProvider = serviceProvider;
             this.hubProxy = hubProxy;
             this.proxy = proxy;
@@ -28,12 +28,12 @@ namespace BattleMapMain.ViewModels
 
         public async void JoinSession()
         {
-            BattleMapViewModel vm = new BattleMapViewModel(serviceProvider,proxy);
+            BattleMapViewModel vm = new BattleMapViewModel(serviceProvider,proxy, hubProxy);
 
             hubProxy.RegisterToUpdateDetails(vm.UpdateMapDetails);
             string userid = ((App)Application.Current).LoggedInUser.UserId.ToString();
-            hubProxy.Connect(userid);
-
+            await hubProxy.Connect(userid);
+            Session();
             
         }
 
