@@ -172,15 +172,18 @@ namespace BattleMapMain.ViewModels
     public partial class BattleMapViewModel : ViewModelBase
     {
         public event Action<List<string>> OpenPopup;
+        public event Action<MapDetails> UpdateMap;
         private IServiceProvider serviceProvider;
         public BattleMapWebAPIProxy proxy;
+        public BattleMapProxy hubProxy;
         public GraphicsDrawable graphics;
-        public BattleMapViewModel(IServiceProvider serviceProvider, BattleMapWebAPIProxy proxy)
+        public BattleMapViewModel(IServiceProvider serviceProvider, BattleMapWebAPIProxy proxy, BattleMapProxy hubProxy)
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
             MiniDetailsCommand = new Command(GoToMiniDetails);
             GoToMiniPickerCommand = new Command(GoToMiniPicker);
+            this.hubProxy = hubProxy;
             //ChangeImageCommand = new Command(ChangeCurrentImage);
         }
 
@@ -236,6 +239,20 @@ namespace BattleMapMain.ViewModels
                 };
                 await Shell.Current.GoToAsync("CharacterDetails", navParam);
             }
+        }
+
+        public async void UpdateMapDetails(MapDetails details)
+        {
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                UpdateMap(details);
+            });
+
+        }
+
+        public async void SendDetailsToHub(MapDetails details)
+        {
+            hubProxy.SendDetails(details);
         }
         //public ICommand ChangeImageCommand { get; }
 

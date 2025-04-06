@@ -6,6 +6,7 @@ using BattleMapMain.Models;
 using BattleMapMain.ViewModels;
 using Microsoft.Maui.Controls;
 using CommunityToolkit.Maui.Views;
+using Microsoft.Maui;
 
 
 public partial class BattleMapView : ContentPage
@@ -21,9 +22,23 @@ public partial class BattleMapView : ContentPage
 		this.BindingContext = vm;
         this.vm = vm;
         vm.OpenPopup += DisplayPopup;
+        vm.UpdateMap += UpdateMapDetails;
         Mini.proxy = vm.proxy;
         InitializeComponent();
 	}
+
+    public void UpdateMapDetails(MapDetails details)
+    {
+        var graphicsView = this.MapGraphicsView;
+        this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
+        if (details != null)
+        {
+            graphics.AllMinis = details.allMinis;
+            graphics.lines = details.lines;
+            graphicsView.Invalidate();
+        }
+    }
+
     public void DisplayPopup(List<string> l)
     {
         var popup = new MiniPickerView((BattleMapViewModel)this.BindingContext);
@@ -158,6 +173,14 @@ public partial class BattleMapView : ContentPage
         vm.SelectedMini = currentMini;
         graphicsView.Invalidate();
         mode = 3;
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        var graphicsView = this.MapGraphicsView;
+        this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
+        MapDetails details = new MapDetails(graphics.AllMinis, graphics.lines);
+        vm.SendDetailsToHub(details);
     }
 
 
