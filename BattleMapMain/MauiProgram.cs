@@ -73,6 +73,7 @@ namespace BattleMapMain
         public static MauiAppBuilder RegisterDataServices(this MauiAppBuilder builder)
         {
             builder.Services.AddSingleton<BattleMapWebAPIProxy>();
+            builder.Services.AddSingleton<BattleMapProxy>();
             return builder;
         }
         public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder builder)
