@@ -38,7 +38,7 @@ namespace BattleMapMain.Services
             hubConnection = new HubConnectionBuilder().WithUrl(hubUrl)
                 .WithAutomaticReconnect()
                 .WithKeepAliveInterval(TimeSpan.FromSeconds(10))
-                .WithServerTimeout(TimeSpan.FromSeconds(30)).Build();
+                .WithServerTimeout(TimeSpan.FromSeconds(120)).Build();
 
         }
 
