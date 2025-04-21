@@ -30,9 +30,10 @@ namespace BattleMapMain.ViewModels
         {
             BattleMapViewModel vm = serviceProvider.GetService<BattleMapViewModel>();
 
-            hubProxy.RegisterToUpdateDetails(vm.UpdateMapDetails);
+            
             string userid = ((App)Application.Current).LoggedInUser.UserId.ToString();
             await hubProxy.Connect(userid);
+            hubProxy.RegisterToUpdateDetails(vm.UpdateMapDetails);
             Session();
             
         }
