@@ -85,7 +85,7 @@ namespace BattleMapMain
             builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddTransient<AddFriendViewModel>();
             builder.Services.AddTransient<AllMonstersViewModel>();
-            builder.Services.AddTransient<BattleMapViewModel>();
+            builder.Services.AddSingleton<BattleMapViewModel>();
             builder.Services.AddTransient<CalculatorViewModel>();
             builder.Services.AddTransient<CharacterSheetsViewModel>();
             builder.Services.AddTransient<DieRollerViewModel>();

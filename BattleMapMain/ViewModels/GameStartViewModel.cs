@@ -28,7 +28,7 @@ namespace BattleMapMain.ViewModels
 
         public async void JoinSession()
         {
-            BattleMapViewModel vm = new BattleMapViewModel(serviceProvider,proxy, hubProxy);
+            BattleMapViewModel vm = serviceProvider.GetService<BattleMapViewModel>();
 
             hubProxy.RegisterToUpdateDetails(vm.UpdateMapDetails);
             string userid = ((App)Application.Current).LoggedInUser.UserId.ToString();
