@@ -33,8 +33,8 @@ public partial class BattleMapView : ContentPage
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
         if (details != null)
         {
-            graphics.AllMinis = details.allMinis;
-            graphics.lines = details.lines;
+            graphics.AllMinis = MapDetails.ConvertTo2DArray(details.AllMinis);
+            graphics.lines = details.Lines;
             graphicsView.Invalidate();
         }
     }

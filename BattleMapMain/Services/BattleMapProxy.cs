@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using BattleMapMain.Classes_and_Objects;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -34,7 +35,10 @@ namespace BattleMapMain.Services
         public BattleMapProxy()
         {
             string hubUrl = GetHubUrl();
-            hubConnection = new HubConnectionBuilder().WithUrl(hubUrl).Build();
+            hubConnection = new HubConnectionBuilder().WithUrl(hubUrl)
+                .WithAutomaticReconnect()
+                .WithKeepAliveInterval(TimeSpan.FromSeconds(10))
+                .WithServerTimeout(TimeSpan.FromSeconds(30)).Build();
 
         }
 
