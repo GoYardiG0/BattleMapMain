@@ -13,12 +13,12 @@ namespace BattleMapMain.Classes_and_Objects
     {
         public static BattleMapWebAPIProxy proxy;
 
-        public Monster monster;
-        public Character character;
-        public int currentHP;
-        public Cords location;
+        public Monster monster {  get; set; }
+        public Character character {  get; set; }
+        public int currentHP {  get; set; }
+        public Cords location {  get; set; }
         public static List<Mini> AllMinis = new List<Mini>();
-        public Microsoft.Maui.Graphics.IImage img;        
+        public Microsoft.Maui.Graphics.IImage img {  get; set; }        
 
         public string Name { get; set; }
 

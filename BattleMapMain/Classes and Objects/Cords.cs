@@ -8,13 +8,14 @@ namespace BattleMapMain.Classes_and_Objects
 {
     public class Cords
     {
-        public int row;
-        public int col;
+        public int row { get; set; }
+        public int col { get; set; }
         public Cords(int row, int col)
         {
             this.row = row;
             this.col = col;
         }
+        public Cords() { }
 
     }
 }
