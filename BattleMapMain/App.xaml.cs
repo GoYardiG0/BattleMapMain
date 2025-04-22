@@ -10,8 +10,9 @@ namespace BattleMapMain
     {
         //Application level variables
         public User? LoggedInUser { get; set; }
-        public ObservableCollection<Monster> monsters;
-        public ObservableCollection<Character> characters;
+        public ObservableCollection<Monster> Monsters {  get; set; }
+        public ObservableCollection<Character> Characters {  get; set; }
+        public string CurrentSessionCode {  get; set; }
 
         private BattleMapWebAPIProxy proxy;
         public bool notInSession;
@@ -22,8 +23,8 @@ namespace BattleMapMain
             //LoadBasicDataFromServer();
             InitializeComponent();
             LoggedInUser = null;
-            monsters = new ObservableCollection<Monster>();
-            characters = new ObservableCollection<Character>();
+            Monsters = new ObservableCollection<Monster>();
+            Characters = new ObservableCollection<Character>();
             SetMonsters();
             SetCharacters();
             //Start with the Login View
@@ -38,7 +39,7 @@ namespace BattleMapMain
 
                 foreach (Monster monster in monsters)
                 {
-                    this.monsters.Add(monster);
+                    this.Monsters.Add(monster);
                 }
             }
         } public async void SetCharacters()
@@ -49,7 +50,7 @@ namespace BattleMapMain
 
                 foreach (Character character in characters)
                 {
-                    this.characters.Add(character);
+                    this.Characters.Add(character);
                 }
             }
         }

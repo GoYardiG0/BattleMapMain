@@ -24,15 +24,30 @@ namespace BattleMapMain.ViewModels
             this.hubProxy = hubProxy;
             this.proxy = proxy;
         }
+
+        private string joinCode;
+        public string JoinCode
+        {
+            get => joinCode;
+            set
+            {
+                joinCode = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand SessionCommand { get; }
 
         public async void JoinSession()
         {
+            InServerCall = true;
             BattleMapViewModel vm = serviceProvider.GetService<BattleMapViewModel>();
             string userid = ((App)Application.Current).LoggedInUser.UserId.ToString();
 
-            await hubProxy.Connect(userid, vm.UpdateMapDetails); // handler now passed directly before StartAsync
+            await hubProxy.Connect(userid, vm.UpdateMapDetails, joinCode);
+            ((App)Application.Current).CurrentSessionCode = joinCode;
 
+            InServerCall = false;
             Session();
         }
 

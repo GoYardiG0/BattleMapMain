@@ -7,6 +7,7 @@ using BattleMapMain.ViewModels;
 using Microsoft.Maui.Controls;
 using CommunityToolkit.Maui.Views;
 using Microsoft.Maui;
+using Android.Graphics;
 
 
 public partial class BattleMapView : ContentPage
@@ -27,13 +28,20 @@ public partial class BattleMapView : ContentPage
         InitializeComponent();
 	}
 
-    public void UpdateMapDetails(MapDetails details)
+    public async void UpdateMapDetails(MapDetails details)
     {
         var graphicsView = this.MapGraphicsView;
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
         if (details != null)
         {
             graphics.AllMinis = MapDetails.ConvertTo2DArray(details.AllMinis);
+            foreach (Mini mini in graphics.AllMinis)
+            {
+
+                if (mini != null)
+                   await mini.SetImage();
+
+            }
             graphics.lines = details.Lines;
             graphicsView.Invalidate();
         }

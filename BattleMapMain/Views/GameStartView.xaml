@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             x:Class="BattleMapMain.Views.GameStartView"
-             Title="GameStartView">
+<ContentPage
+    x:Class="BattleMapMain.Views.GameStartView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    Title="Game Start"
+    x:DataType="viewmodels:GameStartViewModel">
     <VerticalStackLayout>
-        <Button 
-Text="in sessin"
-Command="{Binding SessionCommand}" />
+        <Entry IsEnabled="{Binding NotInServerCall}" Text="{Binding JoinCode}" />
+        <Button Command="{Binding SessionCommand}" Text="in sessin" />
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
     </VerticalStackLayout>
 </ContentPage>

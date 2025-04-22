@@ -57,14 +57,14 @@ namespace BattleMapMain.Services
             return BaseAddress;
         }
         //Connect 
-        public async Task Connect(string userId, Action<MapDetails> UpdateMapDetails)
+        public async Task Connect(string userId, Action<MapDetails> UpdateMapDetails, string sessionCode)
         {
             hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
 
             try
             {
                 await hubConnection.StartAsync();
-                await hubConnection.InvokeAsync("AddToGroup", "123");
+                await hubConnection.InvokeAsync("AddToGroup", sessionCode);
             }
             catch (Exception ex)
             {
@@ -73,11 +73,11 @@ namespace BattleMapMain.Services
         }
 
         //Use this method when the chat is finished so the connection will not stay open
-        public async Task Disconnect()
+        public async Task Disconnect(string sessionCode)
         {
             try
             {
-                await hubConnection.InvokeAsync("RemoveFromGroup", "123");
+                await hubConnection.InvokeAsync("RemoveFromGroup", sessionCode);
                 await hubConnection.StopAsync();
             }
             catch (Exception ex)

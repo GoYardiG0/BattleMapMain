@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BattleMapMain.Services;
 using Microsoft.Maui.Graphics.Platform;
+using System.Text.Json.Serialization;
 
 namespace BattleMapMain.Classes_and_Objects
 {
@@ -18,6 +19,8 @@ namespace BattleMapMain.Classes_and_Objects
         public int currentHP {  get; set; }
         public Cords location {  get; set; }
         public static List<Mini> AllMinis = new List<Mini>();
+
+        [JsonIgnore]
         public Microsoft.Maui.Graphics.IImage img {  get; set; }        
 
         public string Name { get; set; }
@@ -164,7 +167,7 @@ namespace BattleMapMain.Classes_and_Objects
                 this.img = mini.img;
         }
 
-        public async void SetImage()
+        public async Task SetImage()
         {
             if (this.monster != null)
             {
