@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using BattleMapMain.Classes_and_Objects;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
+
 
 namespace BattleMapMain.Services
 {
@@ -38,7 +40,15 @@ namespace BattleMapMain.Services
             hubConnection = new HubConnectionBuilder().WithUrl(hubUrl)
                 .WithAutomaticReconnect()
                 .WithKeepAliveInterval(TimeSpan.FromSeconds(10))
-                .WithServerTimeout(TimeSpan.FromSeconds(120)).Build();
+                .WithServerTimeout(TimeSpan.FromSeconds(120))
+                .ConfigureLogging(logging =>
+                {
+                    // Log to the Console
+                    logging.AddDebug();
+
+                    // This will set ALL logging to Debug level
+                    logging.SetMinimumLevel(LogLevel.Debug);
+                }).Build();
 
         }
 
@@ -47,8 +57,10 @@ namespace BattleMapMain.Services
             return BaseAddress;
         }
         //Connect 
-        public async Task Connect(string userId)
+        public async Task Connect(string userId, Action<MapDetails> UpdateMapDetails)
         {
+            hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
+
             try
             {
                 await hubConnection.StartAsync();
@@ -78,7 +90,7 @@ namespace BattleMapMain.Services
         public async Task SendDetails(MapDetails details)
         {
             try
-            {
+            {                
                 await hubConnection.InvokeAsync("UpdateMapDetails", details, "123");
             }
             catch (Exception ex)
@@ -91,7 +103,7 @@ namespace BattleMapMain.Services
         //this method register a method to be called upon receiving a message from other user id
         public void RegisterToUpdateDetails(Action<MapDetails> UpdateMapDetails)
         {
-            hubConnection.On("UpdateMap", UpdateMapDetails);
+            hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
         }
 
     }

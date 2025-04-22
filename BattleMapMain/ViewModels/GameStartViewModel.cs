@@ -29,13 +29,11 @@ namespace BattleMapMain.ViewModels
         public async void JoinSession()
         {
             BattleMapViewModel vm = serviceProvider.GetService<BattleMapViewModel>();
-
-            
             string userid = ((App)Application.Current).LoggedInUser.UserId.ToString();
-            await hubProxy.Connect(userid);
-            hubProxy.RegisterToUpdateDetails(vm.UpdateMapDetails);
+
+            await hubProxy.Connect(userid, vm.UpdateMapDetails); // handler now passed directly before StartAsync
+
             Session();
-            
         }
 
         private void Session()
