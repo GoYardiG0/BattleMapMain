@@ -77,7 +77,7 @@ namespace BattleMapMain.ViewModels
         }
         public void SetCharacters()
         {
-            ObservableCollection<Character>? characters = ((App)Application.Current).characters;
+            ObservableCollection<Character>? characters = ((App)Application.Current).Characters;
             if (characters != null)
             {
                 foreach (Character character in characters)

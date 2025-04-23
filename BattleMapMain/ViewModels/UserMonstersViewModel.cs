@@ -77,7 +77,7 @@ namespace BattleMapMain.ViewModels
         }
         public void SetMonsters()
         {
-            ObservableCollection<Monster>? monsters = ((App)Application.Current).monsters;
+            ObservableCollection<Monster>? monsters = ((App)Application.Current).Monsters;
             if (monsters != null)
             {
                 foreach (Monster monster in monsters)

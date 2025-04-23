@@ -94,7 +94,7 @@ namespace BattleMapMain
             builder.Services.AddTransient<PasswordResetViewModel>();
             builder.Services.AddTransient<PlacedMinisViewModel>();
             builder.Services.AddTransient<SavedMonstersViewModel>();
-            builder.Services.AddTransient<SessionViewModel>();
+            builder.Services.AddSingleton<SessionViewModel>();
             builder.Services.AddTransient<MonsterStatsViewModel>();
             builder.Services.AddTransient<UserMonstersViewModel>();
             builder.Services.AddTransient<LoadingScreenViewModel>();

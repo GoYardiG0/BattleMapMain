@@ -116,7 +116,7 @@ namespace BattleMapMain.ViewModels
                         await Application.Current.MainPage.DisplayAlert("", "Character Added", "ok");
 
                         //add the the transtion into the wahterver
-                        ((App)Application.Current).characters.Add(newCharacter);
+                        ((App)Application.Current).Characters.Add(newCharacter);
                         await ((App)Application.Current).MainPage.Navigation.PopAsync();
                     }
                     else

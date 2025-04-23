@@ -19,7 +19,8 @@ namespace BattleMapMain.ViewModels
         private BattleMapWebAPIProxy proxy;
         public GameStartViewModel(IServiceProvider serviceProvider, BattleMapProxy hubProxy, BattleMapWebAPIProxy proxy) 
         {
-            SessionCommand = new Command(JoinSession);
+            JoinSessionCommand = new Command(JoinSession);
+            CreateSessionCommand = new Command(CreateSession);
             this.serviceProvider = serviceProvider;
             this.hubProxy = hubProxy;
             this.proxy = proxy;
@@ -36,15 +37,34 @@ namespace BattleMapMain.ViewModels
             }
         }
 
-        public ICommand SessionCommand { get; }
+        public ICommand JoinSessionCommand { get; }
+        public ICommand CreateSessionCommand { get; }
 
         public async void JoinSession()
         {
             InServerCall = true;
-            BattleMapViewModel vm = serviceProvider.GetService<BattleMapViewModel>();
-            string userid = ((App)Application.Current).LoggedInUser.UserId.ToString();
+            BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
+            hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
+            SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+            hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+            int userid = ((App)Application.Current).LoggedInUser.UserId;
 
-            await hubProxy.Connect(userid, vm.UpdateMapDetails, joinCode);
+            await hubProxy.Connect(joinCode, userid, false);
+            ((App)Application.Current).CurrentSessionCode = joinCode;
+
+            InServerCall = false;
+            Session();
+        }
+        public async void CreateSession()
+        {
+            InServerCall = true;
+            BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
+            hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
+            SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+            hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+            int userid = ((App)Application.Current).LoggedInUser.UserId;
+
+            await hubProxy.Connect(joinCode, userid, true);
             ((App)Application.Current).CurrentSessionCode = joinCode;
 
             InServerCall = false;

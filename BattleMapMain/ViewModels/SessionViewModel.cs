@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using BattleMapMain.Services;
+using BattleMapMain.Models;
+using static Android.Telecom.Call;
 
 namespace BattleMapMain.ViewModels
 {
-    public class SessionViewModel
+    public class SessionViewModel : ViewModelBase
     {
         private IServiceProvider serviceProvider;
         private BattleMapProxy hubProxy;
@@ -19,8 +21,27 @@ namespace BattleMapMain.ViewModels
             SessionCommand = new Command(LeaveSession);
             this.serviceProvider = serviceProvider;
         }
+        private List<User> usersInSession;
+        public List<User> UsersInSession
+        {
+            get => usersInSession;
+            set
+            {
+                usersInSession = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand SessionCommand { get; }
+
+        public async void UpdateUsers(User user)
+        {
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                UsersInSession.Add(user);
+                OnPropertyChanged("UsersInSession");
+            });
+        }
 
         public async void LeaveSession()
         {

@@ -134,7 +134,7 @@ namespace BattleMapMain.ViewModels
                 {
 
                     await Application.Current.MainPage.DisplayAlert("", "Edit successful", "ok");
-                    ((App)Application.Current).monsters.Where(m => m.MonsterId == newMonster.MonsterId).FirstOrDefault().ReSetMonster(newMonster);
+                    ((App)Application.Current).Monsters.Where(m => m.MonsterId == newMonster.MonsterId).FirstOrDefault().ReSetMonster(newMonster);
                     //add the the transtion into the wahterver
                     await ((App)Application.Current).MainPage.Navigation.PopAsync();
                 }

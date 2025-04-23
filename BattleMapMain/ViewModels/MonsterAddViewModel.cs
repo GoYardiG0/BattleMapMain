@@ -115,7 +115,7 @@ namespace BattleMapMain.ViewModels
                         await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
 
                         //add the the transtion into the wahterver
-                        ((App)Application.Current).monsters.Add(newMonster);
+                        ((App)Application.Current).Monsters.Add(newMonster);
                         await ((App)Application.Current).MainPage.Navigation.PopAsync();
                     }
                     else

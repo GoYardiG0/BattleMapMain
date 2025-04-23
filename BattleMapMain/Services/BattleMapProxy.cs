@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using BattleMapMain.Classes_and_Objects;
+using BattleMapMain.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
 
@@ -57,18 +58,19 @@ namespace BattleMapMain.Services
             return BaseAddress;
         }
         //Connect 
-        public async Task Connect(string userId, Action<MapDetails> UpdateMapDetails, string sessionCode)
+        public async Task Connect(string sessionCode, int userId,  bool isCreator)
         {
-            hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
 
             try
             {
                 await hubConnection.StartAsync();
-                await hubConnection.InvokeAsync("AddToGroup", sessionCode);
+                string errorMsg = await hubConnection.InvokeAsync<string>("AddToGroup", sessionCode, userId, isCreator);
+                if (errorMsg != "")
+                    await Application.Current.MainPage.DisplayAlert("Session", errorMsg, "ok");
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                
             }
         }
 
@@ -104,6 +106,10 @@ namespace BattleMapMain.Services
         public void RegisterToUpdateDetails(Action<MapDetails> UpdateMapDetails)
         {
             hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
+        }
+        public void RegisterToUpdateUsers(Action<User> UpdateUsers)
+        {
+            hubConnection.On<User>("UpdateUsers", UpdateUsers);
         }
 
     }
