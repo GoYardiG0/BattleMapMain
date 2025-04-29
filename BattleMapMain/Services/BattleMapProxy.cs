@@ -58,7 +58,7 @@ namespace BattleMapMain.Services
             return BaseAddress;
         }
         //Connect 
-        public async Task Connect(string sessionCode, int userId,  bool isCreator)
+        public async Task<string> Connect(string sessionCode, int userId,  bool isCreator)
         {
 
             try
@@ -66,11 +66,16 @@ namespace BattleMapMain.Services
                 await hubConnection.StartAsync();
                 string errorMsg = await hubConnection.InvokeAsync<string>("AddToGroup", sessionCode, userId, isCreator);
                 if (errorMsg != "")
+                {
+                    await hubConnection.StopAsync();
                     await Application.Current.MainPage.DisplayAlert("Session", errorMsg, "ok");
+                }
+                    
+                return errorMsg;
             }
             catch (Exception ex)
             {
-                
+                return ex.Message;
             }
         }
 
@@ -103,11 +108,11 @@ namespace BattleMapMain.Services
         }
 
         //this method register a method to be called upon receiving a message from other user id
-        public void RegisterToUpdateDetails(Action<MapDetails> UpdateMapDetails)
+        public async Task RegisterToUpdateDetails(Action<MapDetails> UpdateMapDetails)
         {
             hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
         }
-        public void RegisterToUpdateUsers(Action<User> UpdateUsers)
+        public async Task RegisterToUpdateUsers(Action<User> UpdateUsers)
         {
             hubConnection.On<User>("UpdateUsers", UpdateUsers);
         }

@@ -17,6 +17,7 @@ namespace BattleMapMain.ViewModels
         private IServiceProvider serviceProvider;
         private BattleMapProxy hubProxy;
         private BattleMapWebAPIProxy proxy;
+        private bool registered;
         public GameStartViewModel(IServiceProvider serviceProvider, BattleMapProxy hubProxy, BattleMapWebAPIProxy proxy) 
         {
             JoinSessionCommand = new Command(JoinSession);
@@ -24,6 +25,7 @@ namespace BattleMapMain.ViewModels
             this.serviceProvider = serviceProvider;
             this.hubProxy = hubProxy;
             this.proxy = proxy;
+            registered = false;
         }
 
         private string joinCode;
@@ -43,32 +45,40 @@ namespace BattleMapMain.ViewModels
         public async void JoinSession()
         {
             InServerCall = true;
-            BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
-            hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
-            SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
-            hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+            if (!registered)
+            {                
+                BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
+                hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
+                SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+                hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+            }
             int userid = ((App)Application.Current).LoggedInUser.UserId;
 
-            await hubProxy.Connect(joinCode, userid, false);
+            string errorMsg = await hubProxy.Connect(joinCode, userid, false);
             ((App)Application.Current).CurrentSessionCode = joinCode;
 
             InServerCall = false;
-            Session();
+            if (errorMsg == "")
+                Session();
         }
         public async void CreateSession()
         {
             InServerCall = true;
-            BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
-            hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
-            SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
-            hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+            if (!registered)
+            {
+                BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
+                await hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
+                SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+                await hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+            }
             int userid = ((App)Application.Current).LoggedInUser.UserId;
 
-            await hubProxy.Connect(joinCode, userid, true);
+            string errorMsg =  await hubProxy.Connect(joinCode, userid, true);
             ((App)Application.Current).CurrentSessionCode = joinCode;
 
             InServerCall = false;
-            Session();
+            if (errorMsg == "")
+                Session();
         }
 
         private void Session()

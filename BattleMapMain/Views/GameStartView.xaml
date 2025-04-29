@@ -8,8 +8,8 @@
     x:DataType="viewmodels:GameStartViewModel">
     <VerticalStackLayout>
         <Entry IsEnabled="{Binding NotInServerCall}" Text="{Binding JoinCode}" />
-        <Button Command="{Binding JoinSessionCommand}" Text="Join Session" />
-        <Button Command="{Binding CreateSessionCommand}" Text="Create Session" />
+        <Button Command="{Binding JoinSessionCommand}" Text="Join Session" IsEnabled="{Binding NotInServerCall}" />
+        <Button Command="{Binding CreateSessionCommand}" Text="Create Session" IsEnabled="{Binding NotInServerCall}" />
         <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
     </VerticalStackLayout>
 </ContentPage>

@@ -20,6 +20,7 @@ namespace BattleMapMain.ViewModels
         {
             SessionCommand = new Command(LeaveSession);
             this.serviceProvider = serviceProvider;
+            UsersInSession = new List<User>();
         }
         private List<User> usersInSession;
         public List<User> UsersInSession

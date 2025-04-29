@@ -2,10 +2,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BattleMapMain.Views.SessionView"
-             Title="SessionView">
-    <VerticalStackLayout>
-        <Button 
+             xmlns:Models="clr-namespace:BattleMapMain.Models"
+xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+             Title="SessionView"
+             x:DataType="viewmodels:SessionViewModel"
+             >
+    <ScrollView>
+        <VerticalStackLayout>
+            <CollectionView
+    x:Name="collection"
+    Grid.Row="1"
+    Grid.Column="0"
+    Grid.ColumnSpan="3"
+    Margin="3"
+    ItemsSource="{Binding UsersInSession}"
+>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:User">
+                        <Border
+                    Margin="4,5"
+                    Padding="4"
+                    HeightRequest="80">
+                                <Grid ColumnDefinitions="*,*,*,*">
+                                    <Label
+                            Grid.Column="0"
+                            Margin="3"
+                            VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding UserName}" />
+                                                <!--<Span Text="{Binding ProfileName}" />-->
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+                            </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Button 
 Text="not sessin"
 Command="{Binding SessionCommand}" />
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
