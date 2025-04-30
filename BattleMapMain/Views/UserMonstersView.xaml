@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Models="clr-namespace:BattleMapMain.Models"
-    xmlns:viewmodels="clr-namespace:​​​​​​​​​​​​​​BattleMapMain.ViewModels"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     Title="UserMonstersView"
     x:DataType="viewmodels:UserMonstersViewModel">
     <ScrollView>
@@ -12,7 +12,7 @@
             <Entry
                 HeightRequest="55"
                 Placeholder="Search by monster name"
-                Text="{Binding Sea​​​​​​​rchBar}" />
+                Text="{Binding SearchBar}" />
             <ScrollView x:Name="scrlview" Margin="10">
 
                 <CollectionView
@@ -21,8 +21,8 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Margin="3"
-                    ItemsSource="{Binding Searche​​​​​dMonsters}"
-                    SelectedItem="{Binding Selecte​​​​​​​​​​​​​​dMonster}"
+                    ItemsSource="{Binding SearchedMonsters}"
+                    SelectedItem="{Binding SelectedMonster}"
                     SelectionMode="Single">
 
                     <CollectionView.ItemTemplate>
@@ -49,7 +49,7 @@
                                             VerticalTextAlignment="Center">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{Bin​​​​​​​​​​​​​ding MonsterName}" />
+                                                    <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
                                                     <!--<Span Text="{Binding ProfileName}" />-->
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -60,7 +60,7 @@
                                             VerticalTextAlignment="Center">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{Binding ​​​​​​Hp}" />
+                                                    <Span FontAttributes="Bold" Text="{Binding Hp}" />
 
                                                 </FormattedString>
                                             </Label.FormattedText>
@@ -86,7 +86,7 @@
 
 
             </ScrollView>
-            <Button Command="{Binding GoToAddComman​​​​​​​​​​​​​​​d}" Text="Add Monster" />
+            <Button Command="{Binding GoToAddCommand}" Text="Add Monster" />
 
         </VerticalStackLayout>
     </ScrollView>
