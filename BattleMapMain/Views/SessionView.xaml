@@ -5,17 +5,17 @@
              xmlns:Models="clr-namespace:BattleMapMain.Models"
 xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
              Title="SessionView"
-             x:DataType="viewmodels:SessionViewModel"
+             x:DataType="vie​​​​wmodels:SessionViewModel"
              >
     <ScrollView>
         <VerticalStackLayout>
             <CollectionView
-    x:Name="collection"
+    x:Name="collec​​​tion"
     Grid.Row="1"
     Grid.Column="0"
     Grid.ColumnSpan="3"
     Margin="3"
-    ItemsSource="{Binding UsersInSession}"
+    ItemsSource="{Binding UsersI​​​​​​​​​​​​​​​​​​​​nSession}"
 >
 
                 <CollectionView.ItemTemplate>
@@ -31,7 +31,7 @@ xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
                             VerticalTextAlignment="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding UserName}" />
+                                            <Span FontAttributes="Bold" Text="{Binding U​​​serName}" />
                                                 <!--<Span Text="{Binding ProfileName}" />-->
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -43,7 +43,7 @@ xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
             </CollectionView>
             <Button 
 Text="not sessin"
-Command="{Binding SessionCommand}" />
+Command="{Binding SessionCom​​​​​​​​​​​​​​​​​mand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
