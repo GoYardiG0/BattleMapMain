@@ -58,13 +58,13 @@ namespace BattleMapMain.Services
             return BaseAddress;
         }
         //Connect 
-        public async Task<string> Connect(string sessionCode, int userId,  bool isCreator)
+        public async Task<string?> Connect(string sessionCode, int userId,  bool isCreator)
         {
 
             try
             {
                 await hubConnection.StartAsync();
-                string errorMsg = await hubConnection.InvokeAsync<string>("AddToGroup", sessionCode, userId, isCreator);
+                string? errorMsg = await hubConnection.InvokeAsync<string?>("AddToGroup", sessionCode, userId, isCreator);
                 if (errorMsg != "")
                 {
                     await hubConnection.StopAsync();

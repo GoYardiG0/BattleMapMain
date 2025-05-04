@@ -177,6 +177,7 @@ namespace BattleMapMain.ViewModels
         public BattleMapWebAPIProxy proxy;
         public BattleMapProxy hubProxy;
         public GraphicsDrawable graphics;
+
         public BattleMapViewModel(IServiceProvider serviceProvider, BattleMapWebAPIProxy proxy, BattleMapProxy hubProxy)
         {
             this.serviceProvider = serviceProvider;

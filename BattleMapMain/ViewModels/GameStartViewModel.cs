@@ -55,11 +55,15 @@ namespace BattleMapMain.ViewModels
             int userid = ((App)Application.Current).LoggedInUser.UserId;
 
             string errorMsg = await hubProxy.Connect(joinCode, userid, false);
-            ((App)Application.Current).CurrentSessionCode = joinCode;
+            
 
             InServerCall = false;
             if (errorMsg == "")
+            {
+                ((App)Application.Current).CurrentSessionCode = joinCode;
                 Session();
+            }
+                
         }
         public async void CreateSession()
         {
@@ -73,12 +77,14 @@ namespace BattleMapMain.ViewModels
             }
             int userid = ((App)Application.Current).LoggedInUser.UserId;
 
-            string errorMsg =  await hubProxy.Connect(joinCode, userid, true);
-            ((App)Application.Current).CurrentSessionCode = joinCode;
+            string? errorMsg =  await hubProxy.Connect(joinCode, userid, true);
 
             InServerCall = false;
             if (errorMsg == "")
+            {
+                ((App)Application.Current).CurrentSessionCode = joinCode;
                 Session();
+            }
         }
 
         private void Session()
