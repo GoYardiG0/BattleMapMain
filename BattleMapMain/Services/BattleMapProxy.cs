@@ -8,6 +8,7 @@ using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
+using static Android.Telecom.Call;
 
 
 namespace BattleMapMain.Services
@@ -80,11 +81,11 @@ namespace BattleMapMain.Services
         }
 
         //Use this method when the chat is finished so the connection will not stay open
-        public async Task Disconnect(string sessionCode)
+        public async Task Disconnect(string sessionCode,int userId)
         {
             try
             {
-                await hubConnection.InvokeAsync("RemoveFromGroup", sessionCode);
+                await hubConnection.InvokeAsync("RemoveFromGroup", sessionCode, userId);
                 await hubConnection.StopAsync();
             }
             catch (Exception ex)
@@ -98,7 +99,7 @@ namespace BattleMapMain.Services
         {
             try
             {                
-                await hubConnection.InvokeAsync("UpdateMapDetails", details, "123");
+                await hubConnection.InvokeAsync("UpdateMapDetails", details, ((App)Application.Current).CurrentSessionCode);
             }
             catch (Exception ex)
             {
@@ -106,15 +107,20 @@ namespace BattleMapMain.Services
             }
 
         }
+        public async Task<MapDetails> GetDetails()
+        {
+            MapDetails details = await hubConnection.InvokeAsync<MapDetails>("GetMapDetails", ((App)Application.Current).CurrentSessionCode);
+            return details;
+        }
 
         //this method register a method to be called upon receiving a message from other user id
         public async Task RegisterToUpdateDetails(Action<MapDetails> UpdateMapDetails)
         {
             hubConnection.On<MapDetails>("UpdateMap", UpdateMapDetails);
         }
-        public async Task RegisterToUpdateUsers(Action<User> UpdateUsers)
+        public async Task RegisterToUpdateUsers(Action<List<User>> UpdateUsers)
         {
-            hubConnection.On<User>("UpdateUsers", UpdateUsers);
+            hubConnection.On<List<User>>("UpdateUsers", UpdateUsers);
         }
 
     }

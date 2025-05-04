@@ -22,7 +22,7 @@ namespace BattleMapMain.Classes_and_Objects
             this.AllMinis = ConvertToList(allMinis);
             this.Lines = lines;
         }
-        public MapDetails() { }
+        public MapDetails() { Lines = new List<Line>(); }
 
         public static List<List<Mini>> ConvertToList(Mini[,] array)
         {

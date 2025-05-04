@@ -10,6 +10,7 @@ using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Services;
 using BattleMapMain.Views;
 using Microsoft.Maui.Graphics.Platform;
+using static Android.Telecom.Call;
 using IImage = Microsoft.Maui.Graphics.IImage;
 
 
@@ -77,13 +78,17 @@ namespace BattleMapMain.ViewModels
         #region draw alls
         private void DrawAllLines(ICanvas canvas, RectF dirtyRect)
         {
-            if (lines.Count != 0)
+            if (lines != null)
             {
-                foreach (Line line in lines)
+                if (lines.Count != 0)
                 {
-                    canvas.DrawLine(line.start, line.end);
+                    foreach (Line line in lines)
+                    {
+                        canvas.DrawLine(line.start, line.end);
+                    }
                 }
             }
+            
         }
         public void DrawAllMinis(ICanvas canvas, RectF dirtyRect)
         {
@@ -128,7 +133,7 @@ namespace BattleMapMain.ViewModels
             {
                 canvas.DrawLine(i * boxWidth, dirtyRect.Top, i * boxWidth, dirtyRect.Bottom);
             }
-            if (AllMinis == null)
+            if (AllMinis == null || AllMinis.Length == 0)
             {
                 AllMinis = new Mini[(int)rows + 1, (int)Columns + 1];
             }
@@ -176,7 +181,6 @@ namespace BattleMapMain.ViewModels
         private IServiceProvider serviceProvider;
         public BattleMapWebAPIProxy proxy;
         public BattleMapProxy hubProxy;
-        public GraphicsDrawable graphics;
 
         public BattleMapViewModel(IServiceProvider serviceProvider, BattleMapWebAPIProxy proxy, BattleMapProxy hubProxy)
         {
@@ -249,6 +253,11 @@ namespace BattleMapMain.ViewModels
                 UpdateMap(details);
             });
 
+        }
+
+        public async Task GetDetailsFromHub()
+        {
+            UpdateMap(await hubProxy.GetDetails());
         }
 
         public async void SendDetailsToHub(MapDetails details)

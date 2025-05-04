@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using BattleMapMain.Services;
 using BattleMapMain.Models;
-using static Android.Telecom.Call;
 
 namespace BattleMapMain.ViewModels
 {
@@ -20,6 +19,7 @@ namespace BattleMapMain.ViewModels
         {
             SessionCommand = new Command(LeaveSession);
             this.serviceProvider = serviceProvider;
+            this.hubProxy = hubProxy;
             UsersInSession = new List<User>();
         }
         private List<User> usersInSession;
@@ -35,22 +35,24 @@ namespace BattleMapMain.ViewModels
 
         public ICommand SessionCommand { get; }
 
-        public async void UpdateUsers(User user)
+        public async void UpdateUsers(List<User> users)
         {
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                UsersInSession.Add(user);
+                UsersInSession = users;
                 OnPropertyChanged("UsersInSession");
             });
         }
 
         public async void LeaveSession()
         {
-            await hubProxy.Disconnect(((App)Application.Current).CurrentSessionCode); 
+            await hubProxy.Disconnect(((App)Application.Current).CurrentSessionCode, ((App)Application.Current).LoggedInUser.UserId); 
             NotSession();
         }
         private void NotSession()
         {
+            SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+            svm.usersInSession = new List<User>();
             ((App)Application.Current).notInSession = true;
             ((App)Application.Current).MainPage.Navigation.PushAsync(serviceProvider.GetService<LoadingScreenView>());
         }

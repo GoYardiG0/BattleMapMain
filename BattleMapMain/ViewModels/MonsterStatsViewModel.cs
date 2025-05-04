@@ -19,10 +19,10 @@ namespace BattleMapMain.ViewModels
             set
             {
                 this.monster = value;
-                OnPropertyChanged();
-
+                OnPropertyChanged();                
             }
         }
+
         public MonsterStatsViewModel()
         {
 

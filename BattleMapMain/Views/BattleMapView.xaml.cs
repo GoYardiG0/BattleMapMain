@@ -28,6 +28,17 @@ public partial class BattleMapView : ContentPage
         InitializeComponent();
 	}
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (this.BindingContext is  BattleMapViewModel)
+        {
+            await vm.GetDetailsFromHub();
+            var graphicsView = this.MapGraphicsView;
+            graphicsView.Invalidate();
+        }
+    }
     public async void UpdateMapDetails(MapDetails details)
     {
         var graphicsView = this.MapGraphicsView;
@@ -191,7 +202,7 @@ public partial class BattleMapView : ContentPage
         vm.SendDetailsToHub(details);
     }
 
-
+    
 
 
 
