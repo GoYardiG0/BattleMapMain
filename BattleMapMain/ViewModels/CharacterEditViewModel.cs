@@ -5,23 +5,76 @@ using System.Text;
 using System.Threading.Tasks;
 using BattleMapMain.Services;
 using BattleMapMain.Models;
+using System.Threading;
 
 namespace BattleMapMain.ViewModels
 {
+    [QueryProperty(nameof(Character), "Character")]
     public class CharacterEditViewModel : ViewModelBase
     {
 
         private BattleMapWebAPIProxy proxy;
+        private IServiceProvider serviceProvider;
+        private Character character;
+        public Character Character
+        {
+            get { return character; }
+            set
+            {
+                this.character = value;
+                OnPropertyChanged();
+                GetDetailsFromCharacter();
+            }
+        }
+        public async void GetDetailsFromCharacter()
+        {
+            this.name = this.character.CharacterName;
+            this.hp = this.character.Hp;
+            this.ac = this.character.Ac;
+            this.str = this.character.Str;
+            this.dex = this.character.Dex;
+            this.con = this.character.Con;
+            this.inte = this.character.Int;
+            this.wis = this.character.Wis;
+            this.cha = this.character.Cha;
+            this.level = this.character.Level;
+            this.passiveDesc = this.character.PassiveDesc;
+            this.actionDesc = this.character.PassiveDesc;
+            this.specialActionDesc = this.character.SpecialActionDesc;
+            this.photoURL = this.character.CharacterPicURL;
+            this.localPhotoPath = this.character.CharacterPic;
+            Refresh();
+        }
+
+        public void Refresh()
+        {
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(Hp));
+            OnPropertyChanged(nameof(Ac));
+            OnPropertyChanged(nameof(Str));
+            OnPropertyChanged(nameof(Dex));
+            OnPropertyChanged(nameof(Con));
+            OnPropertyChanged(nameof(Inte));
+            OnPropertyChanged(nameof(Wis));
+            OnPropertyChanged(nameof(Cha));
+            OnPropertyChanged(nameof(Level));
+            OnPropertyChanged(nameof(PassiveDesc));
+            OnPropertyChanged(nameof(ActionDesc));
+            OnPropertyChanged(nameof(SpecialActionDesc));
+            OnPropertyChanged(nameof(PhotoURL));
+        }
         public CharacterEditViewModel(BattleMapWebAPIProxy proxy)
         {
             this.proxy = proxy;
-
-            AddCharacterCommand = new Command(OnAddCharacter);
+            this.serviceProvider = serviceProvider;
+            EditCharacterCommand = new Command(OnEditCharacter);
+            UploadPhotoCommand = new Command(OnUploadPhoto);
         }
 
-        public Command AddCharacterCommand { get; }
+        public Command EditCharacterCommand { get; }
+        public Command UploadPhotoCommand { get; }
 
-        public async void OnAddCharacter()
+        public async void OnEditCharacter()
         {
             ValidateAc();
             ValidateActionDesc();
@@ -42,9 +95,10 @@ namespace BattleMapMain.ViewModels
                 //Create a new AppUser object with the data from the registration form
                 var newCharacter = new Character
                 {
+                    CharacterId = character.CharacterId,
                     CharacterName = Name,
-                    UserId = 1/*((App)Application.Current).LoggedInUser.UserId*/,
-                    CharacterPic = "" /*MonsterPic*/,
+                    UserId = ((App)Application.Current).LoggedInUser.UserId,
+                    CharacterPic = localPhotoPath,
                     Ac = this.Ac,
                     Hp = this.Hp,
                     Str = this.Str,
@@ -62,7 +116,15 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                newCharacter = await proxy.AddCharacter(newCharacter);
+                if (newCharacter.CharacterPic != character.CharacterPic)
+                    newCharacter.CharacterPic = await proxy.UploadCharacterImage(newCharacter);
+                if (newCharacter.CharacterPic == null)
+                {
+                    string errorMsg = "Upload image failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                    InServerCall = false;
+                }
+                newCharacter = await proxy.UpdateCharacter(newCharacter);
                 InServerCall = false;
 
                 //If the registration was successful, navigate to the login page
@@ -87,6 +149,53 @@ namespace BattleMapMain.ViewModels
                 }
             }
         }
+
+        #region image
+        private string photoURL;
+
+        public string PhotoURL
+        {
+            get => photoURL;
+            set
+            {
+                photoURL = value;
+                OnPropertyChanged("PhotoURL");
+            }
+        }
+
+        private string localPhotoPath;
+
+        public string LocalPhotoPath
+        {
+            get => localPhotoPath;
+            set
+            {
+                localPhotoPath = value;
+                OnPropertyChanged("LocalPhotoPath");
+            }
+        }
+        private async void OnUploadPhoto()
+        {
+            try
+            {
+                var result = await MediaPicker.Default.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Please select a photo",
+                });
+
+                if (result != null)
+                {
+                    // The user picked a file
+                    this.LocalPhotoPath = result.FullPath;
+                    this.PhotoURL = result.FullPath;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+        #endregion
 
         #region name
         private string name;

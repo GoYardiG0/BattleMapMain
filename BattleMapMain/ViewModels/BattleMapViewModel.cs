@@ -10,7 +10,6 @@ using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Services;
 using BattleMapMain.Views;
 using Microsoft.Maui.Graphics.Platform;
-using static Android.Telecom.Call;
 using IImage = Microsoft.Maui.Graphics.IImage;
 
 
@@ -232,7 +231,7 @@ namespace BattleMapMain.ViewModels
             {
                 var navParam = new Dictionary<string, object>()
                 {
-                    { "Monster",selectedMini }
+                    { "Monster",selectedMini.monster }
                 };
                 await Shell.Current.GoToAsync("MonsterDetails", navParam);
             }
@@ -240,7 +239,7 @@ namespace BattleMapMain.ViewModels
             {
                 var navParam = new Dictionary<string, object>()
                 {
-                    { "Character",selectedMini }
+                    { "Character",selectedMini.character }
                 };
                 await Shell.Current.GoToAsync("CharacterDetails", navParam);
             }
@@ -251,6 +250,7 @@ namespace BattleMapMain.ViewModels
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 UpdateMap(details);
+                selectedMini = null;
             });
 
         }

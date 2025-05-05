@@ -66,7 +66,7 @@ namespace BattleMapMain.ViewModels
         }
         public MonsterEditViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
-            this.proxy = proxy;
+            this.proxy = proxy                                 ;
             this.serviceProvider = serviceProvider;
             EditMonsterCommand = new Command(OnEditMonster);
             UploadPhotoCommand = new Command(OnUploadPhoto);
@@ -119,13 +119,14 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                //newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
-                //if (newMonster.MonsterPic == null)
-                //{
-                //    string errorMsg = "Upload image failed. Please try again.";
-                //    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
-                //    InServerCall = false;
-                //}
+                if (newMonster.MonsterPic != monster.MonsterPic)
+                    newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
+                if (newMonster.MonsterPic == null)
+                {
+                    string errorMsg = "Upload image failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                    InServerCall = false;
+                }
                 newMonster = await proxy.UpdateMonster(newMonster);
                 InServerCall = false;
 

@@ -94,9 +94,13 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                if (newCharacter.CharacterPic != "dragonpfp.png")
+                if (newCharacter.CharacterPic != "deafult_character.png")
                 {
                     newCharacter.CharacterPic = await proxy.UploadCharacterImage(newCharacter);
+                }
+                else
+                {
+                    newCharacter.CharacterPic = "/characterImages/deafult_character.png";
                 }
                 if (newCharacter.CharacterPic == null)
                 {

@@ -122,12 +122,12 @@ namespace BattleMapMain.ViewModels
                 selectedCharacter = value;
                 OnPropertyChanged();
                 if (selectedCharacter != null)
-                    OnSingleSelectRecipe();
+                    OnSingleSelectCharacter();
             }
         }
 
 
-        async void OnSingleSelectRecipe()
+        async void OnSingleSelectCharacter()
         {
             var navParam = new Dictionary<string, object>()
                 {

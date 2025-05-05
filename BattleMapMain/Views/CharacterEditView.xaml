@@ -121,7 +121,7 @@ WidthRequest="600">
         Placeholder="Additional Actions/Abilities"
         PlaceholderColor="Black" 
         Text="{Binding SpecialActionDesc}"/>
-            <Button Text="Add Character" Command="{Binding AddCharacterCommand}" IsEnabled="{Binding NotInServerCall}"   />
+            <Button Text="Add Character" Command="{Binding EditCharacterCommand}" IsEnabled="{Binding NotInServerCall}"   />
         </VerticalStackLayout>
     </Border>
 </ContentPage>
