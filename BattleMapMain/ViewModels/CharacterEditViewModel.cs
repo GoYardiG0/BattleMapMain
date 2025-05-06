@@ -117,36 +117,42 @@ namespace BattleMapMain.ViewModels
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
                 if (newCharacter.CharacterPic != character.CharacterPic)
-                    newCharacter.CharacterPic = await proxy.UploadCharacterImage(newCharacter);
-                if (newCharacter.CharacterPic == null)
+                    newCharacter = await proxy.UploadCharacterImage(newCharacter);
+                if (newCharacter == null)
                 {
                     string errorMsg = "Upload image failed. Please try again.";
                     await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
                     InServerCall = false;
                 }
-                newCharacter = await proxy.UpdateCharacter(newCharacter);
-                InServerCall = false;
-
-                //If the registration was successful, navigate to the login page
-                if (newCharacter != null)
-                {
-
-                    InServerCall = false;
-
-
-                    await Application.Current.MainPage.DisplayAlert("", "Character Added", "ok");
-
-
-                    //add the the transtion into the wahterver
-
-                }
                 else
                 {
+                    newCharacter = await proxy.UpdateCharacter(newCharacter);
+                    InServerCall = false;
 
-                    //If the registration failed, display an error message
-                    string errorMsg = "Registration failed. Please try again.";
-                    await Application.Current.MainPage.DisplayAlert("Registration", errorMsg, "ok");
+                    //If the registration was successful, navigate to the login page
+                    if (newCharacter != null)
+                    {
+
+                        InServerCall = false;
+
+
+                        await Application.Current.MainPage.DisplayAlert("", "Edit successful", "ok");
+                        ((App)Application.Current).Characters.Where(c => c.CharacterId == newCharacter.CharacterId).FirstOrDefault().ReSetCharacter(newCharacter);
+                        //add the the transtion into the wahterver
+                        await ((App)Application.Current).MainPage.Navigation.PopAsync();
+
+                        //add the the transtion into the wahterver
+
+                    }
+                    else
+                    {
+
+                        //If the registration failed, display an error message
+                        string errorMsg = "Edit failed. Please try again.";
+                        await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                    }
                 }
+                
             }
         }
 

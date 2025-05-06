@@ -12,12 +12,12 @@
 
     <TabBar Route="tabs1">
 
-        <Tab
+        <!--<Tab
             Title="Profile"
             IsVisible="{Binding NotInSession}"
             Route="Profile">
             <ShellContent ContentTemplate="{DataTemplate views:ProfileView}" />
-        </Tab>
+        </Tab>-->
         <Tab
             x:Name="GameStart"
             Title="Game Start"
@@ -25,7 +25,7 @@
             Route="Game Start">
             <ShellContent ContentTemplate="{DataTemplate views:GameStartView}" />
         </Tab>
-        <Tab Title="Friends Menu" IsVisible="{Binding NotInSession}">
+        <!--<Tab Title="Friends Menu" IsVisible="{Binding NotInSession}">
             <ShellContent
                 Title="Friends List"
                 Grid.Column="0"
@@ -34,7 +34,7 @@
                 Title="Add Friend"
                 Grid.Column="2"
                 ContentTemplate="{DataTemplate views:AddFriendView}" />
-        </Tab>
+        </Tab>-->
 
         <Tab Title="Statblocks" IsVisible="{Binding NotInSession}">
             <ShellContent Title="Character Sheets" ContentTemplate="{DataTemplate views:CharacterSheetsView}" />
@@ -45,22 +45,23 @@
         <Tab Title="Battle Map" IsVisible="{Binding InSession}">
             <ShellContent ContentTemplate="{DataTemplate views:BattleMapView}" />
         </Tab>
-        <Tab Title="calculator" IsVisible="{Binding InSession}">
+
+        <!--<Tab Title="calculator" IsVisible="{Binding InSession}">
             <ShellContent ContentTemplate="{DataTemplate views:CalculatorView}" />
+        </Tab>-->
+
+        <Tab Title="Statblocks" IsVisible="{Binding InSession}">
+            <ShellContent Title="Character Sheets" ContentTemplate="{DataTemplate views:CharacterSheetsView}" />
+            <ShellContent Title="My Monsters" ContentTemplate="{DataTemplate views:UserMonstersView}" />
+            <ShellContent Title="All Monsters" ContentTemplate="{DataTemplate views:AllMonstersView}" />
         </Tab>
-        <Tab Title="Dm Screen" IsVisible="{Binding InSession}">
 
-            <ShellContent Title="Placed Monsters" ContentTemplate="{DataTemplate views:PlacedMinisView}" />
-            <ShellContent Title="Saved Monsters" ContentTemplate="{DataTemplate views:SavedMonstersView}" />
-
-        </Tab>
-
-        <Tab Title="Character Stats" IsVisible="{Binding InSession}">
+        <!--<Tab Title="Character Stats" IsVisible="{Binding InSession}">
             <ShellContent Title="Character Stats" ContentTemplate="{DataTemplate views:CharacterStatsView}" />
-        </Tab>
-        <Tab Title="Die Roller" IsVisible="{Binding InSession}">
+        </Tab>-->
+        <!--<Tab Title="Die Roller" IsVisible="{Binding InSession}">
             <ShellContent ContentTemplate="{DataTemplate views:DieRollerView}" />
-        </Tab>
+        </Tab>-->
         <Tab Title="Session View" IsVisible="{Binding InSession}">
             <ShellContent Title="Session View" ContentTemplate="{DataTemplate views:SessionView}" />
         </Tab>

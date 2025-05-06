@@ -75,7 +75,6 @@ namespace BattleMapMain.ViewModels
             {
                 foreach (Monster monster in monsters)
                 {
-                    if (monster.UserId == 1 || monster.UserId == ((App)Application.Current).LoggedInUser.UserId)
                     this.monsters.Add(monster);
                 }
             }

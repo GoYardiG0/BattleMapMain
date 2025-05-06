@@ -71,7 +71,7 @@ namespace BattleMapMain.ViewModels
                 {
                     MonsterName = Name,
                     UserId = ((App)Application.Current).LoggedInUser.UserId,
-                    MonsterPic = localPhotoPath,
+                    MonsterPic = "/monsterImages/dragonpfp.png",
                     Ac = this.Ac,
                     Hp = this.Hp,
                     Str = this.Str,
@@ -89,46 +89,47 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                if (newMonster.MonsterPic != "dragonpfp.png")
-                {
-                    newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
-                }
-                else
-                {
-                    newMonster.MonsterPic = "/monsterImages/dragonpfp.png";
-                }
-                if (newMonster.MonsterPic == null)
-                {
-                    string errorMsg = "Upload image failed. Please try again.";
-                    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
-                    InServerCall = false;
-                }
-                else
-                {
-                    newMonster = await proxy.AddMonster(newMonster);
-                    InServerCall = false;
 
-                    //If the registration was successful, navigate to the login page
-                    if (newMonster != null)
+                newMonster = await proxy.AddMonster(newMonster);                
+
+                //If the registration was successful, navigate to the login page
+                if (newMonster != null)
+                {
+                    newMonster.MonsterPic = localPhotoPath;
+                    if (newMonster.MonsterPic != "dragonpfp.png")
                     {
-
-                        await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
-
-                        //add the the transtion into the wahterver
-                        ((App)Application.Current).Monsters.Add(newMonster);
-                        await ((App)Application.Current).MainPage.Navigation.PopAsync();
+                        newMonster = await proxy.UploadMonsterImage(newMonster);
                     }
                     else
                     {
-
-                        //If the registration failed, display an error message
-                        string errorMsg = "Edit failed. Please try again.";
-                        await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                        newMonster.MonsterPic = "/monsterImages/dragonpfp.png";
                     }
-                }
+                    if (newMonster == null)
+                    {
+                        string errorMsg = "Upload image failed. Please try again.";
+                        await Application.Current.MainPage.DisplayAlert("Image", errorMsg, "ok");                        
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("", "Monster Added", "ok");
 
+                        ((App)Application.Current).Monsters.Add(newMonster);
+                        await ((App)Application.Current).MainPage.Navigation.PopAsync();
+                    }
+                    InServerCall = false;
+                    
+                }
+                else
+                {
+
+                    //If the registration failed, display an error message
+                    string errorMsg = "Adding failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("", errorMsg, "ok");
+                }
             }
+
         }
+
 
         #region image
         private string photoURL;

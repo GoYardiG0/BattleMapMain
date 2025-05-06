@@ -270,7 +270,7 @@ namespace BattleMapMain.Services
         //This method call the UploadProfileImage web API on the server and return the AppUser object with the given URL
         //of the profile image or null if the call fails
         //when registering a user it is better first to call the register command and right after that call this function
-        public async Task<string?> UploadMonsterImage(Monster monster)
+        public async Task<Monster?> UploadMonsterImage(Monster monster)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}uploadMonsterImage?monsterName={monster.MonsterName}&userId={monster.UserId}";
@@ -293,7 +293,7 @@ namespace BattleMapMain.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    string? result = resContent;
+                    Monster? result = JsonSerializer.Deserialize<Monster>(resContent, options);
                     return result;
                 }
                 else
@@ -307,7 +307,7 @@ namespace BattleMapMain.Services
             }
         }
 
-        public async Task<string?> UploadCharacterImage(Character character)
+        public async Task<Character?> UploadCharacterImage(Character character)
         {
             //Set URI to the specific function API
             string url = $"{this.baseUrl}uploadCharacterImage?characterName={character.CharacterName}&userId={character.UserId}";
@@ -330,7 +330,7 @@ namespace BattleMapMain.Services
                     {
                         PropertyNameCaseInsensitive = true
                     };
-                    string? result = resContent;
+                    Character? result = JsonSerializer.Deserialize<Character>(resContent, options);
                     return result;
                 }
                 else

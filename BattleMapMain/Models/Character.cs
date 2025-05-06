@@ -49,5 +49,25 @@ namespace BattleMapMain.Models
         public string? SpecialActionDesc { get; set; }
 
         public Character() { }
+        public void ReSetCharacter(Character character)
+        {
+            this.CharacterId = character.CharacterId;
+            this.UserId = character.UserId;
+            this.CharacterName = character.CharacterName;
+            this.CharacterPic = character.CharacterPic;
+            this.Ac = character.Ac;
+            this.Hp = character.Hp;
+            this.Str = character.Str;
+            this.Dex = character.Dex;
+            this.Con = character.Con;
+            this.Int = character.Int;
+            this.Wis = character.Wis;
+            this.Cha = character.Cha;
+            this.Level = character.Level;
+            this.PassiveDesc = character.PassiveDesc;
+            this.ActionDesc = character.ActionDesc;
+            this.SpecialActionDesc = character.SpecialActionDesc;
+
+        }
     }
 }

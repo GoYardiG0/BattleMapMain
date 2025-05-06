@@ -53,24 +53,24 @@ namespace BattleMapMain.Models
 
         public Monster() { }
 
-        public void ReSetMonster(Monster Monster)
+        public void ReSetMonster(Monster monster)
         {
-            this.MonsterId = Monster.MonsterId;
-            this.UserId = Monster.UserId;
-            this.MonsterName = Monster.MonsterName;
-            this.MonsterPic = Monster.MonsterPic;
-            this.Ac = Monster.Ac;
-            this.Hp = Monster.Hp;
-            this.Str = Monster.Str;
-            this.Dex = Monster.Dex;
-            this.Con = Monster.Con;
-            this.Int = Monster.Int;
-            this.Wis = Monster.Wis;
-            this.Cha = Monster.Cha;
-            this.Cr = Monster.Cr;
-            this.PassiveDesc = Monster.PassiveDesc;
-            this.ActionDesc = Monster.ActionDesc;
-            this.SpecialActionDesc = Monster.SpecialActionDesc;
+            this.MonsterId = monster.MonsterId;
+            this.UserId = monster.UserId;
+            this.MonsterName = monster.MonsterName;
+            this.MonsterPic = monster.MonsterPic;
+            this.Ac = monster.Ac;
+            this.Hp = monster.Hp;
+            this.Str = monster.Str;
+            this.Dex = monster.Dex;
+            this.Con = monster.Con;
+            this.Int = monster.Int;
+            this.Wis = monster.Wis;
+            this.Cha = monster.Cha;
+            this.Cr = monster.Cr;
+            this.PassiveDesc = monster.PassiveDesc;
+            this.ActionDesc = monster.ActionDesc;
+            this.SpecialActionDesc = monster.SpecialActionDesc;
 
         }
     }

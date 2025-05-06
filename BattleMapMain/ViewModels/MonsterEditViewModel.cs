@@ -120,32 +120,36 @@ namespace BattleMapMain.ViewModels
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
                 if (newMonster.MonsterPic != monster.MonsterPic)
-                    newMonster.MonsterPic = await proxy.UploadMonsterImage(newMonster);
-                if (newMonster.MonsterPic == null)
+                    newMonster = await proxy.UploadMonsterImage(newMonster);
+                if (newMonster == null)
                 {
                     string errorMsg = "Upload image failed. Please try again.";
                     await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
                     InServerCall = false;
                 }
-                newMonster = await proxy.UpdateMonster(newMonster);
-                InServerCall = false;
-
-                //If the registration was successful, navigate to the login page
-                if (newMonster != null)
-                {
-
-                    await Application.Current.MainPage.DisplayAlert("", "Edit successful", "ok");
-                    ((App)Application.Current).Monsters.Where(m => m.MonsterId == newMonster.MonsterId).FirstOrDefault().ReSetMonster(newMonster);
-                    //add the the transtion into the wahterver
-                    await ((App)Application.Current).MainPage.Navigation.PopAsync();
-                }
                 else
                 {
+                    newMonster = await proxy.UpdateMonster(newMonster);
+                    InServerCall = false;
 
-                    //If the registration failed, display an error message
-                    string errorMsg = "Edit failed. Please try again.";
-                    await Application.Current.MainPage.DisplayAlert("", errorMsg, "ok");
+                    //If the registration was successful, navigate to the login page
+                    if (newMonster != null)
+                    {
+
+                        await Application.Current.MainPage.DisplayAlert("Editing", "Edit successful", "ok");
+                        ((App)Application.Current).Monsters.Where(m => m.MonsterId == newMonster.MonsterId).FirstOrDefault().ReSetMonster(newMonster);
+                        //add the the transtion into the wahterver
+                        await ((App)Application.Current).MainPage.Navigation.PopAsync();
+                    }
+                    else
+                    {
+
+                        //If the registration failed, display an error message
+                        string errorMsg = "Edit failed. Please try again.";
+                        await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
+                    }
                 }
+                
 
             }
         }

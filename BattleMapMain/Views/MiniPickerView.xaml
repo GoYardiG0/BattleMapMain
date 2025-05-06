@@ -6,37 +6,34 @@
     xmlns:Models="clr-namespace:BattleMapMain.Models"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    CanBeDismissedByTappingOutsideOfPopup="True">
-    <VerticalStackLayout>
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    Color="White">
+    <VerticalStackLayout x:Name="layout">
         <Entry
             HeightRequest="55"
-            Placeholder="Search by monster name"
+            Placeholder="Search by name"
             Text="{Binding SearchBar}" />
+        <Picker
+            x:DataType="x:String"
+            HeightRequest="50"
+            ItemDisplayBinding="{Binding .}"
+            ItemsSource="{Binding BindingContext.Filters, Source={x:Reference layout}}"
+            SelectedItem="{Binding BindingContext.SelectedFilter, Source={x:Reference layout}}" />
         <ScrollView x:Name="scrlview" Margin="10">
+            <Grid>
+                <CollectionView
+                    x:Name="monster_collection"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="3"
+                    IsVisible="{Binding ShowMonsters}"
+                    ItemsSource="{Binding SearchedMonsters}"
+                    SelectedItem="{Binding SelectedMonster}"
+                    SelectionMode="Single">
 
-            <CollectionView
-                x:Name="collection"
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Margin="3"
-                ItemsSource="{Binding SearchedMonsters}"
-                SelectedItem="{Binding SelectedMonster}"
-                SelectionMode="Single">
-                
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Models:Monster">
-                        <SwipeView>
-                            <!--<SwipeView.RightItems>
-                            <SwipeItem
-                                Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
-                                CommandParameter="{Binding .}"
-                                IconImageSource="decline.png" />
-                            <SwipeItem
-                                Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveConfectioneryCommand}"
-                                CommandParameter="{Binding .}"
-                                IconImageSource="approve.png" />
-                        </SwipeView.RightItems>-->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Monster">
                             <Border
                                 Margin="4,5"
                                 Padding="4"
@@ -49,7 +46,6 @@
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
-                                                <!--<Span Text="{Binding ProfileName}" />-->
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
@@ -67,23 +63,55 @@
 
                                 </Grid>
                             </Border>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <!--<CollectionView.EmptyView>
-                <StackLayout>
-                    <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
-                    <Image
-                        Aspect="AspectFit"
-                        HeightRequest="80"
-                        HorizontalOptions="CenterAndExpand"
-                        Source="sad.png"
-                        WidthRequest="80" />
-                </StackLayout>
-            </CollectionView.EmptyView>-->
-            </CollectionView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <CollectionView
+                    x:Name="character_collection"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Margin="3"
+                    IsVisible="{Binding ShowCharacters}"
+                    ItemsSource="{Binding SearchedCharacters}"
+                    SelectedItem="{Binding SelectedCharacter}"
+                    SelectionMode="Single">
 
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Models:Character">
+                            <Border
+                                Margin="4,5"
+                                Padding="4"
+                                HeightRequest="80">
+                                <Grid ColumnDefinitions="*,*,*,*">
+                                    <Label
+                                        Grid.Column="0"
+                                        Margin="3"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding CharacterName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label
+                                        Grid.Column="3"
+                                        Margin="3"
+                                        VerticalTextAlignment="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" Text="{Binding Hp}" />
 
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </ScrollView>
     </VerticalStackLayout>
 </toolkit:Popup>

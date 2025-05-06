@@ -76,7 +76,7 @@ namespace BattleMapMain.ViewModels
                 {
                     CharacterName = Name,
                     UserId = ((App)Application.Current).LoggedInUser.UserId,
-                    CharacterPic = localPhotoPath,
+                    CharacterPic = "/characterImages/deafult_character.png",
                     Ac = this.Ac,
                     Hp = this.Hp,
                     Str = this.Str,
@@ -94,43 +94,45 @@ namespace BattleMapMain.ViewModels
 
                 //Call the Register method on the proxy to register the new user
                 InServerCall = true;
-                if (newCharacter.CharacterPic != "deafult_character.png")
-                {
-                    newCharacter.CharacterPic = await proxy.UploadCharacterImage(newCharacter);
-                }
-                else
-                {
-                    newCharacter.CharacterPic = "/characterImages/deafult_character.png";
-                }
-                if (newCharacter.CharacterPic == null)
-                {
-                    string errorMsg = "Upload image failed. Please try again.";
-                    await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
-                    InServerCall = false;
-                }
-                else
-                {
-                    newCharacter = await proxy.AddCharacter(newCharacter);
-                    InServerCall = false;
 
-                    //If the registration was successful, navigate to the login page
-                    if (newCharacter != null)
+                newCharacter = await proxy.AddCharacter(newCharacter);
+
+                //If the registration was successful, navigate to the login page
+                if (newCharacter != null)
+                {
+                    newCharacter.CharacterPic = localPhotoPath;
+                    if (newCharacter.CharacterPic != "deafult_character.png")
                     {
-
+                        newCharacter = await proxy.UploadCharacterImage(newCharacter);                        
+                    }
+                    else
+                    {
+                        newCharacter.CharacterPic = "/characterImages/deafult_character.png";
+                    }
+                    InServerCall = false;
+                    if (newCharacter == null)
+                    {
+                        string errorMsg = "Upload image failed. Please try again.";
+                        await Application.Current.MainPage.DisplayAlert("Image", errorMsg, "ok");
+                    }
+                    else
+                    {
                         await Application.Current.MainPage.DisplayAlert("", "Character Added", "ok");
 
                         //add the the transtion into the wahterver
                         ((App)Application.Current).Characters.Add(newCharacter);
                         await ((App)Application.Current).MainPage.Navigation.PopAsync();
                     }
-                    else
-                    {
 
-                        //If the registration failed, display an error message
-                        string errorMsg = "Edit failed. Please try again.";
-                        await Application.Current.MainPage.DisplayAlert("Editing", errorMsg, "ok");
-                    }
                 }
+                else
+                {
+
+                    //If the registration failed, display an error message
+                    string errorMsg = "Adding failed. Please try again.";
+                    await Application.Current.MainPage.DisplayAlert("", errorMsg, "ok");
+                }
+                
 
             }
         }
