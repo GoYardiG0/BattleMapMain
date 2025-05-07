@@ -116,6 +116,7 @@
                     <Image
                         Aspect="AspectFill"
                         HorizontalOptions="Fill"
+                        Opacity="0.5"
                         Source="statblockbackground.png" />
                     <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*">
                         <Grid Grid.Row="0" Grid.Column="0">
@@ -179,7 +180,6 @@
                 </Grid>
             </Border>
         </Grid>
-        <Button Clicked="Button_Clicked" Text="send details" />
 
     </VerticalStackLayout>
 </ContentPage>

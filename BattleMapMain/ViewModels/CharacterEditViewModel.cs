@@ -69,10 +69,12 @@ namespace BattleMapMain.ViewModels
             this.serviceProvider = serviceProvider;
             EditCharacterCommand = new Command(OnEditCharacter);
             UploadPhotoCommand = new Command(OnUploadPhoto);
+            CancelCommand = new Command(OnCancel);
         }
 
         public Command EditCharacterCommand { get; }
         public Command UploadPhotoCommand { get; }
+        public Command CancelCommand { get; }
 
         public async void OnEditCharacter()
         {
@@ -154,6 +156,11 @@ namespace BattleMapMain.ViewModels
                 }
                 
             }
+        }
+        private void OnCancel()
+        {
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PopAsync();
         }
 
         #region image

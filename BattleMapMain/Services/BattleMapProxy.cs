@@ -8,7 +8,6 @@ using BattleMapMain.Classes_and_Objects;
 using BattleMapMain.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
-using static Android.Telecom.Call;
 
 
 namespace BattleMapMain.Services

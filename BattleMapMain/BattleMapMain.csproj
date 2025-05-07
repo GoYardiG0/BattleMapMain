@@ -69,6 +69,7 @@
 	  <None Remove="Resources\Images\dragonpfp - Copy.png" />
 	  <None Remove="Resources\Images\dragonpfp.png" />
 	  <None Remove="Resources\Images\edit.png" />
+	  <None Remove="Resources\Images\gildedborder.png" />
 	  <None Remove="Resources\Images\hpicon.png" />
 	  <None Remove="Resources\Images\infoicon.png" />
 	  <None Remove="Resources\Images\move.png" />

@@ -1,127 +1,339 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.CharacterEditView"
-             Title="CharacterEditView"
-             x:DataType="viewmodels:CharacterEditViewModel"
-             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             BackgroundImageSource="statblockbackground.png">
+<ContentPage
+    x:Class="BattleMapMain.Views.CharacterEditView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    x:DataType="viewmodels:CharacterEditViewModel"
+    BackgroundImageSource="statblockbackground.png"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
     <Border
-Margin="20,30,20,50"
-Padding="0"
-Background="Transparent"
-BackgroundColor="Transparent"
-Stroke="Maroon"
-StrokeThickness="3"
-WidthRequest="600">
+        Margin="20,30,20,30"
+        Padding="0"
+        Background="Transparent"
+        BackgroundColor="Transparent"
+        HeightRequest="760"
+        Stroke="Maroon"
+        StrokeThickness="3"
+        WidthRequest="380">
         <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-            <Entry
-        Margin="10"
-        FontSize="20"
-        HorizontalOptions="Center"
-        Placeholder="Character Name"
-        PlaceholderColor="Black"
-        Text="{Binding Name}"/>
-            <Border
-        Margin="10"
-        BackgroundColor="Maroon"
-        HeightRequest="5" />
-            <HorizontalStackLayout HorizontalOptions="Center">
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding ShowNameError}"
+                Text="kil"
+                TextColor="Red" />
+            <Grid ColumnDefinitions="*,*">
+                <Image
+                    Grid.Column="0"
+                    Margin="10,10,2,2"
+                    HeightRequest="150"
+                    HorizontalOptions="Fill"
+                    Source="{Binding PhotoURL}"
+                    WidthRequest="170" />
+                <ImageButton
+                    Margin="0,0,10,15"
+                    BackgroundColor="Transparent"
+                    Command="{Binding UploadPhotoCommand}"
+                    CornerRadius="3"
+                    HeightRequest="25"
+                    HorizontalOptions="EndAndExpand"
+                    Source="edit.png"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="25" />
+                <VerticalStackLayout Grid.Column="1" Margin="10">
+                    <Button
+                        BackgroundColor="Maroon"
+                        BorderColor="#511100"
+                        BorderWidth="2"
+                        Command="{Binding CancelCommand}"
+                        CornerRadius="3"
+                        FontAttributes="Bold"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Text="Cancel Changes"
+                        VerticalOptions="Center" />
+                    <Label
+                        Margin="5"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="Monster Name"
+                        TextColor="Black" />
+                    <Entry
+                        Margin="10"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        Text="{Binding Name}"
+                        VerticalOptions="StartAndExpand"
+                        WidthRequest="170" />
+                </VerticalStackLayout>
+            </Grid>
+            <BoxView
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="2"
+                Color="Maroon" />
+            <!--<Label
+                IsVisible="{Binding ShowFirstStatsError}"
+                Text="{Binding FirstStatsError}"
+                TextColor="Red" />-->
+            <Grid ColumnDefinitions="*,*,*,*,*,*">
+                <Label
+                    Grid.Column="0"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="EndAndExpand"
+                    Text="HP"
+                    TextColor="Black" />
                 <Entry
-            Margin="10,10,50,10"
-            FontSize="30"
-            HeightRequest="50"
-            Placeholder="HP"
-            PlaceholderColor="Black"
-            Text="{Binding Hp}"
-                    Keyboard="Numeric"/>
+                    Grid.Column="1"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    Text="{Binding Hp}" />
+                <Label
+                    Grid.Column="2"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="EndAndExpand"
+                    Text="AC"
+                    TextColor="Black" />
                 <Entry
-            Margin="50,10,50,10"
-            FontSize="30"
-            HeightRequest="50"
-            Placeholder="AC"
-            PlaceholderColor="Black"
-            Text="{Binding Ac}"
-                    Keyboard="Numeric"/>
+                    Grid.Column="3"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    Text="{Binding Ac}" />
+                <Label
+                    Grid.Column="4"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="25"
+                    HorizontalOptions="EndAndExpand"
+                    Text="CR"
+                    TextColor="Black" />
                 <Entry
-            Margin="50,10,50,10"
-            FontSize="30"
-            HeightRequest="50"
-            Placeholder="CR"
-            PlaceholderColor="Black"
-            Text="{Binding Level}"
-                    Keyboard="Numeric"/>
-            </HorizontalStackLayout>
-            <Border
-        Margin="10"
-        BackgroundColor="Maroon"
-        HeightRequest="5" />
-            <HorizontalStackLayout>
+                    Grid.Column="5"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    Text="{Binding Level}" />
+            </Grid>
+            <BoxView
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="2"
+                Color="Maroon" />
+            <!--<Label
+                IsVisible="{Binding ShowSecondStatsError}"
+                Text="{Binding SecondStatsError}"
+                TextColor="Red" />-->
+            <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*,*">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="19"
+                    HorizontalOptions="EndAndExpand"
+                    Text="STR"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand" />
                 <Entry
-            Margin="5"
-            Placeholder="Strength"
-            PlaceholderColor="Black"
-            Text="{Binding Str}"
-                    Keyboard="Numeric"/>
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    PlaceholderColor="Black"
+                    Text="{Binding Str}" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="19"
+                    HorizontalOptions="EndAndExpand"
+                    Text="DEX"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand" />
                 <Entry
-            Margin="5"
-            Placeholder="Dexterity"
-            PlaceholderColor="Black"
-            Text="{Binding Dex}"
-                    Keyboard="Numeric"/>
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    PlaceholderColor="Black"
+                    Text="{Binding Dex}" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="19"
+                    HorizontalOptions="EndAndExpand"
+                    Text="CON"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand" />
                 <Entry
-            Margin="5"
-            Placeholder="Constitution"
-            PlaceholderColor="Black" 
-            Text="{Binding Con}"
-                    Keyboard="Numeric"/>
+                    Grid.Row="0"
+                    Grid.Column="5"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    PlaceholderColor="Black"
+                    Text="{Binding Con}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="19"
+                    HorizontalOptions="EndAndExpand"
+                    Text="INT"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand" />
                 <Entry
-            Margin="5"
-            Placeholder="Intelligence"
-            PlaceholderColor="Black" 
-            Text="{Binding Inte}"
-                    Keyboard="Numeric"/>
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    PlaceholderColor="Black"
+                    Text="{Binding Inte}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="19"
+                    HorizontalOptions="EndAndExpand"
+                    Text="WIS"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand" />
                 <Entry
-            Margin="5"
-            Placeholder="Wisdom"
-            PlaceholderColor="Black" 
-            Text="{Binding Wis}"
-                    Keyboard="Numeric"/>
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    PlaceholderColor="Black"
+                    Text="{Binding Wis}" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="4"
+                    Margin="10"
+                    FontAttributes="Bold"
+                    FontSize="19"
+                    HorizontalOptions="EndAndExpand"
+                    Text="CHA"
+                    TextColor="Black"
+                    VerticalOptions="CenterAndExpand" />
                 <Entry
-            Margin="5"
-            Placeholder="Charisma"
-            PlaceholderColor="Black" 
-            Text="{Binding Cha}"
-                    Keyboard="Numeric"/>
-            </HorizontalStackLayout>
-            <Border
-        Margin="10"
-        BackgroundColor="Maroon"
-        HeightRequest="5" />
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    FontSize="25"
+                    HeightRequest="50"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    PlaceholderColor="Black"
+                    Text="{Binding Cha}" />
+            </Grid>
+            <BoxView
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="2"
+                Color="Maroon" />
+            <Label
+                IsVisible="{Binding ShowPassiveDescError}"
+                Text="{Binding PassiveDescError}"
+                TextColor="Red" />
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HeightRequest="25"
+                Text="Monster Passives"
+                VerticalOptions="StartAndExpand" />
             <Editor
-        HeightRequest="70"
-        Placeholder="Character Passives"
-        PlaceholderColor="Black" 
-        Text="{Binding PassiveDesc}"/>
+                Margin="10,-5,10,-5"
+                FontSize="18"
+                HeightRequest="75"
+                Text="{Binding PassiveDesc}" />
             <Border
-        Margin="10"
-        BackgroundColor="Maroon"
-        HeightRequest="5" />
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="3"
+                Stroke="Maroon" />
+            <Label
+                IsVisible="{Binding ShowActionDescError}"
+                Text="{Binding ActionDescError}"
+                TextColor="Red" />
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HeightRequest="25"
+                Text="Monster Actions"
+                VerticalOptions="StartAndExpand" />
             <Editor
-        HeightRequest="70"
-        Placeholder="Character Actions"
-        PlaceholderColor="Black" 
-        Text="{Binding ActionDesc}"/>
-            <Border
-        Margin="20"
-        BackgroundColor="Maroon"
-        HeightRequest="5" />
+                Margin="10,-5,10,-5"
+                FontSize="18"
+                HeightRequest="75"
+                Text="{Binding ActionDesc}" />
+            <BoxView
+                Margin="5"
+                BackgroundColor="Maroon"
+                HeightRequest="2"
+                Color="Maroon" />
+            <Label
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="20"
+                HeightRequest="25"
+                Text="Special Monster Actions"
+                VerticalOptions="StartAndExpand" />
             <Editor
-        HeightRequest="70"
-        Placeholder="Additional Actions/Abilities"
-        PlaceholderColor="Black" 
-        Text="{Binding SpecialActionDesc}"/>
-            <Button Text="Add Character" Command="{Binding EditCharacterCommand}" IsEnabled="{Binding NotInServerCall}"   />
+                Margin="10,-5,10,-5"
+                FontSize="18"
+                HeightRequest="75"
+                Text="{Binding SpecialActionDesc}" />
+            <Grid>
+                <Button
+                    Margin="10"
+                    BackgroundColor="Maroon"
+                    Command="{Binding EditCharacterCommand}"
+                    CornerRadius="50"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HeightRequest="45"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Apply Changes"
+                    WidthRequest="310" />
+                <Image
+                    HeightRequest="88"
+                    HorizontalOptions="Fill"
+                    Source="gildedborder.png" />
+            </Grid>
         </VerticalStackLayout>
     </Border>
 </ContentPage>

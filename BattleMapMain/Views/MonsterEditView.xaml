@@ -10,11 +10,11 @@
     Shell.NavBarIsVisible="False"
     Shell.TabBarIsVisible="False">
     <Border
-        Margin="20,30,20,50"
+        Margin="20,30,20,30"
         Padding="0"
         Background="Transparent"
         BackgroundColor="Transparent"
-        HeightRequest="740"
+        HeightRequest="760"
         Stroke="Maroon"
         StrokeThickness="3"
         WidthRequest="380">
@@ -27,11 +27,14 @@
             <Grid ColumnDefinitions="*,*">
                 <Image
                     Grid.Column="0"
-                    Margin="2"
-                    Source="{Binding PhotoURL}" />
+                    Margin="10,10,2,2"
+                    HeightRequest="150"
+                    HorizontalOptions="Fill"
+                    Source="{Binding PhotoURL}"
+                    WidthRequest="170" />
                 <ImageButton
                     Margin="0,0,10,15"
-                    BackgroundColor="#FFE9DFBF"
+                    BackgroundColor="Transparent"
                     Command="{Binding UploadPhotoCommand}"
                     CornerRadius="3"
                     HeightRequest="25"
@@ -40,6 +43,17 @@
                     VerticalOptions="EndAndExpand"
                     WidthRequest="25" />
                 <VerticalStackLayout Grid.Column="1" Margin="10">
+                    <Button
+                        BackgroundColor="Maroon"
+                        BorderColor="#511100"
+                        BorderWidth="2"
+                        Command="{Binding CancelCommand}"
+                        CornerRadius="3"
+                        FontAttributes="Bold"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Text="Cancel Changes"
+                        VerticalOptions="Center" />
                     <Label
                         Margin="5"
                         FontAttributes="Bold"
@@ -58,7 +72,8 @@
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
-                HeightRequest="5" />
+                HeightRequest="3"
+                Stroke="Maroon" />
             <Label
                 IsVisible="{Binding ShowFirstStatsError}"
                 Text="{Binding FirstStatsError}"
@@ -116,7 +131,8 @@
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
-                HeightRequest="5" />
+                HeightRequest="3"
+                Stroke="Maroon" />
             <Label
                 IsVisible="{Binding ShowSecondStatsError}"
                 Text="{Binding SecondStatsError}"
@@ -246,7 +262,8 @@
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
-                HeightRequest="5" />
+                HeightRequest="3"
+                Stroke="Maroon" />
             <Label
                 IsVisible="{Binding ShowPassiveDescError}"
                 Text="{Binding PassiveDescError}"
@@ -259,14 +276,15 @@
                 Text="Monster Passives"
                 VerticalOptions="StartAndExpand" />
             <Editor
-                Margin="10,0,10,0"
+                Margin="10,-5,10,-5"
                 FontSize="18"
-                HeightRequest="40"
+                HeightRequest="75"
                 Text="{Binding PassiveDesc}" />
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
-                HeightRequest="5" />
+                HeightRequest="3"
+                Stroke="Maroon" />
             <Label
                 IsVisible="{Binding ShowActionDescError}"
                 Text="{Binding ActionDescError}"
@@ -279,14 +297,15 @@
                 Text="Monster Actions"
                 VerticalOptions="StartAndExpand" />
             <Editor
-                Margin="10,0,10,0"
+                Margin="10,-5,10,-5"
                 FontSize="18"
-                HeightRequest="40"
+                HeightRequest="75"
                 Text="{Binding ActionDesc}" />
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
-                HeightRequest="5" />
+                HeightRequest="3"
+                Stroke="Maroon" />
             <Label
                 Margin="10,0,0,0"
                 FontAttributes="Bold"
@@ -295,19 +314,27 @@
                 Text="Special Monster Actions"
                 VerticalOptions="StartAndExpand" />
             <Editor
-                Margin="10,0,10,0"
+                Margin="10,-5,10,-5"
                 FontSize="18"
-                HeightRequest="40"
+                HeightRequest="75"
                 Text="{Binding SpecialActionDesc}" />
-            <Button
-                Margin="10"
-                BackgroundColor="Maroon"
-                BorderColor="#511100"
-                BorderWidth="3"
-                Command="{Binding EditMonsterCommand}"
-                CornerRadius="10"
-                IsEnabled="{Binding NotInServerCall}"
-                Text="Edit Monster" />
+            <Grid>
+                <Button
+                    Margin="10"
+                    BackgroundColor="Maroon"
+                    Command="{Binding EditMonsterCommand}"
+                    CornerRadius="50"
+                    FontAttributes="Bold"
+                    FontSize="15"
+                    HeightRequest="45"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Apply Changes"
+                    WidthRequest="310" />
+                <Image
+                    HeightRequest="88"
+                    HorizontalOptions="Fill"
+                    Source="gildedborder.png" />
+            </Grid>
         </VerticalStackLayout>
     </Border>
 </ContentPage>

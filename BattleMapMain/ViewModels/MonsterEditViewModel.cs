@@ -70,11 +70,13 @@ namespace BattleMapMain.ViewModels
             this.serviceProvider = serviceProvider;
             EditMonsterCommand = new Command(OnEditMonster);
             UploadPhotoCommand = new Command(OnUploadPhoto);
+            CancelCommand = new Command(OnCancel);
             
         }
 
         public Command EditMonsterCommand { get; }
         public Command UploadPhotoCommand { get; }
+        public Command CancelCommand { get; }
         //This method open the file picker to select a photo
         
         public async void OnEditMonster()
@@ -152,6 +154,11 @@ namespace BattleMapMain.ViewModels
                 
 
             }
+        }
+        private void OnCancel()
+        {
+            // Navigate to the Register View page
+            ((App)Application.Current).MainPage.Navigation.PopAsync();
         }
 
         #region image

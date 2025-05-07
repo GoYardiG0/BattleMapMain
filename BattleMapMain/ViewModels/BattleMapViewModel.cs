@@ -108,7 +108,7 @@ namespace BattleMapMain.ViewModels
                             PathF path = new PathF();
                             //path.AppendCircle(x+ boxWidth / 2, y+ boxWidth / 2, boxWidth/2-2);
                             //canvas.ClipPath(path);
-                            canvas.DrawImage(mini.img, x, y, boxWidth, boxHeight);
+                            canvas.DrawImage(mini.img, x, y, boxWidth-2, boxHeight-2);
                         }
 
                     }
@@ -260,9 +260,9 @@ namespace BattleMapMain.ViewModels
             UpdateMap(await hubProxy.GetDetails());
         }
 
-        public async void SendDetailsToHub(MapDetails details)
+        public async Task SendDetailsToHub(MapDetails details)
         {
-            hubProxy.SendDetails(details);
+            await hubProxy.SendDetails(details);
         }
         //public ICommand ChangeImageCommand { get; }
 

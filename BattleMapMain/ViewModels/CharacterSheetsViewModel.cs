@@ -113,8 +113,8 @@ namespace BattleMapMain.ViewModels
         }
 
         #region Single Selection
-        private Monster selectedCharacter;
-        public Monster SelectedCharacter
+        private Character selectedCharacter;
+        public Character SelectedCharacter
         {
             get => selectedCharacter;
             set
