@@ -36,6 +36,7 @@ namespace BattleMapMain.ViewModels
             {
                 joinCode = value;
                 OnPropertyChanged();
+                ValidateCode();
             }
         }
         private bool showCodeError;
