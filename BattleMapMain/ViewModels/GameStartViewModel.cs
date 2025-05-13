@@ -38,53 +38,73 @@ namespace BattleMapMain.ViewModels
                 OnPropertyChanged();
             }
         }
+        private bool showCodeError;
+        public bool ShowCodeError
+        {
+            get => showCodeError;
+            set
+            {
+                showCodeError = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool ValidateCode()
+        {
+            ShowCodeError = string.IsNullOrEmpty(JoinCode);
+            return showCodeError;                
+        }
 
         public ICommand JoinSessionCommand { get; }
         public ICommand CreateSessionCommand { get; }
 
         public async void JoinSession()
         {
-            InServerCall = true;
-            if (!registered)
-            {                
-                BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
-                hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
-                SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
-                hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
-            }
-            int userid = ((App)Application.Current).LoggedInUser.UserId;
-
-            string errorMsg = await hubProxy.Connect(joinCode, userid, false);
-            
-
-            InServerCall = false;
-            if (errorMsg == "")
+            if (!ValidateCode())
             {
-                ((App)Application.Current).CurrentSessionCode = joinCode;
-                Session();
-            }
-                
+                InServerCall = true;
+                if (!registered)
+                {
+                    BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
+                    hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
+                    SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+                    hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+                }
+                int userid = ((App)Application.Current).LoggedInUser.UserId;
+
+                string errorMsg = await hubProxy.Connect(joinCode, userid, false);
+
+
+                InServerCall = false;
+                if (errorMsg == "")
+                {
+                    ((App)Application.Current).CurrentSessionCode = joinCode;
+                    Session();
+                }
+            }            
         }
         public async void CreateSession()
         {
-            InServerCall = true;
-            if (!registered)
+            if (!ValidateCode())
             {
-                BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
-                await hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
-                SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
-                await hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
-            }
-            int userid = ((App)Application.Current).LoggedInUser.UserId;
+                InServerCall = true;
+                if (!registered)
+                {
+                    BattleMapViewModel bvm = serviceProvider.GetService<BattleMapViewModel>();
+                    await hubProxy.RegisterToUpdateDetails(bvm.UpdateMapDetails);
+                    SessionViewModel svm = serviceProvider.GetService<SessionViewModel>();
+                    await hubProxy.RegisterToUpdateUsers(svm.UpdateUsers);
+                }
+                int userid = ((App)Application.Current).LoggedInUser.UserId;
 
-            string? errorMsg =  await hubProxy.Connect(joinCode, userid, true);
+                string? errorMsg = await hubProxy.Connect(joinCode, userid, true);
 
-            InServerCall = false;
-            if (errorMsg == "")
-            {
-                ((App)Application.Current).CurrentSessionCode = joinCode;
-                Session();
-            }
+                InServerCall = false;
+                if (errorMsg == "")
+                {
+                    ((App)Application.Current).CurrentSessionCode = joinCode;
+                    Session();
+                }
+            }            
         }
 
         private void Session()

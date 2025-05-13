@@ -103,12 +103,12 @@ namespace BattleMapMain.ViewModels
 
                         if (mini.img != null)
                         {
-                            float x = (float)(mini.location.col * boxWidth /*+ boxWidth / 2*/);
-                            float y = (float)(mini.location.row * boxHeight /*+ boxHeight / 2*/);
+                            float x = (float)(mini.location.col * boxWidth + 1.5 /*+ boxWidth / 2*/);
+                            float y = (float)(mini.location.row * boxHeight + 1.5 /*+ boxHeight / 2*/);
                             PathF path = new PathF();
                             //path.AppendCircle(x+ boxWidth / 2, y+ boxWidth / 2, boxWidth/2-2);
                             //canvas.ClipPath(path);
-                            canvas.DrawImage(mini.img, x, y, boxWidth-2, boxHeight-2);
+                            canvas.DrawImage(mini.img, x, y, boxWidth-3, boxHeight-3);
                         }
 
                     }

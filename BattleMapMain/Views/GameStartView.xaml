@@ -7,9 +7,19 @@
     Title="Game Start"
     x:DataType="viewmodels:GameStartViewModel">
     <VerticalStackLayout>
+        <Label
+            IsVisible="{Binding ShowCodeError}"
+            Text="Code must not be empty"
+            TextColor="Red" />
         <Entry IsEnabled="{Binding NotInServerCall}" Text="{Binding JoinCode}" />
-        <Button Command="{Binding JoinSessionCommand}" Text="Join Session" IsEnabled="{Binding NotInServerCall}" />
-        <Button Command="{Binding CreateSessionCommand}" Text="Create Session" IsEnabled="{Binding NotInServerCall}" />
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
+        <Button
+            Command="{Binding JoinSessionCommand}"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="Join Session" />
+        <Button
+            Command="{Binding CreateSessionCommand}"
+            IsEnabled="{Binding NotInServerCall}"
+            Text="Create Session" />
+        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
     </VerticalStackLayout>
 </ContentPage>

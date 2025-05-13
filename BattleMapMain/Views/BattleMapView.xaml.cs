@@ -148,7 +148,7 @@ public partial class BattleMapView : ContentPage
         graphicsView.Invalidate();
     }
 
-    private void Undo_Button(object sender, EventArgs e)
+    private async void Undo_Button(object sender, EventArgs e)
     {
         if (graphics.lines.Count > 0)
         {
@@ -156,6 +156,7 @@ public partial class BattleMapView : ContentPage
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
         graphics.lines.Remove(graphics.lines[graphics.lines.Count - 1]);
         graphicsView.Invalidate();
+        await vm.SendDetailsToHub(new MapDetails(graphics.AllMinis, graphics.lines));
         }
     }
 
