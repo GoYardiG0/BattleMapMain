@@ -59,8 +59,7 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            GoToAddCommand = new Command(GoToAdd);
-            monsters = new ObservableCollection<Monster>();
+            GoToAddCommand = new Command(GoToAdd);            
             SetMonsters();
             FilterMonsters();
             //pendingConfectioneriesKeeper = new();
@@ -77,6 +76,7 @@ namespace BattleMapMain.ViewModels
         }
         public void SetMonsters()
         {
+            this.monsters = new ObservableCollection<Monster>();
             ObservableCollection<Monster>? monsters = ((App)Application.Current).Monsters;
             if (monsters != null)
             {
@@ -86,7 +86,7 @@ namespace BattleMapMain.ViewModels
                         this.monsters.Add(monster);
                 }
             }
-            OnPropertyChanged("monsters");
+            OnPropertyChanged("Monsters");
         }
 
         public void FilterMonsters()

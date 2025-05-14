@@ -58,8 +58,7 @@ namespace BattleMapMain.ViewModels
         public AllMonstersViewModel(BattleMapWebAPIProxy proxy, IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
-            this.proxy = proxy;
-            monsters = new ObservableCollection<Monster>();
+            this.proxy = proxy;            
             SetMonsters();
             FilterMonsters();
             //pendingConfectioneriesKeeper = new();
@@ -70,6 +69,7 @@ namespace BattleMapMain.ViewModels
 
         public void SetMonsters()
         {
+            this.monsters = new ObservableCollection<Monster>();
             ObservableCollection<Monster>? monsters = ((App)Application.Current).Monsters;
             if (monsters != null)
             {
@@ -109,33 +109,33 @@ namespace BattleMapMain.ViewModels
             SetMonsters();
             FilterMonsters();
         }
-        #region Single Selection
-        private Monster selectedMonster;
-        public Monster SelectedMonster
-        {
-            get => selectedMonster;
-            set
-            {
-                selectedMonster = value;
-                OnPropertyChanged();
-                if (selectedMonster != null)
-                    OnSingleSelectMonster();
-            }
-        }
+        //#region Single Selection
+        //private Monster selectedMonster;
+        //public Monster SelectedMonster
+        //{
+        //    get => selectedMonster;
+        //    set
+        //    {
+        //        selectedMonster = value;
+        //        OnPropertyChanged();
+        //        if (selectedMonster != null)
+        //            OnSingleSelectMonster();
+        //    }
+        //}
 
 
-        async void OnSingleSelectMonster()
-        {
-            var navParam = new Dictionary<string, object>()
-                {
-                    { "Monster",SelectedMonster }
-                };
-            await Shell.Current.GoToAsync("MonsterEdit", navParam);
-            SelectedMonster = null;
-        }
+        //async void OnSingleSelectMonster()
+        //{
+        //    var navParam = new Dictionary<string, object>()
+        //        {
+        //            { "Monster",SelectedMonster }
+        //        };
+        //    await Shell.Current.GoToAsync("MonsterEdit", navParam);
+        //    SelectedMonster = null;
+        //}
 
 
-        #endregion
+        //#endregion
         
         
     }

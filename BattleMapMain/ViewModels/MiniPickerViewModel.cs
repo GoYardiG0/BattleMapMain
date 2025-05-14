@@ -284,12 +284,12 @@ namespace BattleMapMain.ViewModels
             selectedMini = new Mini(selectedMonster);
             selectedMini.SetImage();
             OnPropertyChanged("SelectedMini");
-            //selectedMonster = null;
-            //if (ClosePopup != null)
-            //{
-            //    List<string> l = new List<string>();
-            //    ClosePopup(l);
-            //}
+            SelectedMonster = null;
+            if (ClosePopup != null)
+            {
+                List<string> l = new List<string>();
+                ClosePopup(l);
+            }
         }
 
         private Character selectedCharacter;

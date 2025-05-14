@@ -140,12 +140,14 @@ public partial class BattleMapView : ContentPage
 
     }
 
-    private void Clear_Button(object sender, EventArgs e)
+    private async void Clear_Button(object sender, EventArgs e)
     {
         var graphicsView = this.MapGraphicsView;
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
         graphics.lines.Clear();
         graphicsView.Invalidate();
+        mode = 2;
+        await vm.SendDetailsToHub(new MapDetails(graphics.AllMinis, graphics.lines));
     }
 
     private async void Undo_Button(object sender, EventArgs e)

@@ -59,8 +59,7 @@ namespace BattleMapMain.ViewModels
         {
             this.serviceProvider = serviceProvider;
             this.proxy = proxy;
-            GoToAddCommand = new Command(GoToAdd);
-            characters = new ObservableCollection<Character>();
+            GoToAddCommand = new Command(GoToAdd);            
             SetCharacters();
             FilterCharacters();
             //pendingConfectioneriesKeeper = new();
@@ -78,6 +77,7 @@ namespace BattleMapMain.ViewModels
         public void SetCharacters()
         {
             ObservableCollection<Character>? characters = ((App)Application.Current).Characters;
+            this.characters = new ObservableCollection<Character>();
             if (characters != null)
             {
                 foreach (Character character in characters)
@@ -110,6 +110,11 @@ namespace BattleMapMain.ViewModels
                 }
             }
             OnPropertyChanged("SearchedCharacters");
+        }
+        public void Refresh()
+        {
+            SetCharacters();
+            FilterCharacters();
         }
 
         #region Single Selection

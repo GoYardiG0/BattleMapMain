@@ -8,7 +8,7 @@
     xmlns:views="clr-namespace:BattleMapMain.Views"
     Title="BattleMapMain"
     x:DataType="viewmodels:AppShellViewModel"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Flyout">
 
     <TabBar Route="tabs1">
 
@@ -66,6 +66,7 @@
             <ShellContent Title="Session View" ContentTemplate="{DataTemplate views:SessionView}" />
         </Tab>
     </TabBar>
+    <MenuItem Command="{Binding LogoutCommand}" Text="Logout " />
 
 </Shell>
 
