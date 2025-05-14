@@ -9,4 +9,13 @@ public partial class AllMonstersView : ContentPage
 		this.BindingContext = vm;
 		InitializeComponent();
 	}
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (this.BindingContext is AllMonstersViewModel)
+        {
+            ((AllMonstersViewModel)this.BindingContext).Refresh();
+        }
+    }
 }

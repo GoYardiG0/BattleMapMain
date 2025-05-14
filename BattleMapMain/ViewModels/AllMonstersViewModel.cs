@@ -104,6 +104,11 @@ namespace BattleMapMain.ViewModels
             OnPropertyChanged("SearchedMonsters");
         }
 
+        public void Refresh()
+        {
+            SetMonsters();
+            FilterMonsters();
+        }
         #region Single Selection
         private Monster selectedMonster;
         public Monster SelectedMonster

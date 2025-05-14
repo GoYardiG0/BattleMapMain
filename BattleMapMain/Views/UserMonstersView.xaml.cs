@@ -9,5 +9,14 @@ public partial class UserMonstersView : ContentPage
 		this.BindingContext = viewModel;
 		InitializeComponent();
 	}
-	
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (this.BindingContext is AllMonstersViewModel)
+        {
+            ((AllMonstersViewModel)this.BindingContext).Refresh();
+        }
+    }
+
 }

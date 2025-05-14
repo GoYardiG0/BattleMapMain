@@ -249,8 +249,12 @@ namespace BattleMapMain.ViewModels
         {
             await MainThread.InvokeOnMainThreadAsync(() =>
             {
-                UpdateMap(details);
-                selectedMini = null;
+                lock ()
+                {
+                    UpdateMap(details);
+                    SelectedMini = null;
+                }
+                
             });
 
         }
