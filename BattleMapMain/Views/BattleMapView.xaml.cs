@@ -38,7 +38,7 @@ public partial class BattleMapView : ContentPage
             graphicsView.Invalidate();
         }
     }
-    public async void UpdateMapDetails(MapDetails details)
+    public async Task UpdateMapDetails(MapDetails details)
     {
         var graphicsView = this.MapGraphicsView;
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
@@ -53,7 +53,10 @@ public partial class BattleMapView : ContentPage
 
             }
             graphics.lines = details.Lines;
-            graphicsView.Invalidate();            
+            await MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                graphicsView.Invalidate();
+            });
         }
     }
 

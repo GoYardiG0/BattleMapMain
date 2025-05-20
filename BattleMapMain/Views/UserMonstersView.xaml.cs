@@ -13,9 +13,9 @@ public partial class UserMonstersView : ContentPage
     {
         base.OnAppearing();
 
-        if (this.BindingContext is AllMonstersViewModel)
+        if (this.BindingContext is UserMonstersViewModel)
         {
-            ((AllMonstersViewModel)this.BindingContext).Refresh();
+            ((UserMonstersViewModel)this.BindingContext).Refresh();
         }
     }
 

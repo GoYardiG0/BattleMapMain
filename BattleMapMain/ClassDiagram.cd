@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BattleMapMain.ViewModels.AllMonstersViewModel" Collapsed="true">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBAACAAQABAAAgAAAAAAAAAAAABAAEAAAABQAAAAAg=</HashCode>
+      <FileName>ViewModels\AllMonstersViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.AppShellViewModel" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAABAAACAAAAAAAAAAAABAAAAAAAAAEAACIA=</HashCode>
+      <FileName>ViewModels\AppShellViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.GraphicsDrawable" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IogAAAACACEAAgQAAIEACAAAAAIAgAAAABAAAAAAgCA=</HashCode>
+      <FileName>ViewModels\BattleMapViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.BattleMapViewModel" Collapsed="true">
+    <Position X="24" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gABAADAAWAABAAgEGMAIACDCGiCBMoMBERCDQUAEAAg=</HashCode>
+      <FileName>ViewModels\BattleMapViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.CharacterAddViewModel" Collapsed="true">
+    <Position X="30.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XQYLRS2IO0kkYAikxNEBpWSZI1nVDitNgQBgGwEAQFI=</HashCode>
+      <FileName>ViewModels\CharacterAddViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.CharacterEditViewModel" Collapsed="true">
+    <Position X="6" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XQYLRS2IO0lEYAqExNFBpUSRI1mVBitNgQBgAwEASEI=</HashCode>
+      <FileName>ViewModels\CharacterEditViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.CharacterSheetsViewModel" Collapsed="true">
+    <Position X="12.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEACgBBAAgEEAAAAAAACAABIAEAAQABAAAAAAA=</HashCode>
+      <FileName>ViewModels\CharacterSheetsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.CharacterStatsViewModel" Collapsed="true">
+    <Position X="35.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CharacterStatsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.GameStartViewModel" Collapsed="true">
+    <Position X="26.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAUAAAARgAAAAABBQAAIAFAACAAAACAAAAAAA=</HashCode>
+      <FileName>ViewModels\GameStartViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.LoadingScreenViewModel" Collapsed="true">
+    <Position X="37" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAABAA=</HashCode>
+      <FileName>ViewModels\LoadingScreenViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="8.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAgQAAAAFAACGQAAAAkCAAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.MonsterAddViewModel" Collapsed="true">
+    <Position X="15" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XQ4LRS2IOUkkYAiExNGBrWSZIxuVDiuPgQBgmwEAQFI=</HashCode>
+      <FileName>ViewModels\MonsterAddViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.MonsterEditViewModel" Collapsed="true">
+    <Position X="19.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>XQ4LRS2IOVlkYAiExNMBpWSZIxuVDiuPgwBgmwMAQFI=</HashCode>
+      <FileName>ViewModels\MonsterEditViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.MonsterStatsViewModel" Collapsed="true">
+    <Position X="28.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAA=</HashCode>
+      <FileName>ViewModels\MonsterStatsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="33" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIABACgAAyAMAAggBIAAIAEgAAADIgCGAQIBAoAAAQA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.SessionViewModel" Collapsed="true">
+    <Position X="17.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAEAAAAAAAAAABAAAAAAAJAAAAAAIACIAAAAA=</HashCode>
+      <FileName>ViewModels\SessionViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.UserMonstersViewModel" Collapsed="true">
+    <Position X="21.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBAACEAQgBAAAgAAAAAAAAAAgABAIEAAACBQAAAAAg=</HashCode>
+      <FileName>ViewModels\UserMonstersViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.ViewModels.ViewModelBase" Collapsed="true">
+    <Position X="18.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAABAAAAgQAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.Cords" Collapsed="true">
+    <Position X="24" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\Cords.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.Line" Collapsed="true">
+    <Position X="25.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.MapDetails" Collapsed="true">
+    <Position X="27.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAAAAAAAAAAAAAAAAAAEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\MapDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.Mini" Collapsed="true">
+    <Position X="24" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ZgAIAACAAAAAEAiAAEAAAAWCIAEAAAABgAAAAAIAQGA=</HashCode>
+      <FileName>Classes and Objects\Mini.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.Square" Collapsed="true">
+    <Position X="25.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\Square.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

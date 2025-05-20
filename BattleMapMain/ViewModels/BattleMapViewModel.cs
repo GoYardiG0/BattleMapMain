@@ -176,7 +176,7 @@ namespace BattleMapMain.ViewModels
     public partial class BattleMapViewModel : ViewModelBase
     {
         public event Action<List<string>> OpenPopup;
-        public event Action<MapDetails> UpdateMap;
+        public event Func<MapDetails, Task> UpdateMap;
         private IServiceProvider serviceProvider;
         public BattleMapWebAPIProxy proxy;
         public BattleMapProxy hubProxy;
@@ -247,16 +247,13 @@ namespace BattleMapMain.ViewModels
 
         public async void UpdateMapDetails(MapDetails details)
         {
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
                 Object obj = new Object();
                 lock (obj)
                 {
-                    UpdateMap(details);
+                    Task t = UpdateMap(details);
+                    t.Wait();
                     SelectedMini = null;
-                }
-                
-            });
+                }                
 
         }
 

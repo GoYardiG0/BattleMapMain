@@ -44,7 +44,6 @@ namespace BattleMapMain
             builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<GameStartView>();
-            builder.Services.AddTransient<ProfileView>();
             builder.Services.AddTransient<AddFriendView>();
             builder.Services.AddTransient<AllMonstersView>();
             builder.Services.AddTransient<BattleMapView>();
@@ -82,18 +81,9 @@ namespace BattleMapMain
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<GameStartViewModel>();
             builder.Services.AddTransient<AppShellViewModel>();
-            builder.Services.AddTransient<ProfileViewModel>();
-            builder.Services.AddTransient<AddFriendViewModel>();
             builder.Services.AddTransient<AllMonstersViewModel>();
             builder.Services.AddSingleton<BattleMapViewModel>();
-            builder.Services.AddTransient<CalculatorViewModel>();
             builder.Services.AddTransient<CharacterSheetsViewModel>();
-            builder.Services.AddTransient<DieRollerViewModel>();
-            builder.Services.AddTransient<FriendListViewModel>();
-            builder.Services.AddTransient<FriendProfileViewModel>();
-            builder.Services.AddTransient<PasswordResetViewModel>();
-            builder.Services.AddTransient<PlacedMinisViewModel>();
-            builder.Services.AddTransient<SavedMonstersViewModel>();
             builder.Services.AddSingleton<SessionViewModel>();
             builder.Services.AddTransient<MonsterStatsViewModel>();
             builder.Services.AddTransient<UserMonstersViewModel>();

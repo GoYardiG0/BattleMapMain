@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleMapMain.ViewModels
 {
-    public class CharacterStatsViewModel
+    public class CharacterStatsViewModel : ViewModelBase
     {
     }
 }

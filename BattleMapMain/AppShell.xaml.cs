@@ -20,7 +20,6 @@ namespace BattleMapMain
         {
             Routing.RegisterRoute("SessionTabs", typeof(TabBar));
             Routing.RegisterRoute("GameStart", typeof(GameStartView));
-            Routing.RegisterRoute("Profile", typeof(ProfileView));
             Routing.RegisterRoute("BattleMap", typeof(BattleMapView));
             Routing.RegisterRoute("MonsterDetails", typeof(MonsterStatsView));
             Routing.RegisterRoute("MonsterEdit", typeof(MonsterEditView));
