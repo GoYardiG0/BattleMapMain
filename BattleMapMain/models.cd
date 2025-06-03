@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BattleMapMain.Classes_and_Objects.Cords" Collapsed="true">
+    <Position X="17.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\Cords.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.Line" Collapsed="true">
+    <Position X="16" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\Line.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.MapDetails" Collapsed="true">
+    <Position X="17" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAAAAAAAAAAAAAAAAAAEAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Classes and Objects\MapDetails.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Classes_and_Objects.Mini" Collapsed="true">
+    <Position X="17.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ZgAIAACAAAAAEAiAAEAAAAWCIAEAAAABgAAAAAIAQGA=</HashCode>
+      <FileName>Classes and Objects\Mini.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Models.Character" Collapsed="true">
+    <Position X="12.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAAAAAKAAAAAQAiAAEAAAAgAYAEAAAEBgAAAAAAAQGA=</HashCode>
+      <FileName>Models\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Models.LoginInfo" Collapsed="true">
+    <Position X="14.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>Models\LoginInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Models.Monster" Collapsed="true">
+    <Position X="10.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RCAAAACAAQAAAACAAEAAEAgAIAEAAAACgCAAABAAQGA=</HashCode>
+      <FileName>Models\Monster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BattleMapMain.Models.User" Collapsed="true">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAQAACAIAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

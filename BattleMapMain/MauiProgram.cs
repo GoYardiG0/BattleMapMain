@@ -44,17 +44,9 @@ namespace BattleMapMain
             builder.Services.AddTransient<RegisterView>();
             builder.Services.AddTransient<AppShell>();
             builder.Services.AddTransient<GameStartView>();
-            builder.Services.AddTransient<AddFriendView>();
             builder.Services.AddTransient<AllMonstersView>();
             builder.Services.AddTransient<BattleMapView>();
-            builder.Services.AddTransient<CalculatorView>();
             builder.Services.AddTransient<CharacterSheetsView>();
-            builder.Services.AddTransient<DieRollerView>();
-            builder.Services.AddTransient<FriendListView>();
-            builder.Services.AddTransient<FriendProfileView>();
-            builder.Services.AddTransient<PasswordResetView>();
-            builder.Services.AddTransient<PlacedMinisView>();
-            builder.Services.AddTransient<SavedMonstersView>();
             builder.Services.AddTransient<SessionView>();
             builder.Services.AddTransient<UserMonstersView>();
             builder.Services.AddTransient<LoadingScreenView>();
