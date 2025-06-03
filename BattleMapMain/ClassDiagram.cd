@@ -135,13 +135,6 @@
       <FileName>Views\AllMonstersView.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BattleMapMain.Views.BattleMapView" Collapsed="true">
-    <Position X="28.25" Y="3.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAwAIAQADAggAACAAIEAAgAAAAAAAAgAAAAQAEAAACA=</HashCode>
-      <FileName>Views\BattleMapView.xaml.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BattleMapMain.Views.CharacterAddView" Collapsed="true">
     <Position X="16.25" Y="3" Width="1.5" />
     <TypeIdentifier>

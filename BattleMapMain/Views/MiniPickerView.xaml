@@ -18,7 +18,8 @@
             HeightRequest="50"
             ItemDisplayBinding="{Binding .}"
             ItemsSource="{Binding BindingContext.Filters, Source={x:Reference layout}}"
-            SelectedItem="{Binding BindingContext.SelectedFilter, Source={x:Reference layout}}" />
+            SelectedItem="{Binding BindingContext.SelectedFilter, Source={x:Reference layout}}"
+            TextColor="Black"/>
         <ScrollView x:Name="scrlview" Margin="10">
             <Grid>
                 <CollectionView
@@ -30,7 +31,8 @@
                     IsVisible="{Binding ShowMonsters}"
                     ItemsSource="{Binding SearchedMonsters}"
                     SelectedItem="{Binding SelectedMonster}"
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    BackgroundColor="Red">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="Models:Monster">
