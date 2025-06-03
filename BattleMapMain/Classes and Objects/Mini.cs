@@ -15,8 +15,7 @@ namespace BattleMapMain.Classes_and_Objects
         public static BattleMapWebAPIProxy proxy;
 
         public Monster monster {  get; set; }
-        public Character character {  get; set; }
-        public int currentHP {  get; set; }
+        public Character character {  get; set; }        
         public Cords location {  get; set; }
         public static List<Mini> AllMinis = new List<Mini>();
 
@@ -63,7 +62,6 @@ namespace BattleMapMain.Classes_and_Objects
             if (count > 0)
                 this.Name += $"_{count}";
             this.monster = monster;
-            currentHP = monster.Hp;
             this.ImgURL = monster.MonsterPicURL;
             this.Ac = monster.Ac;
             this.Hp = monster.Hp;
@@ -90,16 +88,9 @@ namespace BattleMapMain.Classes_and_Objects
             if (count > 0)
                 this.Name += $"_{count}";
             this.character = character;
-            this.currentHP = character.Hp;
             this.ImgURL = character.CharacterPicURL;
             this.Ac = character.Ac;
-            this.Hp = character.Hp;
-            this.Str = character.Str;
-            this.Dex = character.Dex;
-            this.Con = character.Con;
-            this.Int = character.Int;
-            this.Wis = character.Wis;
-            this.Cha = character.Cha;
+            this.Hp = character.Hp;        
             this.Level = character.Level;
             this.PassiveDesc = character.PassiveDesc;
             this.ActionDesc = character.ActionDesc;
