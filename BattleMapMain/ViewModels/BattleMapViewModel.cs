@@ -247,13 +247,13 @@ namespace BattleMapMain.ViewModels
 
         public async void UpdateMapDetails(MapDetails details)
         {
-                Object obj = new Object();
-                lock (obj)
-                {
-                    Task t = UpdateMap(details);
-                    t.Wait();
-                    SelectedMini = null;
-                }                
+            Object obj = new Object();
+            lock (obj)
+            {
+                Task t = UpdateMap(details);
+                t.Wait();
+                SelectedMini = null;
+            }
 
         }
 
