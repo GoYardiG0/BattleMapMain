@@ -5,21 +5,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     Title="Game Start"
-    x:DataType="viewmodels:GameStartViewModel">
-    <VerticalStackLayout>
-        <Label
-            IsVisible="{Binding ShowCodeError}"
-            Text="Code must not be empty"
-            TextColor="Red" />
-        <Entry IsEnabled="{Binding NotInServerCall}" Text="{Binding JoinCode}" />
-        <Button
-            Command="{Binding JoinSessionCommand}"
-            IsEnabled="{Binding NotInServerCall}"
-            Text="Join Session" />
-        <Button
-            Command="{Binding CreateSessionCommand}"
-            IsEnabled="{Binding NotInServerCall}"
-            Text="Create Session" />
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red" />
-    </VerticalStackLayout>
+    x:DataType="viewmodels:GameStartViewModel"
+    BackgroundColor="#f2f2f7">
+
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout Padding="24" Spacing="16" VerticalOptions="Center">
+
+                <Label
+                    Text="Enter Join Code"
+                    FontSize="18"
+                    TextColor="#333" />
+
+                <Label
+                    IsVisible="{Binding ShowCodeError}"
+                    Text="Code must not be empty"
+                    TextColor="Red"
+                    FontSize="14"
+                    FontAttributes="Italic" />
+
+                <Entry
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="{Binding JoinCode}"
+                    HeightRequest="50"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    Placeholder="Join Code"
+                    PlaceholderColor="#888" />
+
+                <Button
+                    Command="{Binding JoinSessionCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Join Session"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
+                    FontSize="16"
+                    HeightRequest="50" />
+
+                <Button
+                    Command="{Binding CreateSessionCommand}"
+                    IsEnabled="{Binding NotInServerCall}"
+                    Text="Create Session"
+                    BackgroundColor="#34C759"
+                    TextColor="White"
+                    FontSize="16"
+                    HeightRequest="50" />
+
+                <ActivityIndicator
+                    IsRunning="{Binding InServerCall}"
+                    Color="#FF3B30"
+                    HeightRequest="40"
+                    WidthRequest="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

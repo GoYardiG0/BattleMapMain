@@ -94,6 +94,7 @@ namespace BattleMapMain.ViewModels
             if (!ShowNameError && !showAcError && !showActionDescError && !showChaError && !showConError && !showDexError &&
                 !showHpError && !showInteError && !showLevelError && !showNameError && !showPassiveDescError && !showStrError && !showWisError)
             {
+                ShowError = false;
                 //Create a new AppUser object with the data from the registration form
                 var newCharacter = new Character
                 {
@@ -156,6 +157,10 @@ namespace BattleMapMain.ViewModels
                 }
                 
             }
+            else
+            {
+                ShowError = true;
+            }
         }
         private void OnCancel()
         {
@@ -163,6 +168,16 @@ namespace BattleMapMain.ViewModels
             ((App)Application.Current).MainPage.Navigation.PopAsync();
         }
 
+        private bool showError;
+        public bool ShowError
+        {
+            get => showError;
+            set
+            {
+                showError = value;
+                OnPropertyChanged();
+            }
+        }
         #region image
         private string photoURL;
 

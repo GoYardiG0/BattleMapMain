@@ -1,49 +1,60 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.SessionView"
-             xmlns:Models="clr-namespace:BattleMapMain.Models"
-xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             Title="SessionView"
-             x:DataType="viewmodels:SessionViewModel"
-             >
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Models="clr-namespace:BattleMapMain.Models"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    x:Class="BattleMapMain.Views.SessionView"
+    x:DataType="viewmodels:SessionViewModel"
+    Title="Session"
+    BackgroundColor="#f2f2f7"
+    Shell.FlyoutBehavior="Disabled">
+
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
             <CollectionView
-    x:Name="collection"
-    Grid.Row="1"
-    Grid.Column="0"
-    Grid.ColumnSpan="3"
-    Margin="3"
-    ItemsSource="{Binding UsersInSession}"
->
+                x:Name="collection"
+                ItemsSource="{Binding UsersInSession}"
+                SelectionMode="None">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:User">
-                        <Border
-                    Margin="4,5"
-                    Padding="4"
-                    HeightRequest="80">
-                                <Grid ColumnDefinitions="*,*,*,*">
-                                    <Label
-                            Grid.Column="0"
-                            Margin="3"
-                            VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding UserName}" />
-                                                <!--<Span Text="{Binding ProfileName}" />-->
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </Grid>
-                            </Border>
+                        <Grid
+                            Padding="10"
+                            BackgroundColor="White"
+                            Margin="0,5"
+                            HeightRequest="60"
+                            VerticalOptions="Center">
+                            <Label
+                                Text="{Binding UserName}"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                TextColor="#333"
+                                VerticalTextAlignment="Center" />
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Label
+                        Text="No users in session."
+                        TextColor="#999"
+                        FontAttributes="Italic"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        Margin="20,40,20,20" />
+                </CollectionView.EmptyView>
             </CollectionView>
-            <Button 
-Text="not sessin"
-Command="{Binding SessionCommand}" />
+
+            <Button
+                Text="Leave Session"
+                Command="{Binding SessionCommand}"
+                HeightRequest="50"
+                BackgroundColor="#ff3b30"
+                TextColor="White"
+                FontAttributes="Bold"
+                HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -5,88 +5,87 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Models="clr-namespace:BattleMapMain.Models"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    Title="CharacterSheetsView"
-    x:DataType="viewmodels:CharacterSheetsViewModel">
-    <ScrollView>
-        <VerticalStackLayout>
-            <Entry
-                HeightRequest="55"
-                Placeholder="Search by character name"
-                Text="{Binding SearchBar}" />
-            <ScrollView x:Name="scrlview" Margin="10">
+    Title="Character Sheets"
+    x:DataType="viewmodels:CharacterSheetsViewModel"
+    BackgroundColor="#f2f2f7"
+    Shell.FlyoutBehavior="Disabled">
+
+    <Grid>
+
+        <ScrollView>
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <Entry
+                    Placeholder="Search by character name"
+                    Text="{Binding SearchBar}"
+                    HeightRequest="50"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    PlaceholderColor="#888" />
 
                 <CollectionView
                     x:Name="collection"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Margin="3"
                     ItemsSource="{Binding SearchedCharacters}"
+                    SelectionMode="Single"
                     SelectedItem="{Binding SelectedCharacter}"
-                    SelectionMode="Single">
+                    >
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="Models:Character">
-                            <SwipeView>
-                                <!--<SwipeView.RightItems>
-                             <SwipeItem
-                                 Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
-                                 CommandParameter="{Binding .}"
-                                 IconImageSource="decline.png" />
-                             <SwipeItem
-                                 Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveConfectioneryCommand}"
-                                 CommandParameter="{Binding .}"
-                                 IconImageSource="approve.png" />
-                         </SwipeView.RightItems>-->
-                                <Border
-                                    Margin="4,5"
-                                    Padding="4"
-                                    HeightRequest="80">
-                                    <Grid ColumnDefinitions="*,*,*,*">
-                                        <Label
-                                            Grid.Column="0"
-                                            Margin="3"
-                                            VerticalTextAlignment="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{Binding CharacterName}" />
-                                                    <!--<Span Text="{Binding ProfileName}" />-->
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                        <Label
-                                            Grid.Column="3"
-                                            Margin="3"
-                                            VerticalTextAlignment="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{Binding Hp}" />
+                            <Border
+                                BackgroundColor="White"
+                                Margin="0,5"
+                                Stroke="#ccc"
+                                StrokeThickness="1">
 
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
+                                <Grid Padding="10" ColumnDefinitions="*,Auto"
+                                      >
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding CharacterName}"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        TextColor="#333"
+                                        VerticalTextAlignment="Center" />
 
-                                    </Grid>
-                                </Border>
-                            </SwipeView>
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding Hp}"
+                                        FontAttributes="Bold"
+                                        FontSize="14"
+                                        TextColor="#666"
+                                        VerticalTextAlignment="Center"
+                                        HorizontalTextAlignment="End" />
+                                </Grid>
+                            </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                    <!--<CollectionView.EmptyView>
-                 <StackLayout>
-                     <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
-                     <Image
-                         Aspect="AspectFit"
-                         HeightRequest="80"
-                         HorizontalOptions="CenterAndExpand"
-                         Source="sad.png"
-                         WidthRequest="80" />
-                 </StackLayout>
-             </CollectionView.EmptyView>-->
+
+                    <CollectionView.EmptyView>
+                        <StackLayout Padding="20" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label
+                                Text="No characters found."
+                                FontAttributes="Italic"
+                                TextColor="#999"
+                                FontSize="16"
+                                HorizontalOptions="Center" />
+                        </StackLayout>
+                    </CollectionView.EmptyView>
                 </CollectionView>
 
+            </VerticalStackLayout>
+        </ScrollView>
 
-            </ScrollView>
-            <Button Command="{Binding GoToAddCommand}" Text="add character" />
-        </VerticalStackLayout>
-    </ScrollView>
+        <Button
+            Text="+"
+            FontSize="24"
+            WidthRequest="60"
+            HeightRequest="60"
+            BackgroundColor="#007AFF"
+            TextColor="White"
+            Command="{Binding GoToAddCommand}"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            Margin="20" />
+    </Grid>
 </ContentPage>

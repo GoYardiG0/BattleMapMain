@@ -8,112 +8,116 @@
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     CanBeDismissedByTappingOutsideOfPopup="True"
     Color="White">
-    <VerticalStackLayout x:Name="layout">
+
+    <VerticalStackLayout Padding="16" Spacing="12" x:Name="layout">
+
         <Entry
-            HeightRequest="55"
+            HeightRequest="50"
             Placeholder="Search by name"
-            Text="{Binding SearchBar}" />
+            Text="{Binding SearchBar}"
+            BackgroundColor="White"
+            TextColor="Black"
+            PlaceholderColor="#888" />
+
         <Picker
             x:DataType="x:String"
             HeightRequest="50"
-            ItemDisplayBinding="{Binding .}"
             ItemsSource="{Binding BindingContext.Filters, Source={x:Reference layout}}"
             SelectedItem="{Binding BindingContext.SelectedFilter, Source={x:Reference layout}}"
-            TextColor="Black"/>
-        <ScrollView x:Name="scrlview" Margin="10">
+            ItemDisplayBinding="{Binding .}"
+            TextColor="Black" />
+
+        <ScrollView Margin="0">
             <Grid>
+
                 <CollectionView
                     x:Name="monster_collection"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Margin="3"
-                    IsVisible="{Binding ShowMonsters}"
+                    Margin="0"
                     ItemsSource="{Binding SearchedMonsters}"
                     SelectedItem="{Binding SelectedMonster}"
                     SelectionMode="Single"
-                    BackgroundColor="Red">
+                    IsVisible="{Binding ShowMonsters}">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="Models:Monster">
-                            <Border
-                                Margin="4,5"
-                                Padding="4"
-                                HeightRequest="80">
-                                <Grid ColumnDefinitions="*,*,*,*">
-                                    <Label
-                                        Grid.Column="0"
-                                        Margin="3"
-                                        VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label
-                                        Grid.Column="3"
-                                        Margin="3"
-                                        VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding Hp}" />
+                            <Grid
+                                HeightRequest="80"
+                                Margin="0,4"
+                                BackgroundColor="White"
+                                VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding MonsterName}"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    TextColor="#333"
+                                    VerticalTextAlignment="Center"
+                                    Margin="8,0" />
 
-                                </Grid>
-                            </Border>
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Hp}"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    TextColor="#666"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="End"
+                                    Margin="8,0" />
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
                 <CollectionView
                     x:Name="character_collection"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Margin="3"
-                    IsVisible="{Binding ShowCharacters}"
+                    Margin="0"
                     ItemsSource="{Binding SearchedCharacters}"
                     SelectedItem="{Binding SelectedCharacter}"
-                    SelectionMode="Single">
+                    SelectionMode="Single"
+                    IsVisible="{Binding ShowCharacters}">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="Models:Character">
-                            <Border
-                                Margin="4,5"
-                                Padding="4"
-                                HeightRequest="80">
-                                <Grid ColumnDefinitions="*,*,*,*">
-                                    <Label
-                                        Grid.Column="0"
-                                        Margin="3"
-                                        VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding CharacterName}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label
-                                        Grid.Column="3"
-                                        Margin="3"
-                                        VerticalTextAlignment="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" Text="{Binding Hp}" />
+                            <Grid
+                                HeightRequest="80"
+                                Margin="0,4"
+                                BackgroundColor="White"
+                                VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding CharacterName}"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    TextColor="#333"
+                                    VerticalTextAlignment="Center"
+                                    Margin="8,0" />
 
-                                </Grid>
-                            </Border>
+                                <Label
+                                    Grid.Column="1"
+                                    Text="{Binding Hp}"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    TextColor="#666"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="End"
+                                    Margin="8,0" />
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
             </Grid>
         </ScrollView>
+
     </VerticalStackLayout>
 </toolkit:Popup>

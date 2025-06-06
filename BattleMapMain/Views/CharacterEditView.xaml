@@ -20,8 +20,8 @@
         <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
             <Label
                 HorizontalOptions="CenterAndExpand"
-                IsVisible="{Binding ShowNameError}"
-                Text="kil"
+                IsVisible="{Binding ShowError}"
+                Text="stats must be above 0 and descriptions cant be empty"
                 TextColor="Red" />
             <Grid ColumnDefinitions="*,*">
                 <Image

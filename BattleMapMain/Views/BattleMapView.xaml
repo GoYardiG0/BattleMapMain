@@ -6,21 +6,23 @@
     xmlns:drawable="clr-namespace:BattleMapMain.ViewModels"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
     Title="BattleMapView"
-    x:DataType="viewmodels:BattleMapViewModel">
+    x:DataType="viewmodels:BattleMapViewModel"
+    Shell.FlyoutBehavior="Disabled"
+    >
     <ContentPage.Resources>
         <drawable:GraphicsDrawable x:Key="drawable" />
     </ContentPage.Resources>
     <VerticalStackLayout>
         <Grid
             Padding="-1"
-            HeightRequest="600"
+            HeightRequest="700"
             WidthRequest="400">
             <Border>
                 <GraphicsView
                     x:Name="MapGraphicsView"
                     Drawable="{StaticResource drawable}"
                     EndInteraction="MapGraphicsView_EndInteraction"
-                    HeightRequest="600"
+                    HeightRequest="700"
                     StartInteraction="GraphicsView_StartInteraction"
                     WidthRequest="400" />
 

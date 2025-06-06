@@ -1,34 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-             x:Class="BattleMapMain.Views.LoginView"
-             x:DataType="viewmodels:LoginViewModel"
-             Title="Login">
-    <VerticalStackLayout Padding="20" Spacing="15">
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    x:Class="BattleMapMain.Views.LoginView"
+    x:DataType="viewmodels:LoginViewModel"
+    Title="Login"
+    BackgroundColor="#f2f2f7">
 
-        <Entry 
-        Placeholder="UserName"
-        Text="{Binding Name}" IsEnabled="{Binding NotInServerCall}"/>
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16" VerticalOptions="Center">
 
-        <Entry 
-        Placeholder="Password"
-        IsPassword="True"
-        Text="{Binding Password}" IsEnabled="{Binding NotInServerCall}"/>
+            <Label Text="Login to Continue" FontSize="20" TextColor="#333" HorizontalOptions="Center" />
 
-        <Button 
-        Text="Login"
-        Command="{Binding LoginCommand}" IsEnabled="{Binding NotInServerCall}"/>
-        <Label Text="{Binding ErrorMsg}" TextColor="Red" HorizontalOptions="Center"></Label>
-        <Label 
-        Text="Don't have an account? Register"
-        TextColor="Blue"
-        HorizontalOptions="Center"
-        VerticalOptions="End" IsEnabled="{Binding NotInServerCall}">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RegisterCommand}"/>
-            </Label.GestureRecognizers>
-        </Label>
-        <ActivityIndicator IsRunning="{Binding InServerCall}" Color="Red"></ActivityIndicator>
-    </VerticalStackLayout>
+            <Entry 
+                Placeholder="Username"
+                Text="{Binding Name}" 
+                IsEnabled="{Binding NotInServerCall}"
+                HeightRequest="50"
+                BackgroundColor="White"
+                TextColor="Black"
+                PlaceholderColor="#888" />
+
+            <Entry 
+                Placeholder="Password"
+                IsPassword="True"
+                Text="{Binding Password}" 
+                IsEnabled="{Binding NotInServerCall}"
+                HeightRequest="50"
+                BackgroundColor="White"
+                TextColor="Black"
+                PlaceholderColor="#888" />
+
+            <Button 
+                Text="Login"
+                Command="{Binding LoginCommand}" 
+                IsEnabled="{Binding NotInServerCall}"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                FontSize="16"
+                HeightRequest="50" />
+
+            <Label 
+                Text="{Binding ErrorMsg}" 
+                TextColor="Red" 
+                FontSize="14"
+                HorizontalOptions="Center" />
+
+            <Label 
+                Text="Don't have an account? Register"
+                TextColor="#007AFF"
+                FontAttributes="Italic"
+                FontSize="14"
+                HorizontalOptions="Center"
+                GestureRecognizers="{TapGestureRecognizer Command={Binding RegisterCommand}}"
+                IsEnabled="{Binding NotInServerCall}" />
+
+            <ActivityIndicator 
+                IsRunning="{Binding InServerCall}" 
+                Color="#FF3B30"
+                WidthRequest="40"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

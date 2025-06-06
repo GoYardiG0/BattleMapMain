@@ -282,7 +282,7 @@ namespace BattleMapMain.ViewModels
         async void OnSingleSelectMonster()
         {
             selectedMini = new Mini(selectedMonster);
-            selectedMini.SetImage();
+            await selectedMini.SetImage();
             OnPropertyChanged("SelectedMini");
             SelectedMonster = null;
             if (ClosePopup != null)

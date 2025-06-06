@@ -5,85 +5,72 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Models="clr-namespace:BattleMapMain.Models"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    Title="AllMonstersView"
-    x:DataType="viewmodels:AllMonstersViewModel">
+    Title="Monsters"
+    x:DataType="viewmodels:AllMonstersViewModel"
+    BackgroundColor="#f2f2f7"
+    Shell.FlyoutBehavior="Disabled">
+
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
             <Entry
-                HeightRequest="55"
                 Placeholder="Search by monster name"
-                Text="{Binding SearchBar}" />
-            <ScrollView x:Name="scrlview" Margin="10">
+                Text="{Binding SearchBar}"
+                HeightRequest="50"
+                BackgroundColor="White"
+                TextColor="Black"
+                PlaceholderColor="#888"
+                Margin="0,0,0,10" />
 
-                <CollectionView
-                    x:Name="collection"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Margin="3"
-                    ItemsSource="{Binding SearchedMonsters}" SelectionMode="None">
+            <CollectionView
+                x:Name="collection"
+                ItemsSource="{Binding SearchedMonsters}">
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="Models:Monster">
-                            <SwipeView>
-                                <!--<SwipeView.RightItems>
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.DeclineConfectioneryCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="decline.png" />
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference collection}, Path=BindingContext.ApproveConfectioneryCommand}"
-                                    CommandParameter="{Binding .}"
-                                    IconImageSource="approve.png" />
-                            </SwipeView.RightItems>-->
-                                <Border
-                                    Margin="4,5"
-                                    Padding="4"
-                                    HeightRequest="80">
-                                    <Grid ColumnDefinitions="*,*,*,*">
-                                        <Label
-                                            Grid.Column="0"
-                                            Margin="3"
-                                            VerticalTextAlignment="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{Binding MonsterName}" />
-                                                    <!--<Span Text="{Binding ProfileName}" />-->
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                        <Label
-                                            Grid.Column="3"
-                                            Margin="3"
-                                            VerticalTextAlignment="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span FontAttributes="Bold" Text="{Binding Hp}" />
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Models:Monster">
+                        <Border
+         BackgroundColor="White"
+         Margin="0,5"
+         Stroke="#ccc"
+         StrokeThickness="1">
 
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
+                            <Grid Padding="10" ColumnDefinitions="*,Auto">
+                                <Label
+                 Grid.Column="0"
+                 Text="{Binding MonsterName}"
+                 FontAttributes="Bold"
+                 FontSize="16"
+                 TextColor="#333"
+                 VerticalTextAlignment="Center" />
 
-                                    </Grid>
-                                </Border>
-                            </SwipeView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                    <!--<CollectionView.EmptyView>
-                    <StackLayout>
-                        <Label HorizontalOptions="CenterAndExpand" Text="No pending confectioneries." />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="80"
-                            HorizontalOptions="CenterAndExpand"
-                            Source="sad.png"
-                            WidthRequest="80" />
+                                <Label
+                 Grid.Column="1"
+                 Text="{Binding Hp}"
+                 FontAttributes="Bold"
+                 FontSize="14"
+                 TextColor="#666"
+                 VerticalTextAlignment="Center"
+                 HorizontalTextAlignment="End" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                
+
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="20" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label
+                            Text="No monsters found."
+                            FontAttributes="Italic"
+                            TextColor="#999"
+                            FontSize="16"
+                            HorizontalOptions="Center" />
                     </StackLayout>
-                </CollectionView.EmptyView>-->
-                </CollectionView>
+                </CollectionView.EmptyView>
 
+            </CollectionView>
 
-            </ScrollView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

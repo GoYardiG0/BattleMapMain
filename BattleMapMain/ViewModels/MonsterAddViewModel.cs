@@ -66,6 +66,7 @@ namespace BattleMapMain.ViewModels
             if (!ShowNameError && !showAcError && !showActionDescError && !showChaError && !showConError && !showDexError &&
                 !showHpError && !showInteError && !showCrError && !showNameError && !showPassiveDescError && !showStrError && !showWisError)
             {
+                ShowError = false;
                 //Create a new AppUser object with the data from the registration form
                 var newMonster = new Monster
                 {
@@ -127,10 +128,23 @@ namespace BattleMapMain.ViewModels
                     await Application.Current.MainPage.DisplayAlert("", errorMsg, "ok");
                 }
             }
+            else
+            {
+                ShowError = true;
+            }
 
         }
 
-
+        private bool showError;
+        public bool ShowError
+        {
+            get => showError;
+            set
+            {
+                showError = value;
+                OnPropertyChanged();
+            }
+        }
         #region image
         private string photoURL;
 
