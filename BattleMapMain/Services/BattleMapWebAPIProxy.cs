@@ -267,9 +267,7 @@ namespace BattleMapMain.Services
                 return null;
             }
         }
-        //This method call the UploadProfileImage web API on the server and return the AppUser object with the given URL
-        //of the profile image or null if the call fails
-        //when registering a user it is better first to call the register command and right after that call this function
+
         public async Task<Monster?> UploadMonsterImage(Monster monster)
         {
             //Set URI to the specific function API
