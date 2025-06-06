@@ -72,7 +72,7 @@ public partial class BattleMapView : ContentPage
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
         switch (mode)
         {
-            case 0:
+            default:
                 
                 break;
                 
@@ -103,9 +103,7 @@ public partial class BattleMapView : ContentPage
                 await vm.SendDetailsToHub(new MapDetails(graphics.AllMinis, graphics.lines));
                 mode = 3;
                 break;
-            case 5: 
-                
-                break;
+
         }
 
 
@@ -133,10 +131,7 @@ public partial class BattleMapView : ContentPage
             case 3: // select mini mode
 
                 break;
-            case 4: // delete mini mode
-
-                break;
-            case 5: // move mini mode
+            case 4: // move mini mode
 
                 break;
         }
