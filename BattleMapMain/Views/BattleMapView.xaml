@@ -5,24 +5,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:drawable="clr-namespace:BattleMapMain.ViewModels"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    Title="BattleMapView"
+    Title=""
     x:DataType="viewmodels:BattleMapViewModel"
-    Shell.FlyoutBehavior="Disabled"
-    >
+    Shell.FlyoutBehavior="Disabled">
     <ContentPage.Resources>
         <drawable:GraphicsDrawable x:Key="drawable" />
     </ContentPage.Resources>
     <VerticalStackLayout>
         <Grid
             Padding="-1"
-            HeightRequest="700"
+            HeightRequest="650"
             WidthRequest="400">
             <Border>
                 <GraphicsView
                     x:Name="MapGraphicsView"
                     Drawable="{StaticResource drawable}"
                     EndInteraction="MapGraphicsView_EndInteraction"
-                    HeightRequest="700"
+                    HeightRequest="650"
                     StartInteraction="GraphicsView_StartInteraction"
                     WidthRequest="400" />
 
@@ -120,9 +119,21 @@
                         HorizontalOptions="Fill"
                         Opacity="0.5"
                         Source="statblockbackground.png" />
-                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*">
-                        <Grid Grid.Row="0" Grid.Column="0">
-                            <Image Margin="5,5,2,5" Source="hpicon.png" />
+                    <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            Margin="2,-5,0,3"
+                            FontAttributes="Bold"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding SelectedMini.Name}"
+                            VerticalOptions="Center" />
+                        <Grid
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="0,-12,0,5">
+                            <Image Source="hpicon.png" />
                             <Label
                                 Margin="2,-3,0,0"
                                 FontAttributes="Bold"
@@ -132,30 +143,31 @@
                                 VerticalOptions="Center" />
                         </Grid>
                         <Grid
-                            Grid.Row="0"
+                            Grid.Row="1"
                             Grid.Column="1"
-                            Margin="0,0,-7,0">
-                            <Image Margin="2,5,2,5" Source="acicon.png" />
+                            Margin="8,-15,0,5">
+                            <Image Source="acicon.png" />
                             <Label
-                                Margin="-2,0,0,0"
                                 FontAttributes="Bold"
                                 FontSize="20"
                                 HorizontalOptions="Center"
                                 Text="{Binding SelectedMini.Ac}"
                                 VerticalOptions="Center" />
                         </Grid>
-                        <Grid Grid.Row="0" Grid.Column="2">
-                            <Image Margin="2,5,5,5" Source="cricon.png" />
+                        <Grid
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Margin="0,-15,0,5">
+                            <Image Source="cricon.png" />
                             <Label
-                                Margin="-3,0,0,0"
                                 FontAttributes="Bold"
-                                FontSize="15"
+                                FontSize="20"
                                 HorizontalOptions="Center"
                                 Text="{Binding SelectedMini.Level}"
                                 VerticalOptions="Center" />
                         </Grid>
                         <ImageButton
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="0"
                             Margin="2,-5,0,0"
                             Clicked="MoveMini_Button"
@@ -163,7 +175,7 @@
                             Source="move.png"
                             WidthRequest="45" />
                         <ImageButton
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="1"
                             Margin="7,-5,0,0"
                             Clicked="DeleteMini_button"
@@ -171,7 +183,7 @@
                             Source="clear.png"
                             WidthRequest="45" />
                         <ImageButton
-                            Grid.Row="1"
+                            Grid.Row="2"
                             Grid.Column="2"
                             Margin="0,0,5,5"
                             Command="{Binding MiniDetailsCommand}"

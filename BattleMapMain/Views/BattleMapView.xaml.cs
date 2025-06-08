@@ -18,7 +18,7 @@ public partial class BattleMapView : ContentPage
     Mini currentMini;
 	public BattleMapView(BattleMapViewModel vm)
 	{
-        mode = 0;
+        mode = 3;
 		this.BindingContext = vm;
         this.vm = vm;
         vm.OpenPopup += DisplayPopup;
@@ -33,6 +33,7 @@ public partial class BattleMapView : ContentPage
 
         if (this.BindingContext is  BattleMapViewModel)
         {
+            vm.SelectedMini = null;
             await vm.GetDetailsFromHub();
             var graphicsView = this.MapGraphicsView;
             graphicsView.Invalidate();
@@ -183,7 +184,7 @@ public partial class BattleMapView : ContentPage
 
     
 
-    private void DeleteMini_button(object sender, EventArgs e)
+    private async void DeleteMini_button(object sender, EventArgs e)
     {
         var graphicsView = this.MapGraphicsView;
         this.graphics = ((GraphicsDrawable)graphicsView.Drawable);
@@ -192,6 +193,7 @@ public partial class BattleMapView : ContentPage
         vm.SelectedMini = currentMini;
         graphicsView.Invalidate();
         mode = 3;
+        await vm.SendDetailsToHub(new MapDetails(graphics.AllMinis, graphics.lines));
     }
 
 
