@@ -639,7 +639,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidatePassiveDesc()
         {
-            if (passiveDesc == null)
+            if (string.IsNullOrEmpty(passiveDesc))
             {
 
                 showPassiveDescError = true;
@@ -687,7 +687,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateActionDesc()
         {
-            if (actionDesc == null)
+            if (string.IsNullOrEmpty(actionDesc))
             {
                 ActionDescError = "A monster must have actions";
                 showActionDescError = true;

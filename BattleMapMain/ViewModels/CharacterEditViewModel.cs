@@ -692,7 +692,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidatePassiveDesc()
         {
-            if (passiveDesc == null) showPassiveDescError = true; else showPassiveDescError = false;
+            if (string.IsNullOrEmpty(passiveDesc)) showPassiveDescError = true; else showPassiveDescError = false;
         }
 
         #endregion
@@ -735,7 +735,7 @@ namespace BattleMapMain.ViewModels
 
         private void ValidateActionDesc()
         {
-            if (actionDesc == null) showActionDescError = true; else showActionDescError = false;
+            if (string.IsNullOrEmpty(actionDesc)) showActionDescError = true; else showActionDescError = false;
         }
 
         #endregion

@@ -50,6 +50,7 @@
                         Margin="10"
                         FontSize="20"
                         HorizontalOptions="Center"
+                        TextColor="Black"
                         Text="{Binding Name}"
                         VerticalOptions="StartAndExpand"
                         WidthRequest="170" />
@@ -78,6 +79,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     Text="{Binding Hp}" />
                 <Label
@@ -94,6 +96,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     Text="{Binding Ac}" />
                 <Label
@@ -110,6 +113,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     Text="{Binding Cr}" />
             </Grid>
@@ -139,6 +143,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
                     Text="{Binding Str}" />
@@ -159,6 +164,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
                     Text="{Binding Dex}" />
@@ -179,6 +185,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
                     Text="{Binding Con}" />
@@ -199,6 +206,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
                     Text="{Binding Inte}" />
@@ -219,6 +227,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
                     Text="{Binding Wis}" />
@@ -239,6 +248,7 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
+                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
                     Text="{Binding Cha}" />
@@ -257,11 +267,13 @@
                 FontSize="20"
                 HeightRequest="25"
                 Text="Monster Passives"
+                TextColor="Black"
                 VerticalOptions="StartAndExpand" />
             <Editor
                 Margin="10,0,10,0"
                 FontSize="18"
                 HeightRequest="40"
+                TextColor="Black"
                 Text="{Binding PassiveDesc}" />
             <Border
                 Margin="5"
@@ -277,11 +289,13 @@
                 FontSize="20"
                 HeightRequest="25"
                 Text="Monster Actions"
+                TextColor="Black"
                 VerticalOptions="StartAndExpand" />
             <Editor
                 Margin="10,0,10,0"
                 FontSize="18"
                 HeightRequest="40"
+                TextColor="Black"
                 Text="{Binding ActionDesc}" />
             <Border
                 Margin="5"
@@ -293,11 +307,13 @@
                 FontSize="20"
                 HeightRequest="25"
                 Text="Special Monster Actions"
+                TextColor="Black"
                 VerticalOptions="StartAndExpand" />
             <Editor
                 Margin="10,0,10,0"
                 FontSize="18"
                 HeightRequest="40"
+                TextColor="Black"
                 Text="{Binding SpecialActionDesc}" />
             <Button
                 Margin="10"

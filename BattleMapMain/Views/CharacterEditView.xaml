@@ -7,7 +7,8 @@
     x:DataType="viewmodels:CharacterEditViewModel"
     BackgroundImageSource="statblockbackground.png"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarIsVisible="False">
+    Shell.TabBarIsVisible="False"
+    >
     <Border
         Margin="20,30,20,30"
         Padding="0"
@@ -16,14 +17,15 @@
         HeightRequest="760"
         Stroke="Maroon"
         StrokeThickness="3"
-        WidthRequest="380">
-        <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+        WidthRequest="380"
+        >
+        <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" >
             <Label
                 HorizontalOptions="CenterAndExpand"
                 IsVisible="{Binding ShowError}"
                 Text="stats must be above 0 and descriptions cant be empty"
                 TextColor="Red" />
-            <Grid ColumnDefinitions="*,*">
+            <Grid ColumnDefinitions="*,*" >
                 <Image
                     Grid.Column="0"
                     Margin="10,10,2,2"
@@ -57,7 +59,7 @@
                         Margin="5"
                         FontAttributes="Bold"
                         FontSize="22"
-                        Text="Monster Name"
+                        Text="Name"
                         TextColor="Black" />
                     <Entry
                         Margin="10"
@@ -65,7 +67,8 @@
                         HorizontalOptions="Center"
                         Text="{Binding Name}"
                         VerticalOptions="StartAndExpand"
-                        WidthRequest="170" />
+                        WidthRequest="170"
+                        TextColor="Black"/>
                 </VerticalStackLayout>
             </Grid>
             <BoxView
@@ -93,7 +96,8 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
-                    Text="{Binding Hp}" />
+                    Text="{Binding Hp}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Column="2"
                     Margin="10"
@@ -109,14 +113,16 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
-                    Text="{Binding Ac}" />
+                    Text="{Binding Ac}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Column="4"
                     Margin="10"
                     FontAttributes="Bold"
-                    FontSize="25"
+                    FontSize="16"
                     HorizontalOptions="EndAndExpand"
-                    Text="CR"
+                    VerticalTextAlignment="Center"
+                    Text="LEVEL"
                     TextColor="Black" />
                 <Entry
                     Grid.Column="5"
@@ -125,7 +131,8 @@
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
-                    Text="{Binding Level}" />
+                    Text="{Binding Level}"
+                    TextColor="Black"/>
             </Grid>
             <BoxView
                 Margin="5"
@@ -156,7 +163,8 @@
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Str}" />
+                    Text="{Binding Str}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Row="0"
                     Grid.Column="2"
@@ -176,7 +184,8 @@
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Dex}" />
+                    Text="{Binding Dex}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Row="0"
                     Grid.Column="4"
@@ -196,7 +205,8 @@
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Con}" />
+                    Text="{Binding Con}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
@@ -216,7 +226,8 @@
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Inte}" />
+                    Text="{Binding Inte}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Row="1"
                     Grid.Column="2"
@@ -236,7 +247,8 @@
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Wis}" />
+                    Text="{Binding Wis}"
+                    TextColor="Black"/>
                 <Label
                     Grid.Row="1"
                     Grid.Column="4"
@@ -256,6 +268,7 @@
                     HorizontalTextAlignment="Center"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
+                    TextColor="Black"
                     Text="{Binding Cha}" />
             </Grid>
             <BoxView
@@ -272,13 +285,15 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HeightRequest="25"
-                Text="Monster Passives"
-                VerticalOptions="StartAndExpand" />
+                Text="Passives"
+                VerticalOptions="StartAndExpand"
+                TextColor="Black"/>
             <Editor
                 Margin="10,-5,10,-5"
                 FontSize="18"
                 HeightRequest="75"
-                Text="{Binding PassiveDesc}" />
+                Text="{Binding PassiveDesc}"
+                TextColor="Black"/>
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
@@ -286,20 +301,22 @@
                 Stroke="Maroon" />
             <Label
                 IsVisible="{Binding ShowActionDescError}"
-                Text="{Binding ActionDescError}"
+                Text="error"
                 TextColor="Red" />
             <Label
                 Margin="10,0,0,0"
                 FontAttributes="Bold"
                 FontSize="20"
                 HeightRequest="25"
-                Text="Monster Actions"
-                VerticalOptions="StartAndExpand" />
+                Text="Actions"
+                VerticalOptions="StartAndExpand"
+                TextColor="Black"/>
             <Editor
                 Margin="10,-5,10,-5"
                 FontSize="18"
                 HeightRequest="75"
-                Text="{Binding ActionDesc}" />
+                Text="{Binding ActionDesc}"
+                TextColor="Black"/>
             <BoxView
                 Margin="5"
                 BackgroundColor="Maroon"
@@ -310,13 +327,15 @@
                 FontAttributes="Bold"
                 FontSize="20"
                 HeightRequest="25"
-                Text="Special Monster Actions"
-                VerticalOptions="StartAndExpand" />
+                Text="Special Actions"
+                VerticalOptions="StartAndExpand"
+                TextColor="Black"/>
             <Editor
                 Margin="10,-5,10,-5"
                 FontSize="18"
                 HeightRequest="75"
-                Text="{Binding SpecialActionDesc}" />
+                Text="{Binding SpecialActionDesc}"
+                TextColor="Black"/>
             <Grid>
                 <Button
                     Margin="10"
