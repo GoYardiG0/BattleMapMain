@@ -1,85 +1,103 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ContentPage
+    x:Class="BattleMapMain.Views.RegisterView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    x:Class="BattleMapMain.Views.RegisterView"
+    Title=""
     x:DataType="viewmodels:RegisterViewModel"
-    Title="Register"
     BackgroundColor="#f2f2f7">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16" IsEnabled="{Binding NotInServerCall}">
+        <VerticalStackLayout
+            Padding="24"
+            IsEnabled="{Binding NotInServerCall}"
+            Spacing="16">
 
-            <Grid ColumnDefinitions="*,*" >
+            <Grid ColumnDefinitions="*,*">
                 <Label Text="Username" TextColor="Black" />
-                <Label Text="{Binding NameError}" TextColor="Red" FontSize="12" HorizontalOptions="End" IsVisible="{Binding ShowNameError}" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding ShowNameError}"
+                    Text="{Binding NameError}"
+                    TextColor="Red" />
             </Grid>
             <Entry
+                BackgroundColor="White"
+                HeightRequest="50"
                 Placeholder="Type username"
+                PlaceholderColor="#888"
                 Text="{Binding UserName}"
-                HeightRequest="50"
-                BackgroundColor="White"
-                TextColor="Black"
-                PlaceholderColor="#888" />
+                TextColor="Black" />
 
-            <Grid ColumnDefinitions="*,*" >
+            <Grid ColumnDefinitions="*,*">
                 <Label Text="Email" TextColor="Black" />
-                <Label Text="{Binding EmailError}" TextColor="Red" FontSize="12" HorizontalOptions="End" IsVisible="{Binding ShowEmailError}" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding ShowEmailError}"
+                    Text="{Binding EmailError}"
+                    TextColor="Red" />
             </Grid>
             <Entry
-                Placeholder="Type email"
-                Text="{Binding Email}"
-                HeightRequest="50"
                 BackgroundColor="White"
-                TextColor="Black"
-                PlaceholderColor="#888" />
+                HeightRequest="50"
+                Placeholder="Type email"
+                PlaceholderColor="#888"
+                Text="{Binding Email}"
+                TextColor="Black" />
 
-            <Grid ColumnDefinitions="*,*" >
+            <Grid ColumnDefinitions="*,*">
                 <Label Text="Password" TextColor="Black" />
-                <Label Text="{Binding PasswordError}" TextColor="Red" FontSize="12" HorizontalOptions="End" IsVisible="{Binding ShowPasswordError}" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding ShowPasswordError}"
+                    Text="{Binding PasswordError}"
+                    TextColor="Red" />
             </Grid>
             <Grid ColumnDefinitions="*,40">
                 <Entry
                     Grid.Column="0"
-                    Placeholder="Type password"
-                    Text="{Binding Password}"
-                    IsPassword="{Binding IsPassword}"
-                    HeightRequest="50"
                     BackgroundColor="White"
-                    TextColor="Black"
-                    PlaceholderColor="#888" />
+                    HeightRequest="50"
+                    IsPassword="{Binding IsPassword}"
+                    Placeholder="Type password"
+                    PlaceholderColor="#888"
+                    Text="{Binding Password}"
+                    TextColor="Black" />
                 <ImageButton
                     Grid.Column="1"
-                    Source="passwordeye.jpg"
-                    HeightRequest="40"
                     BackgroundColor="Transparent"
-                    Command="{Binding ShowPasswordCommand}" />
+                    Command="{Binding ShowPasswordCommand}"
+                    HeightRequest="40"
+                    Source="passwordeye.jpg" />
             </Grid>
 
             <Grid ColumnDefinitions="*,*">
                 <Button
-                    Text="Cancel"
+                    Grid.Column="0"
+                    BackgroundColor="#ccc"
                     Command="{Binding CancelCommand}"
                     HeightRequest="45"
-                    BackgroundColor="#ccc"
-                    TextColor="Black"
-                    Grid.Column="0" />
+                    Text="Cancel"
+                    TextColor="Black" />
                 <Button
-                    Text="Register"
+                    Grid.Column="1"
+                    BackgroundColor="#007AFF"
                     Command="{Binding RegisterCommand}"
                     HeightRequest="45"
-                    BackgroundColor="#007AFF"
-                    TextColor="White"
-                    Grid.Column="1" />
+                    Text="Register"
+                    TextColor="White" />
             </Grid>
 
             <ActivityIndicator
-                IsRunning="{Binding InServerCall}"
-                Color="Red"
+                HeightRequest="40"
                 HorizontalOptions="Center"
+                IsRunning="{Binding InServerCall}"
                 VerticalOptions="Center"
-                HeightRequest="40" />
+                Color="Red" />
 
         </VerticalStackLayout>
     </ScrollView>

@@ -57,6 +57,7 @@ namespace BattleMapMain
             builder.Services.AddTransient<MonsterAddView>();
             builder.Services.AddTransient<CharacterAddView>();
             builder.Services.AddTransient<MiniPickerView>();
+            
 
             return builder;
         }

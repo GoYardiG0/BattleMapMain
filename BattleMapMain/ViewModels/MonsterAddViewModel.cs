@@ -20,12 +20,15 @@ namespace BattleMapMain.ViewModels
             this.serviceProvider = serviceProvider;
             AddMonsterCommand = new Command(OnAddMonster);
             UploadPhotoCommand = new Command(OnUploadPhoto);
+            CancelCommand = new Command(OnCancel);
             PhotoURL = "dragonpfp.png";
             localPhotoPath = "dragonpfp.png";
+
         }
 
         public Command AddMonsterCommand { get; }
         public Command UploadPhotoCommand { get; }
+        public Command CancelCommand { get; }
         //This method open the file picker to select a photo
         private async void OnUploadPhoto()
         {
@@ -133,6 +136,11 @@ namespace BattleMapMain.ViewModels
                 ShowError = true;
             }
 
+        }
+
+        private void OnCancel()
+        {
+            ((App)Application.Current).MainPage.Navigation.PopAsync();
         }
 
         private bool showError;

@@ -311,12 +311,12 @@ namespace BattleMapMain.ViewModels
             selectedMini = new Mini(selectedCharacter);
             selectedMini.SetImage();
             OnPropertyChanged("SelectedMini");
-            //selectedCharacter = null;
-            //if (ClosePopup != null)
-            //{
-            //    List<string> l = new List<string>();
-            //    ClosePopup(l);
-            //}
+            selectedCharacter = null;
+            if (ClosePopup != null)
+            {
+                List<string> l = new List<string>();
+                ClosePopup(l);
+            }
         }
 
         #endregion

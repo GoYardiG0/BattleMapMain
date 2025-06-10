@@ -163,8 +163,7 @@ namespace BattleMapMain.ViewModels
             }
         }
         private void OnCancel()
-        {
-            // Navigate to the Register View page
+        {            
             ((App)Application.Current).MainPage.Navigation.PopAsync();
         }
 

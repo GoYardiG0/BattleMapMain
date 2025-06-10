@@ -40,6 +40,17 @@
                     VerticalOptions="EndAndExpand"
                     WidthRequest="25" />
                 <VerticalStackLayout Grid.Column="1" Margin="10">
+                    <Button
+                        BackgroundColor="Maroon"
+                        BorderColor="#511100"
+                        BorderWidth="2"
+                        Command="{Binding CancelCommand}"
+                        CornerRadius="3"
+                        FontAttributes="Bold"
+                        HeightRequest="40"
+                        HorizontalOptions="Center"
+                        Text="Cancel"
+                        VerticalOptions="Center" />
                     <Label
                         Margin="5"
                         FontAttributes="Bold"
@@ -50,8 +61,8 @@
                         Margin="10"
                         FontSize="20"
                         HorizontalOptions="Center"
-                        TextColor="Black"
                         Text="{Binding Name}"
+                        TextColor="Black"
                         VerticalOptions="StartAndExpand"
                         WidthRequest="170" />
                 </VerticalStackLayout>
@@ -79,9 +90,9 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
-                    Text="{Binding Hp}" />
+                    Text="{Binding Hp}"
+                    TextColor="Black" />
                 <Label
                     Grid.Column="2"
                     Margin="10"
@@ -96,9 +107,9 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
-                    Text="{Binding Ac}" />
+                    Text="{Binding Ac}"
+                    TextColor="Black" />
                 <Label
                     Grid.Column="4"
                     Margin="10"
@@ -113,9 +124,9 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
-                    Text="{Binding Cr}" />
+                    Text="{Binding Cr}"
+                    TextColor="Black" />
             </Grid>
             <Border
                 Margin="5"
@@ -143,10 +154,10 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Str}" />
+                    Text="{Binding Str}"
+                    TextColor="Black" />
                 <Label
                     Grid.Row="0"
                     Grid.Column="2"
@@ -164,10 +175,10 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Dex}" />
+                    Text="{Binding Dex}"
+                    TextColor="Black" />
                 <Label
                     Grid.Row="0"
                     Grid.Column="4"
@@ -185,10 +196,10 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Con}" />
+                    Text="{Binding Con}"
+                    TextColor="Black" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
@@ -206,10 +217,10 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Inte}" />
+                    Text="{Binding Inte}"
+                    TextColor="Black" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="2"
@@ -227,10 +238,10 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Wis}" />
+                    Text="{Binding Wis}"
+                    TextColor="Black" />
                 <Label
                     Grid.Row="1"
                     Grid.Column="4"
@@ -248,10 +259,10 @@
                     HeightRequest="50"
                     HorizontalOptions="StartAndExpand"
                     HorizontalTextAlignment="Center"
-                    TextColor="Black"
                     Keyboard="Numeric"
                     PlaceholderColor="Black"
-                    Text="{Binding Cha}" />
+                    Text="{Binding Cha}"
+                    TextColor="Black" />
             </Grid>
             <Border
                 Margin="5"
@@ -273,8 +284,8 @@
                 Margin="10,0,10,0"
                 FontSize="18"
                 HeightRequest="40"
-                TextColor="Black"
-                Text="{Binding PassiveDesc}" />
+                Text="{Binding PassiveDesc}"
+                TextColor="Black" />
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
@@ -295,8 +306,8 @@
                 Margin="10,0,10,0"
                 FontSize="18"
                 HeightRequest="40"
-                TextColor="Black"
-                Text="{Binding ActionDesc}" />
+                Text="{Binding ActionDesc}"
+                TextColor="Black" />
             <Border
                 Margin="5"
                 BackgroundColor="Maroon"
@@ -313,8 +324,8 @@
                 Margin="10,0,10,0"
                 FontSize="18"
                 HeightRequest="40"
-                TextColor="Black"
-                Text="{Binding SpecialActionDesc}" />
+                Text="{Binding SpecialActionDesc}"
+                TextColor="Black" />
             <Button
                 Margin="10"
                 BackgroundColor="Maroon"

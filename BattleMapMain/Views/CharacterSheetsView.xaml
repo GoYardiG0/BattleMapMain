@@ -16,59 +16,61 @@
             <VerticalStackLayout Padding="16" Spacing="12">
 
                 <Entry
-                    Placeholder="Search by character name"
-                    Text="{Binding SearchBar}"
-                    HeightRequest="50"
                     BackgroundColor="White"
-                    TextColor="Black"
-                    PlaceholderColor="#888" />
+                    HeightRequest="50"
+                    Placeholder="Search by character name"
+                    PlaceholderColor="#888"
+                    Text="{Binding SearchBar}"
+                    TextColor="Black" />
 
                 <CollectionView
                     x:Name="collection"
                     ItemsSource="{Binding SearchedCharacters}"
-                    SelectionMode="Single"
                     SelectedItem="{Binding SelectedCharacter}"
-                    >
+                    SelectionMode="Single">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="Models:Character">
                             <Border
-                                BackgroundColor="White"
                                 Margin="0,5"
+                                BackgroundColor="White"
                                 Stroke="#ccc"
                                 StrokeThickness="1">
 
-                                <Grid Padding="10" ColumnDefinitions="*,Auto"
-                                      >
+                                <Grid Padding="10" ColumnDefinitions="*,Auto">
                                     <Label
                                         Grid.Column="0"
-                                        Text="{Binding CharacterName}"
                                         FontAttributes="Bold"
                                         FontSize="16"
+                                        Text="{Binding CharacterName}"
                                         TextColor="#333"
                                         VerticalTextAlignment="Center" />
 
                                     <Label
                                         Grid.Column="1"
-                                        Text="{Binding Hp}"
                                         FontAttributes="Bold"
                                         FontSize="14"
+                                        HorizontalTextAlignment="End"
+                                        Text="{Binding Hp}"
                                         TextColor="#666"
-                                        VerticalTextAlignment="Center"
-                                        HorizontalTextAlignment="End" />
+                                        VerticalTextAlignment="Center" />
                                 </Grid>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
 
                     <CollectionView.EmptyView>
-                        <StackLayout Padding="20" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                        <StackLayout
+                            Padding="20"
+                            HorizontalOptions="Center"
+                            Spacing="10"
+                            VerticalOptions="Center">
                             <Label
-                                Text="No characters found."
                                 FontAttributes="Italic"
-                                TextColor="#999"
                                 FontSize="16"
-                                HorizontalOptions="Center" />
+                                HorizontalOptions="Center"
+                                Text="No characters found."
+                                TextColor="#999" />
                         </StackLayout>
                     </CollectionView.EmptyView>
                 </CollectionView>
@@ -77,15 +79,15 @@
         </ScrollView>
 
         <Button
-            Text="+"
-            FontSize="24"
-            WidthRequest="60"
-            HeightRequest="60"
+            Margin="20"
             BackgroundColor="#007AFF"
-            TextColor="White"
             Command="{Binding GoToAddCommand}"
+            FontSize="24"
+            HeightRequest="60"
             HorizontalOptions="End"
+            Text="+"
+            TextColor="White"
             VerticalOptions="End"
-            Margin="20" />
+            WidthRequest="60" />
     </Grid>
 </ContentPage>

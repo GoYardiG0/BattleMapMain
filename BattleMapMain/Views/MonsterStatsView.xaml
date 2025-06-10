@@ -18,240 +18,268 @@
         Stroke="Maroon"
         StrokeThickness="3"
         WidthRequest="380">
-        <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-            <Grid ColumnDefinitions="*,*">
+        <ScrollView
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="StartAndExpand"
+            WidthRequest="500">
+            <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <Grid ColumnDefinitions="*,*,*">
 
-                <Image
-                    Margin="0,0,10,15"
-                    BackgroundColor="#FFE9DFBF"
-                    HeightRequest="25"
-                    HorizontalOptions="EndAndExpand"
-                    Source="{Binding Monster.MonsterPicURL}"
-                    VerticalOptions="EndAndExpand"
-                    WidthRequest="25" />
-                <VerticalStackLayout Grid.Column="1" Margin="10">
+                    <Image
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,6,10,0"
+                        Background="Transparent"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        MaximumHeightRequest="175"
+                        MaximumWidthRequest="175"
+                        Source="{Binding Monster.MonsterPicURL}"
+                        VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="2" Margin="10">
+                        <Button
+                            Margin="30,0,-10,0"
+                            BackgroundColor="Maroon"
+                            BorderColor="#511100"
+                            BorderWidth="2"
+                            Command="{Binding CancelCommand}"
+                            CornerRadius="3"
+                            FontAttributes="Bold"
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Text="back"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="25,40,-30,0"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Text="{Binding Monster.MonsterName}"
+                            WidthRequest="170" />
+                    </VerticalStackLayout>
+                </Grid>
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Grid ColumnDefinitions="*,*,*,*,*,*">
                     <Label
-                        Margin="5"
-                        FontSize="22"
-                        HorizontalOptions="Center"
-                        Text="{Binding Monster.MonsterName}"
-                        VerticalOptions="StartAndExpand"
-                        WidthRequest="170" />
-                </VerticalStackLayout>
-            </Grid>
-            <Border
-                Margin="5"
-                BackgroundColor="Maroon"
-                HeightRequest="5" />
-            <Grid ColumnDefinitions="*,*,*,*,*,*">
+                        Grid.Column="0"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="EndAndExpand"
+                        Text="HP"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding Monster.Hp}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Column="2"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="EndAndExpand"
+                        Text="AC"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Ac}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Column="4"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="EndAndExpand"
+                        Text="CR"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="5"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Cr}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="STR"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Str}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="DEX"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Dex}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="CON"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="5"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Con}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="INT"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Int}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="WIS"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Wis}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="CHA"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="5"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Monster.Cha}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
                 <Label
-                    Grid.Column="0"
-                    Margin="10"
+                    Margin="10,0,0,0"
                     FontAttributes="Bold"
-                    FontSize="25"
-                    HorizontalOptions="EndAndExpand"
-                    Text="HP"
-                    TextColor="Black" />
+                    FontSize="20"
+                    HeightRequest="25"
+                    Text="Passives"
+                    VerticalOptions="StartAndExpand" />
                 <Label
-                    Grid.Column="1"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Hp}" />
-                <Label
-                    Grid.Column="2"
-                    Margin="10"
+                    Margin="10,0,10,0"
                     FontAttributes="Bold"
-                    FontSize="25"
-                    HorizontalOptions="EndAndExpand"
-                    Text="AC"
-                    TextColor="Black" />
+                    FontSize="18"
+                    Text="{Binding Monster.PassiveDesc}" />
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
                 <Label
-                    Grid.Column="3"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Ac}" />
-                <Label
-                    Grid.Column="4"
-                    Margin="10"
+                    Margin="10,0,0,0"
                     FontAttributes="Bold"
-                    FontSize="25"
-                    HorizontalOptions="EndAndExpand"
-                    Text="CR"
-                    TextColor="Black" />
+                    FontSize="20"
+                    HeightRequest="25"
+                    Text="Actions"
+                    VerticalOptions="StartAndExpand" />
                 <Label
-                    Grid.Column="5"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Cr}" />
-            </Grid>
-            <Border
-                Margin="5"
-                BackgroundColor="Maroon"
-                HeightRequest="5" />
-            <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*,*">
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="10"
+                    Margin="10,0,10,0"
                     FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="EndAndExpand"
-                    Text="STR"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
+                    FontSize="18"
+                    Text="{Binding Monster.ActionDesc}" />
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
                 <Label
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Str}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Margin="10"
+                    Margin="10,0,0,0"
                     FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="EndAndExpand"
-                    Text="DEX"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
+                    FontSize="20"
+                    HeightRequest="25"
+                    Text="Special Actions"
+                    VerticalOptions="StartAndExpand" />
                 <Label
-                    Grid.Row="0"
-                    Grid.Column="3"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Dex}" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="4"
-                    Margin="10"
+                    Margin="10,0,10,0"
                     FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="EndAndExpand"
-                    Text="CON"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    Grid.Row="0"
-                    Grid.Column="5"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Con}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="10"
-                    FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="EndAndExpand"
-                    Text="INT"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Int}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Margin="10"
-                    FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="EndAndExpand"
-                    Text="WIS"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="3"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Wis}" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="4"
-                    Margin="10"
-                    FontAttributes="Bold"
-                    FontSize="19"
-                    HorizontalOptions="EndAndExpand"
-                    Text="CHA"
-                    TextColor="Black"
-                    VerticalOptions="CenterAndExpand" />
-                <Label
-                    Grid.Row="1"
-                    Grid.Column="5"
-                    FontSize="25"
-                    HeightRequest="50"
-                    HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Center"
-                    Text="{Binding Monster.Cha}" />
-            </Grid>
-            <Border
-                Margin="5"
-                BackgroundColor="Maroon"
-                HeightRequest="5" />
-            <Label
-                Margin="10,0,0,0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HeightRequest="25"
-                Text="Monster Passives"
-                VerticalOptions="StartAndExpand" />
-            <Editor
-                Margin="10,0,10,0"
-                FontSize="18"
-                HeightRequest="40"
-                Text="{Binding Monster.PassiveDesc}" />
-            <Border
-                Margin="5"
-                BackgroundColor="Maroon"
-                HeightRequest="5" />
-            <Label
-                Margin="10,0,0,0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HeightRequest="25"
-                Text="Monster Actions"
-                VerticalOptions="StartAndExpand" />
-            <Editor
-                Margin="10,0,10,0"
-                FontSize="18"
-                HeightRequest="40"
-                Text="{Binding Monster.ActionDesc}" />
-            <Border
-                Margin="5"
-                BackgroundColor="Maroon"
-                HeightRequest="5" />
-            <Label
-                Margin="10,0,0,0"
-                FontAttributes="Bold"
-                FontSize="20"
-                HeightRequest="25"
-                Text="Special Monster Actions"
-                VerticalOptions="StartAndExpand" />
-            <Editor
-                Margin="10,0,10,0"
-                FontSize="18"
-                HeightRequest="40"
-                Text="{Binding Monster.SpecialActionDesc}" />
-        </VerticalStackLayout>
+                    FontSize="18"
+                    Text="{Binding Monster.SpecialActionDesc}" />
+            </VerticalStackLayout>
+        </ScrollView>
     </Border>
 </ContentPage>

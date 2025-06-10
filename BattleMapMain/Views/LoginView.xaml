@@ -1,68 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ContentPage
+    x:Class="BattleMapMain.Views.LoginView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
-    x:Class="BattleMapMain.Views.LoginView"
+    Title=""
     x:DataType="viewmodels:LoginViewModel"
-    Title="Login"
     BackgroundColor="#f2f2f7">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16" VerticalOptions="Center">
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="16"
+            VerticalOptions="Center">
 
-            <Label Text="Login to Continue" FontSize="20" TextColor="#333" HorizontalOptions="Center" />
+            <Label
+                FontSize="20"
+                HorizontalOptions="Center"
+                Text="Login to Continue"
+                TextColor="#333" />
 
-            <Entry 
+            <Entry
+                BackgroundColor="White"
+                HeightRequest="50"
+                IsEnabled="{Binding NotInServerCall}"
                 Placeholder="Username"
-                Text="{Binding Name}" 
-                IsEnabled="{Binding NotInServerCall}"
-                HeightRequest="50"
-                BackgroundColor="White"
-                TextColor="Black"
-                PlaceholderColor="#888" />
+                PlaceholderColor="#888"
+                Text="{Binding Name}"
+                TextColor="Black" />
 
-            <Entry 
-                Placeholder="Password"
+            <Entry
+                BackgroundColor="White"
+                HeightRequest="50"
+                IsEnabled="{Binding NotInServerCall}"
                 IsPassword="True"
-                Text="{Binding Password}" 
-                IsEnabled="{Binding NotInServerCall}"
-                HeightRequest="50"
-                BackgroundColor="White"
-                TextColor="Black"
-                PlaceholderColor="#888" />
+                Placeholder="Password"
+                PlaceholderColor="#888"
+                Text="{Binding Password}"
+                TextColor="Black" />
 
-            <Button 
-                Text="Login"
-                Command="{Binding LoginCommand}" 
-                IsEnabled="{Binding NotInServerCall}"
+            <Button
                 BackgroundColor="#007AFF"
-                TextColor="White"
+                Command="{Binding LoginCommand}"
                 FontSize="16"
-                HeightRequest="50" />
+                HeightRequest="50"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Login"
+                TextColor="White" />
 
-            <Label 
-                Text="{Binding ErrorMsg}" 
-                TextColor="Red" 
+            <Label
                 FontSize="14"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center"
+                Text="{Binding ErrorMsg}"
+                TextColor="Red" />
 
-            <Label 
-                Text="Don't have an account? Register"
-                TextColor="#007AFF"
+            <Label
                 FontAttributes="Italic"
                 FontSize="14"
-                HorizontalOptions="Center"
                 GestureRecognizers="{TapGestureRecognizer Command={Binding RegisterCommand}}"
-                IsEnabled="{Binding NotInServerCall}" />
+                HorizontalOptions="Center"
+                IsEnabled="{Binding NotInServerCall}"
+                Text="Don't have an account? Register"
+                TextColor="#007AFF" />
 
-            <ActivityIndicator 
-                IsRunning="{Binding InServerCall}" 
-                Color="#FF3B30"
-                WidthRequest="40"
+            <ActivityIndicator
                 HeightRequest="40"
                 HorizontalOptions="Center"
-                VerticalOptions="Center" />
+                IsRunning="{Binding InServerCall}"
+                VerticalOptions="Center"
+                WidthRequest="40"
+                Color="#FF3B30" />
 
         </VerticalStackLayout>
     </ScrollView>

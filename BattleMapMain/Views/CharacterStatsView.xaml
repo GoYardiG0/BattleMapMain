@@ -1,12 +1,285 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BattleMapMain.Views.CharacterStatsView"
-             Title="CharacterStatsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="BattleMapMain.Views.CharacterStatsView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:BattleMapMain.ViewModels"
+    Title="CharacterStatsView"
+    x:DataType="viewmodels:CharacterStatsViewModel"
+    BackgroundImageSource="statblockbackground.png"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+    <Border
+        Margin="20,30,20,50"
+        Padding="0"
+        Background="Transparent"
+        BackgroundColor="Transparent"
+        HeightRequest="740"
+        Stroke="Maroon"
+        StrokeThickness="3"
+        WidthRequest="380">
+        <ScrollView
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="StartAndExpand"
+            WidthRequest="500">
+            <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <Grid ColumnDefinitions="*,*,*">
+
+                    <Image
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,6,10,0"
+                        Background="Transparent"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="StartAndExpand"
+                        MaximumHeightRequest="175"
+                        MaximumWidthRequest="175"
+                        Source="{Binding Character.CharacterPicURL}"
+                        VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="2" Margin="10">
+                        <Button
+                            Margin="20,0,0,0"
+                            BackgroundColor="Maroon"
+                            BorderColor="#511100"
+                            BorderWidth="2"
+                            Command="{Binding CancelCommand}"
+                            CornerRadius="3"
+                            FontAttributes="Bold"
+                            HeightRequest="40"
+                            HorizontalOptions="Center"
+                            Text="back"
+                            VerticalOptions="Center" />
+                        <Label
+                            Margin="30,40,-30,0"
+                            FontAttributes="Bold"
+                            FontSize="25"
+                            Text="{Binding Character.CharacterName}"
+                            WidthRequest="170" />
+                    </VerticalStackLayout>
+                </Grid>
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Grid ColumnDefinitions="*,*,*,*,*,*">
+                    <Label
+                        Grid.Column="0"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="EndAndExpand"
+                        Text="HP"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding Character.Hp}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Column="2"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="EndAndExpand"
+                        Text="AC"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Ac}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Column="4"
+                        Margin="0,10,8,10"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="EndAndExpand"
+                        Text="LV"
+                        TextColor="Black" />
+                    <Label
+                        Grid.Column="5"
+                        FontAttributes="Bold"
+                        FontSize="25"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Level}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Grid ColumnDefinitions="*,*,*,*,*,*" RowDefinitions="*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="STR"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Str}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="DEX"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Dex}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="4"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="CON"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="5"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Con}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="INT"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Int}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="WIS"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="3"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Wis}"
+                        VerticalOptions="Center" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        Margin="10"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="EndAndExpand"
+                        Text="CHA"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="5"
+                        FontAttributes="Bold"
+                        FontSize="19"
+                        HorizontalOptions="StartAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Character.Cha}"
+                        VerticalOptions="Center" />
+                </Grid>
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Label
+                    Margin="10,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HeightRequest="25"
+                    Text="Passives"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="{Binding Character.PassiveDesc}" />
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Label
+                    Margin="10,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HeightRequest="25"
+                    Text="Actions"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="{Binding Character.ActionDesc}" />
+                <Border
+                    Margin="5"
+                    BackgroundColor="Maroon"
+                    HeightRequest="5" />
+                <Label
+                    Margin="10,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="20"
+                    HeightRequest="25"
+                    Text="Special Actions"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    Margin="10,0,10,0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="{Binding Character.SpecialActionDesc}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
 </ContentPage>

@@ -14,58 +14,64 @@
         <VerticalStackLayout Padding="16" Spacing="12">
 
             <Entry
-                Placeholder="Search by monster name"
-                Text="{Binding SearchBar}"
-                HeightRequest="50"
+                Margin="0,0,0,10"
                 BackgroundColor="White"
-                TextColor="Black"
+                HeightRequest="50"
+                Placeholder="Search by monster name"
                 PlaceholderColor="#888"
-                Margin="0,0,0,10" />
+                Text="{Binding SearchBar}"
+                TextColor="Black" />
 
             <CollectionView
                 x:Name="collection"
-                ItemsSource="{Binding SearchedMonsters}">
+                ItemsSource="{Binding SearchedMonsters}"
+                SelectedItem="{Binding SelectedMonster}"
+                SelectionMode="Single">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Models:Monster">
                         <Border
-         BackgroundColor="White"
-         Margin="0,5"
-         Stroke="#ccc"
-         StrokeThickness="1">
+                            Margin="0,5"
+                            BackgroundColor="White"
+                            Stroke="#ccc"
+                            StrokeThickness="1">
 
                             <Grid Padding="10" ColumnDefinitions="*,Auto">
                                 <Label
-                 Grid.Column="0"
-                 Text="{Binding MonsterName}"
-                 FontAttributes="Bold"
-                 FontSize="16"
-                 TextColor="#333"
-                 VerticalTextAlignment="Center" />
+                                    Grid.Column="0"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    Text="{Binding MonsterName}"
+                                    TextColor="#333"
+                                    VerticalTextAlignment="Center" />
 
                                 <Label
-                 Grid.Column="1"
-                 Text="{Binding Hp}"
-                 FontAttributes="Bold"
-                 FontSize="14"
-                 TextColor="#666"
-                 VerticalTextAlignment="Center"
-                 HorizontalTextAlignment="End" />
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="14"
+                                    HorizontalTextAlignment="End"
+                                    Text="{Binding Hp}"
+                                    TextColor="#666"
+                                    VerticalTextAlignment="Center" />
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 
-                
+
 
                 <CollectionView.EmptyView>
-                    <StackLayout Padding="20" Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                    <StackLayout
+                        Padding="20"
+                        HorizontalOptions="Center"
+                        Spacing="10"
+                        VerticalOptions="Center">
                         <Label
-                            Text="No monsters found."
                             FontAttributes="Italic"
-                            TextColor="#999"
                             FontSize="16"
-                            HorizontalOptions="Center" />
+                            HorizontalOptions="Center"
+                            Text="No monsters found."
+                            TextColor="#999" />
                     </StackLayout>
                 </CollectionView.EmptyView>
 
